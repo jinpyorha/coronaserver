@@ -858,14 +858,18 @@ class simple_html_dom_node
 			}
 
 			// Check if ID matches
-	
+			// if ($pass && $id !== '' && isset($node->attr['id'])) {
+			// 	// Note: Only consider the first ID (as browsers do)
+			// 	$node_id = explode(' ', trim($node->attr['id']))[0];
+			//
+			// 	if($id !== $node_id) { $pass = false; }
+			// }
+
 			if ($pass &amp;&amp; $id !== '' &amp;&amp; isset($node-&gt;attr['id'])) {
-	    // Note: Only consider the first ID (as browsers do)
-	    $node_id = explode(' ', trim($node-&gt;attr['id']));
-	    $node_id = $node_id[0];
-
-
-	    if($id !== $node_id) { $pass = false; }
+    // Note: Only consider the first ID (as browsers do)
+    	$node_id = explode(' ', trim($node-&gt;attr['id']));
+    	$node_id = $node_id[0];
+    	if($id !== $node_id) { $pass = false; }
 			}
 
 			// Check if all class(es) exist
