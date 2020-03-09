@@ -2,30 +2,6 @@
 <?php
 
 
-$sub_req_url = "http://3.19.60.47/index1.php";
-
-$ch = curl_init($sub_req_url);
-$encoded = '';
-
-// include GET as well as POST variables; your needs may vary.
-foreach($_GET as $name => $value) {
-  $encoded .= urlencode($name).'='.urlencode($value).'&';
-}
-
-foreach($_POST as $name => $value) {
-  $encoded .= urlencode($name).'='.urlencode($value).'&';
-}
-
-// chop off last ampersand
-$encoded = substr($encoded, 0, strlen($encoded)-1);
-
-curl_setopt($ch, CURLOPT_POSTFIELDS,  $encoded);
-curl_setopt($ch, CURLOPT_HEADER, 0);
-curl_setopt($ch, CURLOPT_POST, 1);
-curl_exec($ch);
-curl_close($ch);
-
-
 
 	include('simple_html_dom.php');
 
@@ -49,6 +25,9 @@ curl_close($ch);
    curl_setopt($ch, CURLOPT_USERAGENT, $agent);
    $content = curl_exec($ch);
    curl_close($ch);
+
+	 error_reporting(E_ALL);
+	 ini_set("display_errors",1);
 
    //db 연결 시작
 	$servername = 'corona.cdvmwkpszam8.us-east-2.rds.amazonaws.com';
