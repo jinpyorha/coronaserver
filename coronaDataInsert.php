@@ -4,6 +4,7 @@
 
 	ini_set("display_errors", 1);
 
+date.timezone = 'GMT-0';
 
 	include('simple_html_dom.php');
 
