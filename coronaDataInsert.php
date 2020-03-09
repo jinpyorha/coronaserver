@@ -6,7 +6,7 @@
 
    $agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/5';
 
-	for($day=2;$day<3;$day++){
+	for($day=1;$day<2;$day++){
 	$ch = curl_init();
 	$url='https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/csse_covid_19_daily_reports/';
 	$yesterday = date('m-d-Y',strtotime("-".$day." days"));
