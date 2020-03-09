@@ -5,7 +5,7 @@
 	<body>
 	<form href="coronaDataShow.html">
 		<select name="region" id="region">
-			
+
 		</select>
 		<input type="submit" value="find">
 	</form>
@@ -22,11 +22,11 @@
 		}
 		coronaRead(param);
 
-		function coronaRead(elm){		
+		function coronaRead(elm){
 			elm = elm==''?'empty':elm;
 			$.ajax({
 				type: 'GET',
-				url: 'http://onesunny3.cafe24.com/crawler/coronaDataRead2.php',
+				url: 'http://3.19.60.47/coronaserver/coronaDataRead2.php',
 				contentType: false,
 				data: false,
 				processData: false,
@@ -45,7 +45,7 @@
 						if(elm=='empty'){
 							 selectStr += '<option selected>select Region</option>';
 						}
-					
+
 						var elmTepm = elm.split('@');
 						for (var i=1;i<coronaDataLength ;i++ )
 						{
@@ -70,7 +70,7 @@
 								str +='<li>Recovered : '+coronaData[targetId]['Recovered']+'</li>';
 							str +='</ul>'
 						}
-						
+
 						$('#region').html(selectStr);
 						$('#result').html(str);
 					}

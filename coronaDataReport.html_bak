@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-		<style>	
+		<style>
 			table{border:1px solid #444;border-collapse:collapse;margin-top:30px;width:100%;}
 			th,td{border:1px solid #ccc;padding:10px; word-break: break-all;font-size:10px;}
 			h3{margin-top:50px;}
@@ -14,15 +14,15 @@
 		</div>
 		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 		<script>
-			
+
 			coronaReport('','');
 
-	
-			function coronaReport(ProvinceState,CountryRegion){	
-				console.log('onesunny3.cafe24.com/crawler/coronaDataApi.php?ProvinceState='+ProvinceState+'&CountryRegion='+CountryRegion);
+
+			function coronaReport(ProvinceState,CountryRegion){
+				console.log('3.19.60.47/coronaserver/coronaDataApi.php?ProvinceState='+ProvinceState+'&CountryRegion='+CountryRegion);
 			$.ajax({
 				type: 'GET',
-				url: 'http://onesunny3.cafe24.com/crawler/coronaDataApi.php?ProvinceState='+ProvinceState+'&CountryRegion='+CountryRegion,
+				url: 'http://3.19.60.47/coronaserver/coronaDataApi.php?ProvinceState='+ProvinceState+'&CountryRegion='+CountryRegion,
 				contentType: false,
 				data: false,
 				processData: false,
@@ -45,7 +45,7 @@
 							}else{
 								selectStr+='<option value="'+countryList[i]['ProvinceState']+'@'+countryList[i]['CountryRegion']+'">'+countryList[i]['ProvinceState']+'['+countryList[i]['CountryRegion']+']('+countryList[i]['cnt']+')</option>';
 							}
-							
+
 						}
 						selectStr+='</select>';
 
@@ -100,7 +100,7 @@
 						//내부함수 끝
 					}
 				}
-		
+
 
 			});
 		}
