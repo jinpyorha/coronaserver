@@ -861,7 +861,7 @@ class simple_html_dom_node
 			if ($pass && $id !== '' && isset($node->attr['id'])) {
 				// Note: Only consider the first ID (as browsers do)
 				// $node_id = explode(' ', trim($node->attr['id']))[0];
-				$node_id = explode(' ', trim($node-&gt;attr['id']));
+				$node_id = explode(' ', trim($node->attr['id']));
 				$node_id = $node_id[0];
 
 
