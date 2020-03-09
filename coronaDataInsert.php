@@ -1,10 +1,11 @@
 
 <?php
+	error_reporting(E_ALL);
 
+	ini_set("display_errors", 1);
 
 
 	include('simple_html_dom.php');
-
 
    $agent = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/5';
 
@@ -48,8 +49,6 @@
 
    $dom = new simple_html_dom();
 
-	 error_reporting(E_ALL);
-	 ini_set("display_errors",1);
 
    $dom->load($content);
     //$A_sitebody = $dom->find('span.mw-headline',0)->plaintext;
