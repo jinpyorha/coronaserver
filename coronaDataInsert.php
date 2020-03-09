@@ -26,8 +26,7 @@
    $content = curl_exec($ch);
    curl_close($ch);
 
-	 error_reporting(E_ALL);
-	 ini_set("display_errors",1);
+
 
    //db 연결 시작
 	$servername = 'corona.cdvmwkpszam8.us-east-2.rds.amazonaws.com';
@@ -46,7 +45,11 @@
 	//db 연결 끝
 
 
+
    $dom = new simple_html_dom();
+
+	 error_reporting(E_ALL);
+	 ini_set("display_errors",1);
 
    $dom->load($content);
     //$A_sitebody = $dom->find('span.mw-headline',0)->plaintext;
