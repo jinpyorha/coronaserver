@@ -1,0 +1,159 @@
+<!doctype html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<style>
+			table{border:1px solid #444;border-collapse:collapse;margin-top:30px;width:100%;}
+			th,td{border:1px solid #ccc;padding:10px; word-break: break-all;font-size:10px;}
+			h3{margin-top:50px;}
+			select{border:none;border:1px solid #ccc;border-radius:5px;background:#fff;padding:12px 10px;width:100%;box-sizing:border-box;font-size:16px;}
+		</style>
+	</head>
+	<body>
+		<div id="columnchart_material" ></div>
+		<div id="report">
+		</div>
+
+		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+		<script>
+
+			coronaReport('','');
+
+			function coronaReport(provinceState,countryRegion){
+				//console.log('onesunny3.cafe24.com/crawler/coronaDataApi.php?ProvinceState='+ProvinceState+'&CountryRegion='+CountryRegion);
+			$.ajax({
+				type: 'GET',
+				url: 'http://onesunny3.cafe24.com/crawler/coronaDataApi.php?provinceState='+provinceState+'&countryRegion='+countryRegion,
+				contentType: false,
+				data: false,
+				processData: false,
+				success: function (data) {
+					isUploading = false;
+					var obj = JSON.parse(data);
+					//console.log(data);
+					var vodHTML = "";
+
+					if(obj.result =="success"){
+						var dataElm =[]; //data Array for column chart
+						var selectStr ='';
+						var countryList = obj.data.countryList;
+						var countryData = obj.data.countryData;
+						var countryListLength = countryList.length;
+						selectStr +='<select id="countryList">';
+							selectStr+='<option>select Region(confirmed count)</option>';
+						for(var i =0;i<countryListLength;i++){
+							if(countryList[i]['provinceState']==provinceState&&countryList[i]['countryRegion']==countryRegion){
+								selectStr+='<option  selected value="'+countryList[i]['provinceState']+'@'+countryList[i]['countryRegion']+'">'+countryList[i]['provinceState']+'['+countryList[i]['countryRegion']+']('+countryList[i]['cnt']+')</option>';
+							}else{
+								selectStr+='<option value="'+countryList[i]['provinceState']+'@'+countryList[i]['countryRegion']+'">'+countryList[i]['provinceState']+'['+countryList[i]['countryRegion']+']('+countryList[i]['cnt']+')</option>';
+							}
+
+						}
+						selectStr+='</select>';
+
+						var reportStr ='';
+						//console.log(countryData);
+						if(countryData !=null){
+							var countryDataLength =  countryData.length;
+							//console.log( countryDataLength );
+							reportStr+='<h3>'+provinceState+'['+countryRegion+']</h3>';
+							//reportStr+='<p>order by confirmed count desc</p>';
+							reportStr+='<table>';
+								reportStr+='<col width="60px">';
+								reportStr+='<col width="10px">';
+								reportStr+='<col width="10px">';
+								reportStr+='<col width="10px">';
+								reportStr+='<col width="60px">';
+								reportStr +='<thead><tr>';
+									reportStr+='<th>DataDate</th>';
+									//reportStr+='<th>ProvinceState</th>';
+									//reportStr+='<th>CountryRegion</th>';
+									reportStr+='<th>Confirmed</th>';
+									reportStr+='<th>Deaths</th>';
+									reportStr+='<th>Recovered</th>';
+									reportStr+='<th>LastUpdate</th>';
+								reportStr+='</tr></thead>';
+								reportStr+='<tbody>';
+							for(var i=0;i<countryDataLength;i++){
+								reportStr+='<tr>';
+									reportStr+='<td>'+countryData [i]['DataDate']+'</td>';
+									//reportStr+='<td>'+countryData [i]['ProvinceState']+'</td>';
+									//reportStr+='<td>'+countryData [i]['CountryRegion']+'</td>';
+									reportStr+='<td>'+countryData [i]['Confirmed']+'</td>';
+									reportStr+='<td>'+countryData [i]['Deaths']+'</td>';
+									reportStr+='<td>'+countryData [i]['Recovered']+'</td>';
+									reportStr+='<td>'+countryData [i]['LastUpdate']+'</td>';
+								reportStr+='</tr>';
+
+								//tempData = [countryData [i]['DataDate'], countryData [i]['Confirmed']];
+
+								tempData = [countryData [i]['dataDate'], countryData [i]['confirmed'], countryData [i]['deaths'],countryData [i]['recovered']]; //array push for column chart
+								dataElm.unshift(tempData);//array push for column chart
+							}
+							reportStr+='</tbody>';
+							reportStr+='</table>';
+						}
+
+						$('#report').html(selectStr+reportStr);
+						console.log(dataElm);
+
+						//var tempData =['DateDate', 'Confirmed'];
+						var tempData =['dateDate', 'confirmed', 'deaths', 'recovered'];
+						dataElm.unshift(tempData);//array push for column chart
+
+						if(countryData !=null){
+						  google.charts.load('current', {'packages':['bar']});
+						  google.charts.setOnLoadCallback(drawChart);
+						}
+
+						  function drawChart() {
+
+							 var data = google.visualization.arrayToDataTable(dataElm);
+
+							//https://developers.google.com/chart/interactive/docs/gallery/piechart?hl=ko#Configuration_Options
+							//collumn chart customization - options
+							//=>https://developers.google.com/chart/interactive/docs/gallery/columnchart
+
+							var options = {
+								legend: { position: "none"},
+								chart: {
+
+									//title: 'Company Performance',
+									//subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+								  },
+							   series :{
+									0:{axis :'confirmed'},
+									1:{axis :'deaths'},
+									2:{axis :'recovered'},
+							   },
+							   colors: ['#EB7F75', '#FFDC73', '#8FDAFF'],
+							   vAxis: { gridlines: { color: '#f0f0f0', minSpacing: 20,count:-1}},
+							};
+
+							var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+							chart.draw(data, google.charts.Bar.convertOptions(options));
+						  }
+
+						//내부함수
+						$(function(){
+							$('#countryList').change(function(){
+								//console.log(this.value);
+								var regionArray = this.value.split('@');
+								coronaReport(regionArray [0],regionArray [1]);
+							});
+						});
+
+						//내부함수 끝
+					}
+				}
+
+
+			});
+
+
+		}
+		</script>
+	</body>
+</html>
