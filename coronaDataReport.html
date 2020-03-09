@@ -2,6 +2,8 @@
 <html>
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		<meta property="og:url" content="http://3.19.60.47/coronaserver"/>
+
 		<style>
 			table{border:1px solid #444;border-collapse:collapse;margin-top:30px;width:100%;}
 			th,td{border:1px solid #ccc;padding:10px; word-break: break-all;font-size:10px;}
@@ -24,7 +26,7 @@
 				//console.log('onesunny3.cafe24.com/crawler/coronaDataApi.php?ProvinceState='+ProvinceState+'&CountryRegion='+CountryRegion);
 			$.ajax({
 				type: 'GET',
-				url: '3.19.60.47/coronaserver/coronaDataApi.php?provinceState='+provinceState+'&countryRegion='+countryRegion,
+				url: 'coronaDataApi.php?provinceState='+provinceState+'&countryRegion='+countryRegion,
 				contentType: false,
 				data: false,
 				processData: false,
