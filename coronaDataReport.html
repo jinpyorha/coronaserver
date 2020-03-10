@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>Corona19 not Beer</title>
-	<meta property="og:image" content="http://3.19.60.47/coronaserver/corona.jpg" />
+	<meta property="og:image" content="http://3.19.60.47/coronaserver/img/corona.jpg" />
 	<meta property="og:url" content="http://3.19.60.47/coronaserver" />
 	<meta property="og:description" content="corona daily report-confirmed,deaths,recovery" />
 	<meta property="og:title" content="Corona Not Beer" />
@@ -98,8 +98,8 @@
 	<script>
 		coronaReport('', '');
 
-		function coronaReport(ProvinceState, CountryRegion) {
-			
+		function coronaReport(provinceState, countryRegion) {
+
 			$.ajax({
 				type: 'GET',
 				url: 'coronaDataApi.php?provinceState=' + provinceState + '&countryRegion=' + countryRegion,
