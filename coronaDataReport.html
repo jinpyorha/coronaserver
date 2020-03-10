@@ -99,9 +99,7 @@
 				<div id="report"></div>
 
 				<div id="map" style="width: 300px; height: 300px;"></div>
-				<script> $(document).ready(function() {
-    $('#map').usmap({});
-  }); </script>
+
 			</div>
 		</div>
 	</div>
@@ -110,6 +108,10 @@
 
 	<script>
 		coronaReport('', '');
+
+		 $(document).ready(function() {
+		$('#map').usmap({});
+		});
 
 		function coronaReport(provinceState, countryRegion) {
 
