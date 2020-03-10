@@ -5,8 +5,8 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>Corona19 not Beer</title>
-	<meta property="og:image" content="http://13.58.243.149/corona/corona.jpg" />
-	<meta property="og:url" content="http://13.58.243.149/corona/report" />
+	<meta property="og:image" content="http://3.19.60.47/coronaserver/corona.jpg" />
+	<meta property="og:url" content="http://3.19.60.47/coronaserver" />
 	<meta property="og:description" content="corona daily report-confirmed,deaths,recovery" />
 	<meta property="og:title" content="Corona Not Beer" />
 	<!-- CSS sheet -->
@@ -102,7 +102,7 @@
 			//console.log('onesunny3.cafe24.com/crawler/coronaDataApi.php?ProvinceState='+ProvinceState+'&CountryRegion='+CountryRegion);
 			$.ajax({
 				type: 'GET',
-				url: 'coronaDataApi.php?ProvinceState=' + ProvinceState + '&CountryRegion=' + CountryRegion,
+				url: 'coronaDataApi.php?provinceState=' + provinceState + '&countryRegion=' + countryRegion,
 				contentType: false,
 				data: false,
 				processData: false,
@@ -125,11 +125,11 @@
 						selectStr += '<select id="countryList">';
 						selectStr += '<option>나라를 선택하세요(확진자 수)</option>';
 						for (var i = 0; i < countryListLength; i++) {
-							if (countryList[i]['ProvinceState'] == ProvinceState && countryList[i]['CountryRegion'] == CountryRegion) {
-								selectStr += '<option  selected value="' + countryList[i]['ProvinceState'] + '@' + countryList[i]['CountryRegion'] + '">' + countryList[i]['ProvinceState'] + '[' + countryList[i]['CountryRegion'] + '](' + countryList[i]['cnt'] +
+							if (countryList[i]['provinceState'] == provinceState && countryList[i]['countryRegion'] == countryRegion) {
+								selectStr += '<option  selected value="' + countryList[i]['provinceState'] + '@' + countryList[i]['countryRegion'] + '">' + countryList[i]['provinceState'] + '[' + countryList[i]['countryRegion'] + '](' + countryList[i]['cnt'] +
 									')</option>';
 							} else {
-								selectStr += '<option value="' + countryList[i]['ProvinceState'] + '@' + countryList[i]['CountryRegion'] + '">' + countryList[i]['ProvinceState'] + '[' + countryList[i]['CountryRegion'] + '](' + countryList[i]['cnt'] + ')</option>';
+								selectStr += '<option value="' + countryList[i]['provinceState'] + '@' + countryList[i]['countryRegion'] + '">' + countryList[i]['provinceState'] + '[' + countryList[i]['countryRegion'] + '](' + countryList[i]['cnt'] + ')</option>';
 							}
 
 						}
@@ -145,7 +145,7 @@
 						if (countryData != null) {
 							var countryDataLength = countryData.length;
 							//console.log( countryDataLength );
-							reportStr += '<h5>' + ProvinceState + '[' + CountryRegion + ']</h5>';
+							reportStr += '<h5>' + provinceState + '[' + countryRegion + ']</h5>';
 							//reportStr+='<p>order by confirmed count desc</p>';
 							reportStr += '<table class="table table-hover">';
 							reportStr += '<col width="60px">';
@@ -166,25 +166,25 @@
 							for (var i = 0; i < countryDataLength; i++) {
 
 								reportStr += '<tr>';
-								reportStr += '<td>' + countryData[i]['DataDate'] + '</td>';
+								reportStr += '<td>' + countryData[i]['dataDate'] + '</td>';
 								//reportStr+='<td>'+countryData [i]['ProvinceState']+'</td>';
 								//reportStr+='<td>'+countryData [i]['CountryRegion']+'</td>';
-								reportStr += '<td>' + countryData[i]['Confirmed'] + '</td>';
-								if (countryData[i]['Increase'] > 0) {
-									reportStr += '<td class="red">+' + countryData[i]['Increase'] + '</td>';
+								reportStr += '<td>' + countryData[i]['confirmed'] + '</td>';
+								if (countryData[i]['increase'] > 0) {
+									reportStr += '<td class="red">+' + countryData[i]['increase'] + '</td>';
 								} else {
-									reportStr += '<td class="blue">+' + countryData[i]['Increase'] + '</td>';
+									reportStr += '<td class="blue">+' + countryData[i]['increase'] + '</td>';
 								}
-								reportStr += '<td>' + countryData[i]['Deaths'] + '</td>';
-								reportStr += '<td>' + countryData[i]['Recovered'] + '</td>';
+								reportStr += '<td>' + countryData[i]['deaths'] + '</td>';
+								reportStr += '<td>' + countryData[i]['recovered'] + '</td>';
 								reportStr += '</tr>';
 
 								//tempData = [countryData [i]['DataDate'], countryData [i]['Confirmed']];
 
-								tempDataConfirmed = [countryData[i]['DataDate'], countryData[i]['Confirmed'] != 0 ? countryData[i]['Confirmed'] : '']; //array push for column chart
-								tempDataDeath = [countryData[i]['DataDate'], countryData[i]['Deaths'] != 0 ? countryData[i]['Deaths'] : '']; //array push for column chart
-								tempDataRecovered = [countryData[i]['DataDate'], countryData[i]['Recovered'] != 0 ? countryData[i]['Recovered'] : '']; //array push for column chart
-								tempDataIncrease = [countryData[i]['DataDate'], countryData[i]['Increase']]; //array push for column chart
+								tempDataConfirmed = [countryData[i]['dataDate'], countryData[i]['confirmed'] != 0 ? countryData[i]['confirmed'] : '']; //array push for column chart
+								tempDataDeath = [countryData[i]['dataDate'], countryData[i]['deaths'] != 0 ? countryData[i]['deaths'] : '']; //array push for column chart
+								tempDataRecovered = [countryData[i]['dataDate'], countryData[i]['recovered'] != 0 ? countryData[i]['recovered'] : '']; //array push for column chart
+								tempDataIncrease = [countryData[i]['dataDate'], countryData[i]['increase']]; //array push for column chart
 								dataElmConfirmed.unshift(tempDataConfirmed); //array push for column chart
 								dataElmDeath.unshift(tempDataDeath); //array push for column chart
 								dataElmRecovered.unshift(tempDataRecovered); //array push for column chart
@@ -207,10 +207,10 @@
 						//console.log(dataElm);
 
 						//var tempData =['DateDate', 'Confirmed'];
-						var tempDataConfirmed = ['DateDate', 'Confirmed'];
-						var tempDataDeath = ['DateDate', 'Deaths'];
-						var tempDataRecovered = ['DateDate', 'Recovered'];
-						var tempDataIncrease = ['DateDate', 'Increase'];
+						var tempDataConfirmed = ['dateDate', 'confirmed'];
+						var tempDataDeath = ['dateDate', 'deaths'];
+						var tempDataRecovered = ['dateDate', 'recovered'];
+						var tempDataIncrease = ['dateDate', 'increase'];
 						dataElmConfirmed.unshift(tempDataConfirmed); //array push for column chart
 						dataElmDeath.unshift(tempDataDeath); //array push for column chart
 						dataElmRecovered.unshift(tempDataRecovered); //array push for column chart

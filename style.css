@@ -1,0 +1,110 @@
+
+  table {
+    border: 1px solid #444;
+    border-collapse: collapse;
+    margin-top: 30px;
+    width: 100%;
+  }
+
+  th,
+  td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    word-break: break-all;
+    font-size: 10px;
+    text-align: center;
+  }
+  td{font-size:15px;}
+  tr td:first-child{font-size:11px;}
+
+  td.red {
+    color: red
+  }
+
+  td.blue {
+    color: blue;
+  }
+
+  h3 {
+    margin-top: 50px;
+  }
+
+  select {
+    border: none;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background: #fff;
+    padding: 12px 10px;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 16px;
+    margin-bottom: 30px;
+  }
+
+  .colors {
+    overflow: hidden;
+    margin-bottom: 20px;
+  }
+
+  .colors .color {
+    display: inline-block;
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    margin-right: 5px;
+  }
+
+  .colors .color.red {
+    background: #EB7F75
+  }
+
+  .colors .color.yellow {
+    background: #FFDC73
+  }
+
+  .colors .color.blue {
+    background: #8FDAFF
+  }
+
+  .colors .label {
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 12px;
+    color: #333;
+  }
+
+  .header{
+    padding:8px 10px;
+    position:fixed;
+    width:100%;
+    top:0;
+    background:#fff;
+    z-index:100;
+    border-bottom:1px solid #f0f0f0;
+  }
+
+  .header .nav{
+    float:left;
+  }
+  .header .dropdown{
+    display:inline-block;
+    float:right;
+    position: absolute;
+    right:10px;
+  }
+
+  .container{
+    margin-top: 70px;
+  }
+
+
+  html {
+      scroll-behavior: smooth;
+  }
+
+  #side .nav-link.active,
+  #side .nav-link:hover,
+  #side .nav-link:focus{
+      color: #111;
+      /* border-bottom: 1px #000 dashed; */
+  }
