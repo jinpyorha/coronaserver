@@ -21,6 +21,9 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-116931667-5"></script>
+	<script src="js/jquery.js"></script>
+  <script src="js/raphael.js"></script>
+  <script src="js/jquery.usmap.js"></script>
 	<!-- datamaps -->
 	<script>
 		window.dataLayer = window.dataLayer || [];
@@ -35,7 +38,8 @@
 </head>
 
 <body>
-
+	<div id="map" style="width: 350px; height: 250px;"></div>
+	<div id="clicked-state"></div>
 	<div class="header">
 		<ul class="nav" >
 			<li class="nav-item">
@@ -59,6 +63,10 @@
 		<div class="mb-0 py-5 p-3 bg-light d-flex flex-column">
         <h3>COVID19 in ffff US real time update</h3>
     </div>
+
+
+
+
 		<div class="row">
 			<div class="col-3">
         <div class="mt-5 mb-3 sticky-top" id="side">
@@ -95,6 +103,19 @@
 	</div>
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+	<script>
+	$('#map').usmap({
+  // The click action
+  click: function(event, data) {
+    $('#clicked-state')
+      .text('You clicked: '+data.name)
+      .parent().effect('highlight', {color: '#C7F464'}, 2000);
+  }
+});
+
+	</script>
+
 	<script>
 		coronaReport('', '');
 
