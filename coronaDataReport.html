@@ -22,7 +22,7 @@
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-116931667-5"></script>
 	<!-- datamaps -->
-	
+
 	<script>
 		window.dataLayer = window.dataLayer || [];
 		function gtag() {
@@ -56,14 +56,10 @@
 			</div>
 		</div>
 	</div>
-	<div class="container">
+	<div class="container col-lg-11">
 		<div class="mb-0 py-5 p-3 bg-light d-flex flex-column">
         <h3>COVID19 in ffff US real time update</h3>
     </div>
-
-
-
-
 		<div class="row">
 			<div class="col-3">
         <div class="mt-5 mb-3 sticky-top" id="side">
@@ -88,13 +84,108 @@
         </div>
 			</div>
 			<div class="col-9">
+				<table class="table table-borderless table-hover">
+				  <thead>
+				    <tr>
+				      <th colspan="4">Current status (updated as of #)</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+						<tr>
+							<td>Confirmed</td>
+				      <td>Recovered</td>
+				      <td>Active</td>
+				      <td>Death</td>
+						</tr>
+				    <tr>
+				      <td><h6>(cum.)</h6>7,382</td>
+							<td>166</td>
+				      <td>7,165</td>
+				      <td>51</td>
+				    </tr>
+				    <tr>
+				      <td>(yestvs.+ 248)</td>
+				      <td>(+36)</td>
+				      <td>(+211)</td>
+				      <td>(+1)</td>
+				    </tr>
+
+				  </tbody>
+				</table>
 				<div id="select-box"></div>
+				<div class="row">
+					<div id="linechart_confirmed_increase"> line graph of date vs cum/net/new case</div>
+					<div id="columnchart_confirmed">bar graph date vs total / recover/discharge/death (filter)</div>
+				</div>
+				<div> MAP</div>
+				<table class="table table-hover">
+				  <thead>
+				    <tr>
+				      <th colspan="8">전날 대비 결과 (option to see daily / weekly / monthly)</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+						<tr>
+							<td>State</td>
+				      <td>total case</td>
+				      <td>new case</td>
+				      <td>total death</td>
+							<td>new death</td>
+							<td>total recovered</td>
+							<td>total net case</td>
+						</tr>
+				    <tr>
+							<td>NY</td>
+				      <td>2</td>
+				      <td>3</td>
+				      <td>4</td>
+							<td>5</td>
+							<td>6</td>
+							<td>7</td>
+				    </tr>
+				  </tbody>
+				</table>
+				<div class="row">
+					<div id="linechart_confirmed_increase">line graph date vs #case/death</div>
+					<div id="linechart_confirmed_increase">line graph ln(date) vs #case/death</div>
+				</div>
 				<div id="columnchart_confirmed"></div>
-				<div id="linechart_confirmed_increase"></div>
 				<div id="columnchart_death"></div>
 				<div id="columnchart_recovered"></div>
 				<div id="colors"></div>
 				<div id="report"></div>
+				<form>
+				  <div class="row">
+				    <div class="col">
+				      <input type="date" class="form-control" placeholder="Date">
+				    </div>
+						<div class="col">
+				      <input type="text" class="form-control" placeholder="Headline">
+				    </div>
+						<div class="col">
+				      <input type="text" class="form-control" placeholder="Link">
+				    </div>
+				  </div>
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</form>
+				<form>
+					<div class="row">
+				    <div class="col">
+				      <input type="text" class="form-control" placeholder="Case #">
+				    </div>
+				    <div class="col">
+				      <input type="date" class="form-control" placeholder="Date">
+				    </div>
+						<div class="col">
+				      <input type="text" class="form-control" placeholder="State">
+				    </div>
+						<div class="col">
+				      <input type="text" class="form-control" placeholder="Link">
+				    </div>
+				  </div>
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</form>
+				<div><a href="#">Donation Link</a></div>
 			</div>
 		</div>
 	</div>

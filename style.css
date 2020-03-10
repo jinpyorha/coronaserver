@@ -25,6 +25,11 @@
     color: blue;
   }
 
+  .table-borderless td,
+  .table-borderless th {
+    border: 0;
+  }
+
   h3 {
     margin-top: 50px;
   }
