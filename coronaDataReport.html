@@ -22,9 +22,7 @@
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-116931667-5"></script>
 	<!-- datamaps -->
-
-  <script src="js/raphael.js"></script>
-  <script src="js/jquery.usmap.js"></script>
+	
 	<script>
 		window.dataLayer = window.dataLayer || [];
 		function gtag() {
@@ -97,9 +95,6 @@
 				<div id="columnchart_recovered"></div>
 				<div id="colors"></div>
 				<div id="report"></div>
-
-				<div id="map" style="width: 300px; height: 300px;"></div>
-
 			</div>
 		</div>
 	</div>
@@ -108,10 +103,6 @@
 
 	<script>
 		coronaReport('', '');
-
-		 $(document).ready(function() {
-		$('#map').usmap({});
-		});
 
 		function coronaReport(provinceState, countryRegion) {
 
