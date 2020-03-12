@@ -108,3 +108,9 @@
       color: #111;
       /* border-bottom: 1px #000 dashed; */
   }
+  @media (max-width:500px) {
+    .dropdown-menu{left:initial;margin-left:0;}
+  }
+  @media (min-width:500px) {
+    .dropdown-menu{left:initial;margin-left:-30px;}
+  }
