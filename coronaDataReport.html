@@ -35,7 +35,67 @@
 		gtag('config', 'UA-116931667-5');
 	</script>
 
+	<script>
+	  $(document).ready(function(){
+	    $("#news-submit").submit(function(event) {
+	        event.preventDefault();
+	        var news_date= $("#news-date").val();
+	        var news_headline= $("#news-headline").val();
+	        var news_link= $("#news-link").val();
+	        var news_submit= $("#news-submit").val();
+
+	        $(".form-news").load("news.php", {
+	          news_date: news_date;
+						news_headline: news_headline;
+	          news_link: news_link,
+	          news_submit: news_submit
+	        });
+	    });
+	  });
+	</script>
+	<script>
+	  $(document).ready(function(){
+	    $("#caseSubmit").submit(function(event) {
+	        event.preventDefault();
+	        var caseNum= $("#caseNum").val();
+	        var caseDate= $("#caseDate").val();
+	        var caseState= $("#caseState").val();
+					var caseLink= $("#caseLink").val();
+					var caseSubmit= $("#caseSubmit").val();
+
+	        $(".form-case").load("case.php", {
+	          caseNum: caseNum;
+						caseDate: caseDate;
+	          caseState: caseState,
+	          caseLnk: caseLink,
+						caseSubmit: caseSubmit
+	        });
+	    });
+	  });
+	</script>
 </head>
+
+<form id="case-submit" action="case.php" method="POST">
+	<div class="row">
+		<div class="col">
+			<input id="caseNum" name="caseNum" type="text" class="form-control" placeholder="Case #">
+		</div>
+		<div class="col">
+			<input id="caseDate" name="caseDate" type="text" class="form-control" placeholder="Date">
+		</div>
+		<div class="col">
+			<input id="caseState" name= "caseState" type="text" class="form-control" placeholder="State">
+		</div>
+		<div class="col">
+			<input id="caseLink" name="caseLink" type="text" class="form-control" placeholder="Link">
+		</div>
+	</div>
+	<button id="caseSubmit" name="caseSubmit" type="submit" class="btn btn-primary">Submit</button>
+	<p class="form-case"></p>
+</form>
+
+
+
 <!-- Head ends -->
 <!-- Body starts -->
 <body>
@@ -166,37 +226,40 @@
 				<div id="columnchart_recovered"></div>
 				<div id="colors"></div>
 				<div id="report"></div>
-				<form>
+			  <form id="news-submit" action="news.php" method="POST">
 				  <div class="row">
 				    <div class="col">
-				      <input type="date" class="form-control" placeholder="Date">
+				      <input id="news-date" name="news-date" type="text" class="form-control" placeholder="Date">
 				    </div>
 						<div class="col">
-				      <input type="text" class="form-control" placeholder="Headline">
+				      <input id="news-headline" name= "news-headline" type="text" class="form-control" placeholder="Headline">
 				    </div>
 						<div class="col">
-				      <input type="text" class="form-control" placeholder="Link">
+				      <input id="news-link" name="news-link" type="text" class="form-control" placeholder="Link">
 				    </div>
 				  </div>
-					<button type="submit" class="btn btn-primary">Submit</button>
+					<button id="news-submit" name="news-submit" type="submit" class="btn btn-primary">Submit</button>
+					<p class="form-news"></p>
 				</form>
-				<form>
-					<div class="row">
+				<form id="case-submit" action="case.php" method="POST">
+				  <div class="row">
 				    <div class="col">
-				      <input type="text" class="form-control" placeholder="Case #">
-				    </div>
-				    <div class="col">
-				      <input type="date" class="form-control" placeholder="Date">
+				      <input id="caseNum" name="caseNum" type="text" class="form-control" placeholder="Case #">
 				    </div>
 						<div class="col">
-				      <input type="text" class="form-control" placeholder="State">
+				      <input id="caseDate" name="caseDate" type="text" class="form-control" placeholder="Date">
 				    </div>
 						<div class="col">
-				      <input type="text" class="form-control" placeholder="Link">
+				      <input id="caseState" name= "caseState" type="text" class="form-control" placeholder="State">
+				    </div>
+						<div class="col">
+				      <input id="caseLink" name="caseLink" type="text" class="form-control" placeholder="Link">
 				    </div>
 				  </div>
-					<button type="submit" class="btn btn-primary">Submit</button>
+					<button id="caseSubmit" name="caseSubmit" type="submit" class="btn btn-primary">Submit</button>
+					<p class="form-case"></p>
 				</form>
+
 				<div><a href="#">Donation Link</a></div>
 			</div>
 		</div>
