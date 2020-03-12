@@ -16,17 +16,23 @@ if ($conn->connect_error) {
 //echo "Connected successfully";
 //db 연결 끝
 
-$provinceState = isset($_GET['provinceState'])&&$_GET['provinceState']!=''?$_GET['provinceState']:'';
-$countryRegion = isset($_GET['countryRegion'])&&$_GET['countryRegion']!=''?$_GET['countryRegion']:'';
-
+$provinceState = isset($_GET['ProvinceState'])&&$_GET['ProvinceState']!=''?$_GET['ProvinceState']:'';
+$countryRegion = isset($_GET['CountryRegion'])&&$_GET['CountryRegion']!=''?$_GET['CountryRegion']:'';
+$country=
+isset($_GET['country'])&&$_GET['country']!=''?$_GET['country']:'';
 
 //$sqlCountryList ="SELECT ProvinceState,CountryRegion,COUNT(Id)AS cnt FROM CoronaData GROUP BY ProvinceState,CountryRegion";
-$sqlCountryList="SELECT provinceState,countryRegion,(SELECT confirmed FROM coronaData WHERE provinceState=CD.provinceState AND countryRegion=CD.countryRegion ORDER BY dataDate DESC LIMIT 1 ) AS cnt FROM coronaData AS CD GROUP BY provinceState,countryRegion
+$sqlCountryList="SELECT ProvinceState,CountryRegion,(SELECT Confirmed FROM CoronaData WHERE ProvinceState=CD.ProvinceState AND CountryRegion=CD.CountryRegion ORDER BY DataDate DESC LIMIT 1 ) AS cnt FROM CoronaData AS CD";
+if($country=='US'){
+	$sqlCountryList.=" WHERE CD.CountryRegion = '".$country."'";
+}
+$sqlCountryList.=" GROUP BY ProvinceState,CountryRegion
 ORDER BY cnt DESC ";
-$sqlCountyData = "SELECT provinceState AS PS ,countryRegion AS CR ,lastUpdate,confirmed,
-deaths,recovered,dataDate AS DD,
-confirmed-(SELECT confirmed FROM coronaData WHERE dataDate<DD AND provinceState = PS AND countryRegion = CR ORDER BY dataDate DESC LIMIT 1 )  AS increase FROM coronaData WHERE provinceState = '".$provinceState."' AND countryRegion= '".$countryRegion."'
-ORDER BY dataDate DESC ";
+
+
+$sqlCountyData = "SELECT ProvinceState AS PS ,CountryRegion AS CR ,LastUpdate,Confirmed,
+Deaths,Recovered,DataDate AS DD,
+Confirmed-(SELECT Confirmed FROM CoronaData WHERE DataDate < DD AND ProvinceState = PS AND CountryRegion = CR ORDER BY DataDate DESC LIMIT 1 )  AS Increase FROM CoronaData WHERE ProvinceState LIKE '%".substr($provinceState,0,16)."%' AND CountryRegion LIKE '%".substr($countryRegion,0,16)."%' ORDER BY DataDate DESC ";
 
 //country List 가져오기
 $result = $conn->query($sqlCountryList);
@@ -36,8 +42,8 @@ if ($result->num_rows > 0) {
 		//DATA 읽어오기
 		//echo '<li>'.$row['ProvinceState'].','.$row['CountryRegion'].','.$row['cnt'].'</li>';
 		$countryList[] = array(
-			'provinceState'=>$row['provinceState'],
-			'countryRegion'=>$row['countryRegion'],
+			'ProvinceState'=>$row['ProvinceState'],
+			'CountryRegion'=>$row['CountryRegion'],
 			'cnt'=>$row['cnt']
 		);
 	}
@@ -52,14 +58,14 @@ if($provinceState!=''||$countryRegion!=''){
 		while($row = $result->fetch_assoc()) {
 			//DATA 읽어오기
 			$countryData[] = array(
-				'provinceState'=>$row['PS'],
-				'countryRegion'=>$row['CR'],
-				'lastUpdate'=>$row['lastUpdate'],
-				'confirmed'=>$row['confirmed'],
-				'deaths'=>$row['deaths'],
-				'recovered'=>$row['recovered'],
-				'dataDate'=>$row['DD'],
-				'increase'=>$row['increase']==null?0:(int)$row['increase']
+				'ProvinceState'=>$row['PS'],
+				'CountryRegion'=>$row['CR'],
+				'LastUpdate'=>$row['LastUpdate'],
+				'Confirmed'=>$row['Confirmed'],
+				'Deaths'=>$row['Deaths'],
+				'Recovered'=>$row['Recovered'],
+				'DataDate'=>$row['DD'],
+				'Increase'=>$row['Increase']==null?0:(int)$row['Increase']
 			);
 		}
 	}

@@ -91,18 +91,13 @@
   .header .nav{
     float:left;
   }
-  .header .dropdown{
-    display:inline-block;
-    float:right;
-    position: absolute;
-    right:10px;
+.navbar-light .navbar-nav .nav-link.active{
+    color:#fff;
   }
 
   .container{
-    margin-top: 70px;
+    margin-top: 90px;
   }
-
-
   html {
       scroll-behavior: smooth;
   }

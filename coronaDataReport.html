@@ -1,32 +1,29 @@
 <!doctype html>
 <html>
-<!-- Head starts -->
+
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>Corona19 not Beer</title>
-	<meta property="og:image" content="http://3.19.60.47/coronaserver/img/corona.jpg" />
-	<meta property="og:url" content="http://3.19.60.47/coronaserver" />
+	<title>corona not beer</title>
+	<meta property="og:image" content="http://13.58.243.149/corona/corona.jpg" />
+	<meta property="og:url" content="http://13.58.243.149/corona/report" />
 	<meta property="og:description" content="corona daily report-confirmed,deaths,recovery" />
 	<meta property="og:title" content="Corona Not Beer" />
-	<!-- CSS sheet -->
-	<link rel="stylesheet" type="text/css" href="style.css">
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<link rel="stylesheet" href="style.css" />
 
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-	<!-- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script> -->
-	<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-
+	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-116931667-5"></script>
-	<!-- datamaps -->
-
 	<script>
 		window.dataLayer = window.dataLayer || [];
+
 		function gtag() {
 			dataLayer.push(arguments);
 		}
@@ -35,519 +32,37 @@
 		gtag('config', 'UA-116931667-5');
 	</script>
 
-	<script>
-	  $(document).ready(function(){
-	    $("#news-submit").submit(function(event) {
-	        event.preventDefault();
-	        var news_date= $("#news-date").val();
-	        var news_headline= $("#news-headline").val();
-	        var news_link= $("#news-link").val();
-	        var news_submit= $("#news-submit").val();
-
-	        $(".form-news").load("news.php", {
-	          news_date: news_date;
-						news_headline: news_headline;
-	          news_link: news_link,
-	          news_submit: news_submit
-	        });
-	    });
-	  });
-	</script>
-	<script>
-	  $(document).ready(function(){
-	    $("#caseSubmit").submit(function(event) {
-	        event.preventDefault();
-	        var caseNum= $("#caseNum").val();
-	        var caseDate= $("#caseDate").val();
-	        var caseState= $("#caseState").val();
-					var caseLink= $("#caseLink").val();
-					var caseSubmit= $("#caseSubmit").val();
-
-	        $(".form-case").load("case.php", {
-	          caseNum: caseNum;
-						caseDate: caseDate;
-	          caseState: caseState,
-	          caseLnk: caseLink,
-						caseSubmit: caseSubmit
-	        });
-	    });
-	  });
-	</script>
 </head>
 
-
-
-<!-- Head ends -->
-<!-- Body starts -->
 <body>
 
+	<div class="header" id="header">
 
-<!-- Header starts -->
-	<div class="header">
-		<ul class="nav" >
-			<li class="nav-item">
-				<a class="nav-link active" href="#">확진자 급등</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="#">미국 현황</a>
-			</li>
-		</ul>
-		<div class="dropdown">
-			<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-					Language
-				</button>
-			<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-				<a class="dropdown-item" href="#">English</a>
-				<a class="dropdown-item active" href="#">한국어</a>
-			</div>
-		</div>
 	</div>
-	<!-- Header ends -->
-
-	<!-- Sidebar starts -->
-		<div class="container col-lg-11">
-		<div class="mb-0 py-5 p-3 bg-light d-flex flex-column">
-        <h3>COVID19 in ffff US real time update</h3>
-    </div>
-		<div class="row">
-			<div class="col-3">
-        <div class="mt-5 mb-3 sticky-top" id="side">
-					<!-- https://www.codeply.com/go/PYSH1maRVO/bootstrap-4-nav-sticky-sidebar-scrollspy -->
-            <ul class="nav flex-md-column flex-row justify-content-between" id="sidenav">
-                <li class="nav-item"><a href="#sec1" class="nav-link pl-0">What is corona</a></li>
-                <li class="nav-item"><a href="#sec2" class="nav-link pl-0">How to prevent</a></li>
-                <li class="nav-item">
-                    <a href="#sec3" class="nav-link pl-0">World map</a>
-                    <ul class="nav flex-md-column ml-2">
-                        <li class="nav-item"><a href="#sec3a" class="nav-link">General</a></li>
-                        <li class="nav-item"><a href="#sec3b" class="nav-link">China</a></li>
-												<li class="nav-item"><a href="#sec3c" class="nav-link">EMEA</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item"><a href="#sec4" class="nav-link pl-0">Travel restrictions</a></li>
-                <li class="nav-item"><a href="#sec5" class="nav-link pl-0">Sources</a></li>
-                <li class="nav-item"><a href="#sec6" class="nav-link pl-0">Summary</a></li>
-								<li class="nav-item"><a href="#sec7" class="nav-link pl-0">FAQ</a></li>
-								<li class="nav-item"><a href="#sec8" class="nav-link pl-0">대상별 맞춤 정보</a></li>
-            </ul>
-        </div>
-			</div>
-		<!-- Sidebar ends -->
-
-
-			<div class="col-9">
-				<table class="table table-borderless table-hover">
-				  <thead>
-				    <tr>
-				      <th colspan="4">Current status (updated as of #)</th>
-				    </tr>
-				  </thead>
-				  <tbody>
-						<tr>
-							<td>Confirmed</td>
-				      <td>Recovered</td>
-				      <td>Active</td>
-				      <td>Death</td>
-						</tr>
-				    <tr>
-				      <td><h6>(cum.)</h6>7,382</td>
-							<td>166</td>
-				      <td>7,165</td>
-				      <td>51</td>
-				    </tr>
-				    <tr>
-				      <td>(yestvs.+ 248)</td>
-				      <td>(+36)</td>
-				      <td>(+211)</td>
-				      <td>(+1)</td>
-				    </tr>
-				  </tbody>
-				</table>
-				<div id="select-box"></div>
-				<div class="row">
-					<div class="col-lg-6"	id="linechart_confirmed_increase"></div>
-					<div class="col-lg-6" id="columnchart_confirmed"></div>
-				</div>
-				<div> line graph of date vs cum/net/new case AND bar graph date vs total / recover/discharge/death (filter)</div>
-				<div> <h1>MAP</h1></div>
-				<table class="table table-hover">
-				  <thead>
-				    <tr>
-				      <th colspan="8">전날 대비 결과 (option to see daily / weekly / monthly)</th>
-				    </tr>
-				  </thead>
-				  <tbody>
-						<tr>
-							<td>State</td>
-				      <td>total case</td>
-				      <td>new case</td>
-				      <td>total death</td>
-							<td>new death</td>
-							<td>total recovered</td>
-							<td>total net case</td>
-						</tr>
-				    <tr>
-							<td>NY</td>
-				      <td>2</td>
-				      <td>3</td>
-				      <td>4</td>
-							<td>5</td>
-							<td>6</td>
-							<td>7</td>
-				    </tr>
-				  </tbody>
-				</table>
-				<div class="row">
-					<div class="col-lg-6" id="linechart_confirmed_increase"></div>
-					<div class="col-lg-6" id="linechart_confirmed_increase"></div>
-				</div>
-				<div>line graph date vs #case/death AND line graph ln(date) vs #case/death</div>
-				<div id="columnchart_confirmed"></div>
-				<div id="columnchart_death"></div>
-				<div id="columnchart_recovered"></div>
-				<div id="colors"></div>
-				<div id="report"></div>
-			  <form id="news-submit" action="news.php" method="POST">
-				  <div class="row">
-				    <div class="col">
-				      <input id="news-date" name="news-date" type="text" class="form-control" placeholder="Date">
-				    </div>
-						<div class="col">
-				      <input id="news-headline" name= "news-headline" type="text" class="form-control" placeholder="Headline">
-				    </div>
-						<div class="col">
-				      <input id="news-link" name="news-link" type="text" class="form-control" placeholder="Link">
-				    </div>
-				  </div>
-					<button id="news-submit" name="news-submit" type="submit" class="btn btn-primary">Submit</button>
-					<p class="form-news"></p>
-				</form>
-				<form id="case-submit" action="case.php" method="POST">
-				  <div class="row">
-				    <div class="col">
-				      <input id="caseNum" name="caseNum" type="text" class="form-control" placeholder="Case #">
-				    </div>
-						<div class="col">
-				      <input id="caseDate" name="caseDate" type="text" class="form-control" placeholder="Date">
-				    </div>
-						<div class="col">
-				      <input id="caseState" name= "caseState" type="text" class="form-control" placeholder="State">
-				    </div>
-						<div class="col">
-				      <input id="caseLink" name="caseLink" type="text" class="form-control" placeholder="Link">
-				    </div>
-				  </div>
-					<button id="caseSubmit" name="caseSubmit" type="submit" class="btn btn-primary">Submit</button>
-					<p class="form-case"></p>
-				</form>
-
-				<div><a href="#">Donation Link</a></div>
-			</div>
+	<div class="container">
+		<div id="select-box"></div>
+		<div id="columnchart_confirmed"></div>
+		<div id="linechart_confirmed_increase"></div>
+		<div id="columnchart_death"></div>
+		<div id="columnchart_recovered"></div>
+		<div id="colors"></div>
+		<div id="report">
 		</div>
 	</div>
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<!-- Script starts -->
+	<script type="text/javascript" src="coronaHeader.js"></script>
+	<script type="text/javascript" src="coronaReport.js"></script>
 	<script>
-		coronaReport('', '');
-
-		function coronaReport(provinceState, countryRegion) {
-
-			$.ajax({
-				type: 'GET',
-				url: 'coronaDataApi.php?provinceState=' + provinceState + '&countryRegion=' + countryRegion,
-				contentType: false,
-				data: false,
-				processData: false,
-				success: function(data) {
-					isUploading = false;
-					var obj = JSON.parse(data);
-					//console.log(data);
-					var vodHTML = "";
-
-					if (obj.result == "success") {
-						var dataElmConfirmed = []; //data Array for column chart
-						var dataElmDeath = []; //data Array for column chart
-						var dataElmRecovered = []; //data Array for column chart
-						var dataElmIncrease = []; //전체 데이터 위한 배열
-						var selectStr = '';
-						var countryList = obj.data.countryList;
-						var countryData = obj.data.countryData;
-						var countryListLength = countryList.length;
-						selectStr += '<h5>국가별 검색</h5>'
-						selectStr += '<select id="countryList">';
-						selectStr += '<option>나라를 선택하세요(확진자 수)</option>';
-						for (var i = 0; i < countryListLength; i++) {
-							if (countryList[i]['provinceState'] == provinceState && countryList[i]['countryRegion'] == countryRegion) {
-								selectStr += '<option  selected value="' + countryList[i]['provinceState'] + '@' + countryList[i]['countryRegion'] + '">' + countryList[i]['provinceState'] + '[' + countryList[i]['countryRegion'] + '](' + countryList[i]['cnt'] +
-									')</option>';
-							} else {
-								selectStr += '<option value="' + countryList[i]['provinceState'] + '@' + countryList[i]['countryRegion'] + '">' + countryList[i]['provinceState'] + '[' + countryList[i]['countryRegion'] + '](' + countryList[i]['cnt'] + ')</option>';
-							}
-
-						}
-						selectStr += '</select>';
-						var conditionStr = '';
-						var reportStr = '';
-						//console.log(countryData);
-						if (countryData == null) {
-							reportStr += '<div class="alert alert-info" role="alert">';
-							  reportStr += '지역은 확진자 많은 순으로 정렬되어있습니다!';
-							reportStr += '</div>';
-						}
-						if (countryData != null) {
-							var countryDataLength = countryData.length;
-							//console.log( countryDataLength );
-							reportStr += '<h5>' + provinceState + '[' + countryRegion + ']</h5>';
-							//reportStr+='<p>order by confirmed count desc</p>';
-							reportStr += '<table class="table table-hover">';
-							reportStr += '<col width="60px">';
-							reportStr += '<col width="10px">';
-							reportStr += '<col width="10px">';
-							reportStr += '<col width="10px">';
-							reportStr += '<col width="10px">';
-							reportStr += '<thead class="thead-dark"><tr>';
-							reportStr += '<th scope="col">날짜</th>';
-							//reportStr+='<th>ProvinceState</th>';
-							//reportStr+='<th>CountryRegion</th>';
-							reportStr += '<th scope="col">확진</th>';
-							reportStr += '<th scope="col">전일대비 증가</th>';
-							reportStr += '<th scope="col">사망</th>';
-							reportStr += '<th scope="col">회복</th>';
-							reportStr += '</tr></thead>';
-							reportStr += '<tbody>';
-							for (var i = 0; i < countryDataLength; i++) {
-
-								reportStr += '<tr>';
-								reportStr += '<td>' + countryData[i]['dataDate'] + '</td>';
-								//reportStr+='<td>'+countryData [i]['ProvinceState']+'</td>';
-								//reportStr+='<td>'+countryData [i]['CountryRegion']+'</td>';
-								reportStr += '<td>' + countryData[i]['confirmed'] + '</td>';
-								if (countryData[i]['increase'] > 0) {
-									reportStr += '<td class="red">+' + countryData[i]['increase'] + '</td>';
-								} else {
-									reportStr += '<td class="blue">+' + countryData[i]['increase'] + '</td>';
-								}
-								reportStr += '<td>' + countryData[i]['deaths'] + '</td>';
-								reportStr += '<td>' + countryData[i]['recovered'] + '</td>';
-								reportStr += '</tr>';
-
-								//tempData = [countryData [i]['DataDate'], countryData [i]['Confirmed']];
-
-								tempDataConfirmed = [countryData[i]['dataDate'], countryData[i]['confirmed'] != 0 ? countryData[i]['confirmed'] : '']; //array push for column chart
-								tempDataDeath = [countryData[i]['dataDate'], countryData[i]['deaths'] != 0 ? countryData[i]['deaths'] : '']; //array push for column chart
-								tempDataRecovered = [countryData[i]['dataDate'], countryData[i]['recovered'] != 0 ? countryData[i]['recovered'] : '']; //array push for column chart
-								tempDataIncrease = [countryData[i]['dataDate'], countryData[i]['increase']]; //array push for column chart
-								dataElmConfirmed.unshift(tempDataConfirmed); //array push for column chart
-								dataElmDeath.unshift(tempDataDeath); //array push for column chart
-								dataElmRecovered.unshift(tempDataRecovered); //array push for column chart
-								dataElmIncrease.unshift(tempDataIncrease); //array push for column chart
-
-							}
-							reportStr += '</tbody>';
-							reportStr += '</table>';
-
-							conditionStr += '<div class="colors">';
-							conditionStr += '<div class="color red"></div><div class="label">Confirmed Count</div>';
-							conditionStr += '<div class="color yellow"></div><div class="label">Death Count</div>';
-							conditionStr += '<div class="color blue"></div><div class="label">Recovered Count</div>';
-							conditionStr += '</div>'
-						}
-						$('#select-box').html(selectStr);
-						$('#report').html(reportStr);
-						$('#colors').html(conditionStr);
-						//console.log(dataCorona);
-						//console.log(dataElm);
-
-						//var tempData =['DateDate', 'Confirmed'];
-						var tempDataConfirmed = ['dateDate', 'confirmed'];
-						var tempDataDeath = ['dateDate', 'deaths'];
-						var tempDataRecovered = ['dateDate', 'recovered'];
-						var tempDataIncrease = ['dateDate', 'increase'];
-						dataElmConfirmed.unshift(tempDataConfirmed); //array push for column chart
-						dataElmDeath.unshift(tempDataDeath); //array push for column chart
-						dataElmRecovered.unshift(tempDataRecovered); //array push for column chart
-						dataElmIncrease.unshift(tempDataIncrease); //array push for column chart
-
-						if (countryData != null) {
-							google.charts.load('current', {
-								'packages': ['bar']
-							});
-							google.charts.setOnLoadCallback(drawConfirmedChart);
-							google.charts.setOnLoadCallback(drawDeathChart);
-							google.charts.setOnLoadCallback(drawRecoveredChart);
-							google.charts.load('current', {
-								packages: ['corechart', 'line']
-							});
-							google.charts.setOnLoadCallback(drawIncreaseChart);
-						}
-
-						function drawConfirmedChart() {
-
-							var data = google.visualization.arrayToDataTable(dataElmConfirmed);
-
-							//https://developers.google.com/chart/interactive/docs/gallery/piechart?hl=ko#Configuration_Options
-							//collumn chart customization - options
-							//=>https://developers.google.com/chart/interactive/docs/gallery/columnchart
-
-							var options = {
-								title: '확진자 누적수',
-								legend: {
-									position: "none"
-								},
-								chart: {
-
-									//title: 'Company Performance',
-									//subtitle: 'Sales, Expenses, and Profit: 2014-2017',
-								},
-								colors: ['#EB7F75'],
-								vAxis: {
-									viewWindowMode: 'explicit',
-									viewWindow: {
-										min: 0,
-									},
-									minValue: 0,
-									gridlines: {
-										color: '#f0f0f0',
-										count: -1
-									}
-								},
-								hAxis: {
-									viewWindow: {
-										min: 0,
-									},
-									minValue: 0
-								},
-								height: 400,
-							};
-
-							var chart = new google.charts.Bar(document.getElementById('columnchart_confirmed'));
-
-							chart.draw(data, google.charts.Bar.convertOptions(options));
-						}
-
-						function drawDeathChart() {
-
-							var data = google.visualization.arrayToDataTable(dataElmDeath);
-
-							//https://developers.google.com/chart/interactive/docs/gallery/piechart?hl=ko#Configuration_Options
-							//collumn chart customization - options
-							//=>https://developers.google.com/chart/interactive/docs/gallery/columnchart
-
-							var options = {
-								title: '사망자 누적수',
-								legend: {
-									position: "none"
-								},
-								chart: {
-
-									//title: 'Company Performance',
-									//subtitle: 'Sales, Expenses, and Profit: 2014-2017',
-								},
-								colors: ['#FFDC73'],
-								vAxis: {
-									viewWindowMode: 'explicit',
-									viewWindow: {
-										min: 0,
-									},
-									minValue: 0,
-									gridlines: {
-										color: '#f0f0f0'
-									}
-								},
-								hAxis: {
-									viewWindow: {
-										min: 0,
-									},
-									minValue: 0
-								},
-								height: 400,
-							};
-
-							var chart = new google.charts.Bar(document.getElementById('columnchart_death'));
-
-							chart.draw(data, google.charts.Bar.convertOptions(options));
-						}
-
-						function drawRecoveredChart() {
-
-							var data = google.visualization.arrayToDataTable(dataElmRecovered);
-
-							//https://developers.google.com/chart/interactive/docs/gallery/piechart?hl=ko#Configuration_Options
-							//collumn chart customization - options
-							//=>https://developers.google.com/chart/interactive/docs/gallery/columnchart
-
-							var options = {
-								title: '회복자 누적수',
-								legend: {
-									position: "none"
-								},
-								chart: {
-
-									//title: 'Company Performance',
-									//subtitle: 'Sales, Expenses, and Profit: 2014-2017',
-								},
-								colors: ['#8FDAFF'], //
-								vAxis: {
-									gridlines: {
-										color: '#f0f0f0',
-										minSpacing: 20,
-										count: -1
-									}
-								},
-								height: 400,
-							};
-
-							var chart = new google.charts.Bar(document.getElementById('columnchart_recovered'));
-
-							chart.draw(data, google.charts.Bar.convertOptions(options));
-						}
-
-						function drawIncreaseChart() {
-
-							//var data = new google.visualization.DataTable();
-							var data = google.visualization.arrayToDataTable(dataElmIncrease);
-
-							var options = {
-								title: '일별 확진자 증가수',
-								colors: ['#EB7F75'],
-								legend: {
-									position: "none"
-								},
-								hAxis: {
-									title: 'Time'
-								},
-								vAxis: {
-									title: 'daily increase(confirmed)'
-								},
-								height: 400,
-							};
-
-							var chart = new google.visualization.LineChart(document.getElementById('linechart_confirmed_increase'));
-
-							chart.draw(data, options);
-						}
-
-						//내부함수
-						$(function() {
-							$('#countryList').change(function() {
-								//console.log(this.value);
-								var regionArray = this.value.split('@');
-								coronaReport(regionArray[0], regionArray[1]);
-							});
-						});
-
-						//내부함수 끝
-					}
-				}
-
-
-			});
-
-
-		}
+		const queryString = window.location.search;
+		const urlParams = new URLSearchParams(queryString);
+		const country = (urlParams.get('country') != null && urlParams.get('country') != '') ? urlParams.get('country') : 'global';
+		const lang = (urlParams.get('lang') != null && urlParams.get('lang') != '') ? urlParams.get('lang') : 'en';
+		console.log(country);
+		console.log(lang);
+		coronaHeader(lang);
+		coronaReport('', '', country);
 	</script>
-	<!-- Script ends -->
 </body>
-<!-- body ends -->
+
 </html>
