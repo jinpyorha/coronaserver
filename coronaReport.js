@@ -27,6 +27,7 @@ function coronaReport(ProvinceState, CountryRegion, country) {
         var selectStr = '';
         var countryList = obj.data.countryList;
         var countryData = obj.data.countryData;
+        var countryDataRecent = obj.data.countryDataRecent;
         var countryListLength = countryList != null ? countryList.length : 0;
 
         selectStr += '<h5>';
@@ -57,13 +58,48 @@ function coronaReport(ProvinceState, CountryRegion, country) {
         }
         selectStr += '</select>';
         var conditionStr = '';
+        var reportDailyStr ='';
         var reportStr = '';
+
         //console.log(countryData);
+        if(countryDataRecent !=null){
+          reportDailyStr+='<table class="table table-hover">';
+          reportDailyStr += '<col width="10px">';
+          reportDailyStr += '<col width="10px">';
+          reportDailyStr += '<col width="10px">';
+          reportDailyStr += '<thead class="thead-dark"><tr>';
+          reportDailyStr += '<th scope="col">누적 확진 </th>';
+          reportDailyStr += '<th scope="col">누적 사망</th>';
+          reportDailyStr += '<th scope="col">누적 회복</th>';
+          reportDailyStr += '</tr></thead>';
+          reportDailyStr += '<tbody>';
+          reportDailyStr += '<tr>';
+          reportDailyStr += '<td>'+countryDataRecent.Confirmed+'</td>';
+          reportDailyStr += '<td>'+countryDataRecent.Deaths+'</td>';
+          reportDailyStr += '<td>'+countryDataRecent.Recovered+'</td>';
+          reportDailyStr += '</tr>';
+          reportDailyStr += '</tbody>';
+          reportDailyStr += '<thead class="thead-dark"><tr>';
+          reportDailyStr += '<th scope="col">전일 대비 확진</th>';
+          reportDailyStr += '<th scope="col">전일 대비 사망</th>';
+          reportDailyStr += '<th scope="col">전일 대비 회복</th>';
+          reportDailyStr += '</tr></thead>';
+          reportDailyStr += '<tbody>';
+          reportDailyStr += '<tr>';
+          reportDailyStr += '<td style="font-size:16px;color:red">+'+countryDataRecent.Increase+'</td>';
+          reportDailyStr += '<td>+'+countryDataRecent.DeathsIncrease+'</td>';
+          reportDailyStr += '<td>+'+countryDataRecent.RecoveredIncrease+'</td>';
+          reportDailyStr += '</tr>';
+          reportDailyStr += '</tbody>';
+          reportDailyStr += '</table>';
+        }
+
         if (countryData == null) {
           reportStr += '<div class="alert alert-info" role="alert">';
           reportStr += lang=='en'?'The regions are sorted by many confirmers':'지역은 확진자 많은 순으로 정렬되어있습니다!';
           reportStr += '</div>';
         }
+
         if (countryData != null) {
           var countryDataLength = countryData.length;
           //console.log( countryDataLength );
@@ -125,6 +161,7 @@ function coronaReport(ProvinceState, CountryRegion, country) {
         $('#select-box').html(selectStr);
         $('#report').html(reportStr);
         $('#colors').html(conditionStr);
+        $('#reportDaily').html(reportDailyStr);
         //console.log(dataCorona);
         //console.log(dataElm);
 
