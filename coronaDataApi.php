@@ -1,10 +1,16 @@
 
 <?php
 //db 연결 시작
+$servername = "onesunny3.cafe24.com";
+$username = "onesunny3";
+$password = "gana8338";
+$dbname = "onesunny3";
+/*
 $servername = 'corona.cdvmwkpszam8.us-east-2.rds.amazonaws.com';
 $username = 'root';
 $password = 'samsamsam';
 $dbname = 'corona';
+*/
 
 // Create connection
 $conn = new mysqli($servername, $username, $password,$dbname);
@@ -29,10 +35,35 @@ if($country=='US'){
 $sqlCountryList.=" GROUP BY ProvinceState,CountryRegion
 ORDER BY cnt DESC ";
 
+if($countryRegion=='US'||$countryRegion=='China'){
+	$sqlCountryData = "SELECT ProvinceState AS PS ,CountryRegion AS CR ,LastUpdate,Confirmed,
+	Deaths,Recovered,DataDate AS DD,
+	Confirmed-(SELECT Confirmed FROM CoronaData WHERE DataDate < DD AND ProvinceState = PS AND CountryRegion = CR ORDER BY DataDate DESC LIMIT 1 )  AS Increase,
+  Deaths-(SELECT Deaths FROM CoronaData WHERE DataDate < DD AND ProvinceState = PS AND CountryRegion = CR ORDER BY DataDate DESC LIMIT 1 ) AS DeathsIncrease,
+  Recovered-(SELECT Recovered FROM CoronaData WHERE DataDate < DD AND ProvinceState = PS AND CountryRegion = CR ORDER BY DataDate DESC LIMIT 1 ) AS RecoveredIncrease
 
-$sqlCountyData = "SELECT ProvinceState AS PS ,CountryRegion AS CR ,LastUpdate,Confirmed,
-Deaths,Recovered,DataDate AS DD,
-Confirmed-(SELECT Confirmed FROM CoronaData WHERE DataDate < DD AND ProvinceState = PS AND CountryRegion = CR ORDER BY DataDate DESC LIMIT 1 )  AS Increase FROM CoronaData WHERE ProvinceState LIKE '%".substr($provinceState,0,16)."%' AND CountryRegion LIKE '%".substr($countryRegion,0,16)."%' ORDER BY DataDate DESC ";
+	FROM CoronaData ";
+}else{
+	$sqlCountryData = "SELECT
+  ProvinceState AS PS,
+  CountryRegion AS CR,
+  LastUpdate,
+	SUM(Confirmed) AS Confirmed,
+  SUM(Deaths) AS Deaths,
+  SUM(Recovered) AS Recovered,
+  DataDate      AS DD,
+  SUM(Confirmed-(SELECT Confirmed FROM CoronaData WHERE DataDate < DD AND ProvinceState = PS AND CountryRegion = CR ORDER BY DataDate DESC LIMIT 1 )) AS Increase,
+  SUM(Deaths-(SELECT Deaths FROM CoronaData WHERE DataDate < DD AND ProvinceState = PS AND CountryRegion = CR ORDER BY DataDate DESC LIMIT 1 )) AS DeathsIncrease,
+  SUM(Recovered-(SELECT Recovered FROM CoronaData WHERE DataDate < DD AND ProvinceState = PS AND CountryRegion = CR ORDER BY DataDate DESC LIMIT 1 )) AS RecoveredIncrease
+	FROM CoronaData ";
+}
+if($countryRegion=='US'||$countryRegion=='China'){
+$sqlCountryDataWhere = "WHERE ProvinceState = '".$provinceState."' AND CountryRegion = '".$countryRegion."' ";
+}else{
+$sqlCountryDataWhere = "WHERE CountryRegion = '".$countryRegion."' GROUP BY DD ";
+}
+$sqlCountryDataOrder = "ORDER BY DataDate DESC ";
+$sqlCountryData.=$sqlCountryDataWhere.$sqlCountryDataOrder;
 
 //country List 가져오기
 $result = $conn->query($sqlCountryList);
@@ -52,7 +83,8 @@ if ($result->num_rows > 0) {
 //country Data 가져오기
 if($provinceState!=''||$countryRegion!=''){
 
-	$result = $conn->query($sqlCountyData);
+	$result = $conn->query($sqlCountryData);
+	$countryDataIndex= 0;
 	if ($result->num_rows > 0) {
 		// output data of each row
 		while($row = $result->fetch_assoc()) {
@@ -65,9 +97,24 @@ if($provinceState!=''||$countryRegion!=''){
 				'Deaths'=>$row['Deaths'],
 				'Recovered'=>$row['Recovered'],
 				'DataDate'=>$row['DD'],
-				'Increase'=>$row['Increase']==null?0:(int)$row['Increase']
+				'Increase'=>$row['Increase']==null?0:(int)$row['Increase'],
+				'DeathsIncrease'=>$row['DeathsIncrease']==null?0:(int)$row['DeathsIncrease'],
+				'RecoveredIncrease'=>$row['RecoveredIncrease']==null?0:(int)$row['RecoveredIncrease'],
 			);
+
+
+			$countryDataIndex++;
 		}
+		$countryDataRecent= array(
+			'Confirmed'=>$countryData[0]['Confirmed'],
+			'Deaths'=>$countryData[0]['Deaths'],
+			'Recovered'=>$countryData[0]['Recovered'],
+			'DataDate'=>$countryData[0]['DataDate'],
+			'Increase'=>$countryData[0]['Increase'],
+			'DeathsIncrease'=>$countryData[0]['DeathsIncrease'],
+			'RecoveredIncrease'=>$countryData[0]['RecoveredIncrease'],
+		);
+
 	}
 }
 else{
@@ -78,6 +125,7 @@ else{
 $coronaArray = array();
 $coronaArray['countryData'] = $countryData;
 $coronaArray['countryList'] = $countryList;
+$coronaArray['countryDataRecent'] = $countryDataRecent;
 
   $result = "success";
   $reason ="success";

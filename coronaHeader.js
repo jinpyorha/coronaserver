@@ -14,7 +14,7 @@ function coronaHeader(lang) {
   } else if (country == 'global') {
     headerStr += '<li class="nav-item active">';
   }
-  headerStr += '<a class="nav-link" href="#">';
+  headerStr += '<a class="nav-link" href="coronaDataReport.html?lang='+lang+'">';
   headerStr += lang=='en'?'World':'세계현황';
   headerStr+='<span class="sr-only">(current)</span></a>';
   headerStr += '</li>';
@@ -23,7 +23,7 @@ function coronaHeader(lang) {
   } else if (country == 'global') {
     headerStr += '<li class="nav-item">';
   }
-  headerStr += '<a class="nav-link" href="#">';
+  headerStr += '<a class="nav-link" href="coronaDataReport.html?lang='+lang+'&country=US">';
   headerStr += lang=='en'?'US':'미국현황';
   headerStr += '</a>';
   headerStr += '</li>';
