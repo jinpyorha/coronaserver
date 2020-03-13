@@ -71,12 +71,12 @@
 		$tempThData = str_replace(' ','',$tempThData );
 	   $sqlColumn.=$tempThData.',';
    }
-   $sqlColumn.='writtenAtUtc,dataDate';
+   $sqlColumn.='WrittenAtUtc,DataDate';
 
 	$count = 0;
 	for($i=0;$i<$cntTr;$i++)
 	{
-		$sql = 'INSERT INTO coronaData ('.$sqlColumn.') VALUES(';
+		$sql = 'INSERT INTO CoronaData ('.$sqlColumn.') VALUES(';
 		$coronaTemp = array();
 		$first = $tempTr[$i]->find('td');
 		$tdCnt = count($first);
