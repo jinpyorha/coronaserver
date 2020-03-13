@@ -29,18 +29,22 @@ function coronaReport(ProvinceState, CountryRegion, country) {
         var countryData = obj.data.countryData;
         var countryListLength = countryList != null ? countryList.length : 0;
 
+        selectStr += '<h5>';
         if (country == 'US') {
-          selectStr += '<h5>미국 주별 검색</h5>'
+          selectStr += lang=='en'?'Search by states':'미국 주별 검색';
         } else {
-          selectStr += '<h5>국가별 검색</h5>'
+          selectStr += lang=='en'?'Search by country':'국가별 검색';
         }
+        selectStr += '</h5>'
 
         selectStr += '<select id="countryList">';
+        selectStr += '<option>';
         if (country == 'US') {
-          selectStr += '<option>주를 선택하세요(확진자 수)</option>';
+          selectStr += lang=='en'?'select states(confirmed count)':'주를 선택하세요(확진자 수)';
         } else {
-          selectStr += '<option>나라를 선택하세요(확진자 수)</option>';
+          selectStr += lang=='en'?'select country(confirmed count)':'나라를 선택하세요(확진자 수)';
         }
+        selectStr += '</option>';
         for (var i = 0; i < countryListLength; i++) {
           if (countryList[i]['ProvinceState'] == ProvinceState && countryList[i]['CountryRegion'] == CountryRegion) {
             selectStr += '<option  selected value="' + countryList[i]['ProvinceState'] + '@' + countryList[i]['CountryRegion'] + '">' + countryList[i]['ProvinceState'] + '[' + countryList[i]['CountryRegion'] + '](' + countryList[i]['cnt'] +
@@ -57,7 +61,7 @@ function coronaReport(ProvinceState, CountryRegion, country) {
         //console.log(countryData);
         if (countryData == null) {
           reportStr += '<div class="alert alert-info" role="alert">';
-          reportStr += '지역은 확진자 많은 순으로 정렬되어있습니다!';
+          reportStr += lang=='en'?'The regions are sorted by many confirmers':'지역은 확진자 많은 순으로 정렬되어있습니다!';
           reportStr += '</div>';
         }
         if (countryData != null) {

@@ -55,11 +55,25 @@ function coronaHeader(lang) {
   headerStr += '</li>';
   headerStr += '<li class="nav-item">';
   headerStr += '<a class="nav-link" href="#">';
-  headerStr += lang=='en'?'대상별 맞춤 정보':'대상별 맞춤 정보';
+  headerStr += lang=='en'?'information':'대상별 맞춤 정보';
   headerStr+='<span class="sr-only">(current)</span></a>';
   headerStr += '</li>';
   headerStr += '</ul>';
-
+  //
+  headerStr += '<div class="form-inline my-2 my-lg-0">';
+    headerStr += '<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">';
+    headerStr += lang=='en'?'Language':'언어';
+    headerStr +='</a>';
+    headerStr += '<div class="dropdown-menu">';
+      headerStr += '<a class="dropdown-item';
+      headerStr += lang=='en'?' active':'';
+      headerStr += '" href="coronaDataReport.html?lang=en">English</a>';
+      headerStr += '<a class="dropdown-item';
+      headerStr += lang=='en'?'':' active';
+      headerStr +='" href="coronaDataReport.html?lang=ko">한국어</a>';
+    headerStr += '</div>';
+  headerStr += '</div>';
+  //
   headerStr += '</div>';
   headerStr += '</nav>';
   //###############헤더 끝
