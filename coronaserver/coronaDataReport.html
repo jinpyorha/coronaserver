@@ -41,8 +41,7 @@
 	</div>
 	<div class="container">
 		<div id="select-box"></div>
-		<div id="reportDaily">
-		</div>
+		<div id="reportDaily"></div>
 		<div id="colors"></div>
 		<div id="columnchart_confirmed"></div>
 		<div id="linechart_confirmed_increase"></div>
@@ -56,6 +55,7 @@
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	<script type="text/javascript" src="../coronaserver/coronaHeader.js"></script>
 	<script type="text/javascript" src="../coronaserver/coronaReport.js"></script>
+	<script type="text/javascript" src="../coronaserver/map.js"></script>
 	<script>
 		const queryString = window.location.search;
 		const urlParams = new URLSearchParams(queryString);
@@ -64,7 +64,8 @@
 		console.log(country);
 		console.log(lang);
 		coronaHeader(lang);
-		coronaReport('', '', country);
+		// coronaReport('', '', "country");
+		coronaReport('', '', "US");
 	</script>
 </body>
 

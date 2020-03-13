@@ -30,6 +30,7 @@ function coronaReport(ProvinceState, CountryRegion, country) {
         var countryDataRecent = obj.data.countryDataRecent;
         var countryListLength = countryList != null ? countryList.length : 0;
 
+
         selectStr += '<h5>';
         if (country == 'US') {
           selectStr += lang=='en'?'Search by states':'미국 주별 검색';
@@ -61,34 +62,64 @@ function coronaReport(ProvinceState, CountryRegion, country) {
         var reportDailyStr ='';
         var reportStr = '';
 
-        //console.log(countryData);
+        function toPercent(number, float) {
+          var percent = parseFloat(number * 100).toFixed(float) + "%";
+          return percent;
+        } //percentage
+
+        function subtractThree(number1,number2,number3){
+          var result = number1 - number2 - number3;
+          return result;
+        }//subtract
+
+        // console.log(countryData);
         if(countryDataRecent !=null){
-          reportDailyStr+='<table class="table table-hover">';
+          // selectStr +=+percentRecovered+;
+          var tempCountryRecentConfirmed = +countryDataRecent.Confirmed;
+          var tempCountryRecentDeaths = +countryDataRecent.Deaths;
+          var tempCountryRecentRecovered =+countryDataRecent.Recovered;
+          var tempCountryRecentConfirmedIncrease = +countryDataRecent.Increase;
+          var tempCountryRecentDeathsIncrease = +countryDataRecent.DeathsIncrease;
+          var tempCountryRecentRecoveredIncrease =+countryDataRecent.RecoveredIncrease;
+          reportDailyStr +='<h1>'+subtractThree(tempCountryRecentConfirmed, tempCountryRecentDeaths, tempCountryRecentRecovered)+'</h1>'
+
+          reportDailyStr +='<table class="table table-hover">';
+          reportDailyStr += '<col width="10px">';
           reportDailyStr += '<col width="10px">';
           reportDailyStr += '<col width="10px">';
           reportDailyStr += '<col width="10px">';
           reportDailyStr += '<thead class="thead-dark"><tr>';
-          reportDailyStr += '<th scope="col">누적 확진 </th>';
-          reportDailyStr += '<th scope="col">누적 사망</th>';
-          reportDailyStr += '<th scope="col">누적 회복</th>';
+          reportDailyStr += '<th scope="col">Total cases</th>';
+          reportDailyStr += '<th scope="col">Total active</th>';
+          reportDailyStr += '<th scope="col">Total death</th>';
+          reportDailyStr += '<th scope="col">Total recovered</th>';
           reportDailyStr += '</tr></thead>';
           reportDailyStr += '<tbody>';
           reportDailyStr += '<tr>';
-          reportDailyStr += '<td>'+countryDataRecent.Confirmed+'</td>';
-          reportDailyStr += '<td>'+countryDataRecent.Deaths+'</td>';
-          reportDailyStr += '<td>'+countryDataRecent.Recovered+'</td>';
+          reportDailyStr += '<td><span style="font-size: 20px">'+countryDataRecent.Confirmed+'</span><br><span style="font-size:12px">(<span style="color:red">+'+countryDataRecent.Increase+'</span>) in '+ProvinceState+'</span></td>';
+          if(subtractThree(tempCountryRecentConfirmedIncrease, tempCountryRecentDeathsIncrease, tempCountryRecentRecoveredIncrease)>0){
+            reportDailyStr += '<td><span style="font-size: 20px">'+subtractThree(tempCountryRecentConfirmed, tempCountryRecentDeaths, tempCountryRecentRecovered)+'</span><br><span style="font-size:12px">(<span class="red">+'+subtractThree(tempCountryRecentConfirmedIncrease, tempCountryRecentDeathsIncrease, tempCountryRecentRecoveredIncrease)+'</span> new active)</span></td>';
+          }else{
+            reportDailyStr += '<td><span style="font-size: 20px">'+subtractThree(tempCountryRecentConfirmed, tempCountryRecentDeaths, tempCountryRecentRecovered)+'</span><br><span style="font-size:12px">(<span class="blue">+'+subtractThree(tempCountryRecentConfirmedIncrease, tempCountryRecentDeathsIncrease, tempCountryRecentRecoveredIncrease)+'</span> new active)</span></td>';
+          }
+          if(countryDataRecent.DeathsIncrease>0){
+            reportDailyStr += '<td><span style="font-size: 20px">'+countryDataRecent.Deaths+'</span><br><span style="font-size:12px">(<span class="red">+'+countryDataRecent.DeathsIncrease+'</span>)</span><span style="color:grey"> '+toPercent(tempCountryRecentDeaths/tempCountryRecentConfirmed,2)+' of total</span></td>';
+          }else{
+            reportDailyStr += '<td><span style="font-size: 20px">'+countryDataRecent.Deaths+'</span><br><span style="font-size:12px">(<span class="blue">+'+countryDataRecent.DeathsIncrease+'</span>)</span><span style="color:grey"> '+toPercent(tempCountryRecentDeaths/tempCountryRecentConfirmed,2)+' of total</span></td>';
+          }
+          reportDailyStr += '<td><span style="font-size: 20px">'+countryDataRecent.Recovered+'</span><br><span style="font-size:12px">(<span class="red">+'+countryDataRecent.RecoveredIncrease+'</span>)</span><span style="font-size:12px; color:green"> '+toPercent(tempCountryRecentRecovered/tempCountryRecentConfirmed,2)+' of total</span></td>';
           reportDailyStr += '</tr>';
-          reportDailyStr += '</tbody>';
-          reportDailyStr += '<thead class="thead-dark"><tr>';
-          reportDailyStr += '<th scope="col">전일 대비 확진</th>';
-          reportDailyStr += '<th scope="col">전일 대비 사망</th>';
-          reportDailyStr += '<th scope="col">전일 대비 회복</th>';
-          reportDailyStr += '</tr></thead>';
-          reportDailyStr += '<tbody>';
+          // reportDailyStr += '</tbody>';
+          // reportDailyStr += '<thead class="thead-dark"><tr>';
+          // reportDailyStr += '<th scope="col">New</th>';
+          // reportDailyStr += '<th scope="col">New</th>';
+          // reportDailyStr += '<th scope="col">New</th>';
+          // reportDailyStr += '</tr></thead>';
+          // reportDailyStr += '<tbody>';
           reportDailyStr += '<tr>';
-          reportDailyStr += '<td style="font-size:16px;color:red">+'+countryDataRecent.Increase+'</td>';
-          reportDailyStr += '<td>+'+countryDataRecent.DeathsIncrease+'</td>';
-          reportDailyStr += '<td>+'+countryDataRecent.RecoveredIncrease+'</td>';
+          // reportDailyStr += '<td>New: <span style="font-size:16px;color:red">+'+countryDataRecent.Increase+'</span></td>';
+          // reportDailyStr += '<td>New: +'+countryDataRecent.DeathsIncrease+'</td>';
+          // reportDailyStr += '<td>New: +'+countryDataRecent.RecoveredIncrease+'</td>';
           reportDailyStr += '</tr>';
           reportDailyStr += '</tbody>';
           reportDailyStr += '</table>';
@@ -107,31 +138,38 @@ function coronaReport(ProvinceState, CountryRegion, country) {
           //reportStr+='<p>order by confirmed count desc</p>';
           reportStr += '<table class="table table-hover">';
           reportStr += '<col width="60px">';
+          // reportStr += '<col width="10px">';
           reportStr += '<col width="10px">';
           reportStr += '<col width="10px">';
           reportStr += '<col width="10px">';
           reportStr += '<col width="10px">';
           reportStr += '<thead class="thead-dark"><tr>';
-          reportStr += '<th scope="col">날짜</th>';
+          reportStr += '<th scope="col">Date</th>';
           //reportStr+='<th>ProvinceState</th>';
           //reportStr+='<th>CountryRegion</th>';
-          reportStr += '<th scope="col">확진</th>';
-          reportStr += '<th scope="col">전일대비 증가</th>';
-          reportStr += '<th scope="col">사망</th>';
-          reportStr += '<th scope="col">회복</th>';
+          reportStr += '<th scope="col">Confirmed<div> (vs. yesterday)</div></th>';
+          // reportStr += '<th scope="col">vs. yesterday</th>';
+          reportStr += '<th scope="col">Active</th>';
+          reportStr += '<th scope="col">Death</th>';
+          reportStr += '<th scope="col">Recovered</th>';
           reportStr += '</tr></thead>';
           reportStr += '<tbody>';
           for (var i = 0; i < countryDataLength; i++) {
-
+            var tempActiveIncrease = countryData[i]['Increase'] - countryData[i]['DeathsIncrease']-countryData[i]['RecoveredIncrease'];
             reportStr += '<tr>';
             reportStr += '<td>' + countryData[i]['DataDate'] + '</td>';
             //reportStr+='<td>'+countryData [i]['ProvinceState']+'</td>';
             //reportStr+='<td>'+countryData [i]['CountryRegion']+'</td>';
-            reportStr += '<td>' + countryData[i]['Confirmed'] + '</td>';
+            // reportStr += '<td>' + countryData[i]['Confirmed'] + '</td>';
             if (countryData[i]['Increase'] > 0) {
-              reportStr += '<td class="red">+' + countryData[i]['Increase'] + '</td>';
+              reportStr += '<td>+' + countryData[i]['Confirmed'] + '<span class="red"> (+'+ countryData[i]['Increase'] +')</span></td>';
             } else {
-              reportStr += '<td class="blue">+' + countryData[i]['Increase'] + '</td>';
+              reportStr += '<td>+' + countryData[i]['Confirmed'] + '<span class="blue"> ('+ countryData[i]['Increase'] + ')</span></td>';
+            }
+            if (tempActiveIncrease>0){
+            reportStr += '<td>' + subtractThree(countryData[i]['Confirmed'], countryData[i]['Deaths'],countryData[i]['Recovered'])+ ' (<span class="red">+' + tempActiveIncrease +  '</span>)</td>';
+            } else{
+            reportStr += '<td>' + subtractThree(countryData[i]['Confirmed'], countryData[i]['Deaths'],countryData[i]['Recovered'])+ ' (<span class="blue">' + tempActiveIncrease +  '</span>)</td>';
             }
             reportStr += '<td>' + countryData[i]['Deaths'] + '</td>';
             reportStr += '<td>' + countryData[i]['Recovered'] + '</td>';
