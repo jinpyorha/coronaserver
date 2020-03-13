@@ -1,10 +1,10 @@
 function coronaReport(ProvinceState, CountryRegion, country) {
   //console.log('onesunny3.cafe24.com/crawler/coronaDataApi.php?ProvinceState='+ProvinceState+'&CountryRegion='+CountryRegion);
   if (country == 'US') {
-    var urlApi = 'coronaDataApi.php?ProvinceState=' + ProvinceState + '&CountryRegion=' + CountryRegion + '&country=' + country;
+    var urlApi = '../coronaserver/coronaDataApi.php?ProvinceState=' + ProvinceState + '&CountryRegion=' + CountryRegion + '&country=' + country;
     console.log(urlApi);
   } else if (country == 'global') {
-    var urlApi = 'coronaDataApi.php?ProvinceState=' + ProvinceState + '&CountryRegion=' + CountryRegion;
+    var urlApi = '../coronaserver/coronaDataApi.php?ProvinceState=' + ProvinceState + '&CountryRegion=' + CountryRegion;
     console.log(urlApi);
   }
 

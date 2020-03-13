@@ -14,7 +14,7 @@ function coronaHeader(lang) {
   } else if (country == 'global') {
     headerStr += '<li class="nav-item active">';
   }
-  headerStr += '<a class="nav-link" href="coronaDataReport.html?lang='+lang+'">';
+  headerStr += '<a class="nav-link" href="report?lang='+lang+'">';
   headerStr += lang=='en'?'World':'세계현황';
   headerStr+='<span class="sr-only">(current)</span></a>';
   headerStr += '</li>';
@@ -23,7 +23,7 @@ function coronaHeader(lang) {
   } else if (country == 'global') {
     headerStr += '<li class="nav-item">';
   }
-  headerStr += '<a class="nav-link" href="coronaDataReport.html?lang='+lang+'&country=US">';
+  headerStr += '<a class="nav-link" href="report?lang='+lang+'&country=US">';
   headerStr += lang=='en'?'US':'미국현황';
   headerStr += '</a>';
   headerStr += '</li>';
@@ -67,10 +67,10 @@ function coronaHeader(lang) {
     headerStr += '<div class="dropdown-menu">';
       headerStr += '<a class="dropdown-item';
       headerStr += lang=='en'?' active':'';
-      headerStr += '" href="coronaDataReport.html?lang=en">English</a>';
+      headerStr += '" href="report?lang=en">English</a>';
       headerStr += '<a class="dropdown-item';
       headerStr += lang=='en'?'':' active';
-      headerStr +='" href="coronaDataReport.html?lang=ko">한국어</a>';
+      headerStr +='" href="report?lang=ko">한국어</a>';
     headerStr += '</div>';
   headerStr += '</div>';
   //
