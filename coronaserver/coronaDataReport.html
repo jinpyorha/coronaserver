@@ -39,12 +39,13 @@
 	<div class="header" id="header">
 	</div>
 	<div class="container">
-		<div id="coronainfo"></div>
+		<!-- <div id="coronainfo"></div> -->
 		<div id="select-box"></div>
 		<div id="reportDaily"></div>
 		<div id="colors"></div>
 		<!-- map below -->
 		<!-- https://websitebeaver.com/how-to-make-an-interactive-and-responsive-svg-map-of-us-states-capitals -->
+		<!-- <div id="mapmap"></div> -->
 		<div id="info-box"></div>
 		<div class="levelofseriousness"></div>  0<br>
 		<div class="levelofseriousness level1"></div>&lt50<br>
@@ -122,7 +123,6 @@
 		<div id="linechart_confirmed_increase"></div>
 		<div id="columnchart_death"></div>
 		<div id="columnchart_recovered"></div>
-
 		<div id="report">
 		</div>
 	</div>
@@ -134,8 +134,12 @@
 	<script type="text/javascript" src="map/map.js"></script>
 <!-- map ends -->
 <script>
-$( "#coronainfo" ).load( "Components/coronainfo.html" );
+	$( "#coronainfo" ).load( "Components/coronainfo.html" );
 </script>
+<!-- <script>
+	$( "#mapmap" ).load( "map/map.html" );
+
+</script> -->
 	<script>
 		const queryString = window.location.search;
 		const urlParams = new URLSearchParams(queryString);
