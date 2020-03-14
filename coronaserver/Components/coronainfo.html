@@ -3,34 +3,61 @@
 <head>
   <meta charset="utf-8">
 <link rel="stylesheet" href="../style.css" />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
   <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 </head>
 <body>
-
+<div class="container">
 <div id="coronainfo"><h1>COVID-19</h1></div>
-<div class="sidenav">
-  <a href="#name">Name</a>
-  <a href="#spread">How it spreads</a>
-  <a href="#travel">Travel guidance</a>
-  <a href="#severity">Severity</a>
-  <a href="#whattodo">What to do</a>
-  <a href="#symptoms">Symptoms</a>
-  <a href="#handwashing">Handwashing tip</a>
-</div>
-<div class="main">
+
+<nav id="navbar-example2" class="navbar navbar-light bg-light">
+    <ul class="nav nav-pills">
+    <li class="nav-item">
+      <a class="nav-link" href="#name">Name</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#spread">How COVID-19 spreads</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#travel">Travel guidance</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#severity">Severity</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#whattodo">What to do</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#symptoms">Symptoms</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#handwashing">Handwashing</a>
+    </li>
+  </ul>
+</nav>
+
+
+<!-- <div id="list-example" class="list-group">
+  <a class="list-group-item list-group-item-action" href="#name">Name</a>
+  <a class="list-group-item list-group-item-action" href="#spread">How COVID-19 spreads</a>
+  <a class="list-group-item list-group-item-action" href="#travel">Travel guidance</a>
+  <a class="list-group-item list-group-item-action" href="#severity">Severity</a>
+  <a class="list-group-item list-group-item-action" href="#whattodo">What to do</a>
+  <a class="list-group-item list-group-item-action" href="#symptoms">Symptoms</a>
+  <a class="list-group-item list-group-item-action" href="#handwashing">Handwashing</a>
+</div> -->
+
+  <div data-spy="scroll" data-target="#navbar-example2" data-offset="0">
+
   <div>
-    <h2 name="name">
-      <a id="name">
-        Name:
-      </a>
+    <h2 id="name">
+      Name:
     </h2>
     <p> The virus has been named “SARS-CoV-2” and the disease it causes has been named “coronavirus disease 2019” (abbreviated “COVID-19”).</p>
   </div>
-  <h2 name="spread">
-    <a id="spread">
+  <h2 id="spread">
       How it spreads
-    </a>
   </h2>
     <ul>
       <li>Between people who are in close contact with one another (within about 6 feet)</li>
@@ -40,8 +67,8 @@
     <p>
       It may be possible that a person can get COVID-19 by touching a surface or object that has the virus on it and then touching their own mouth, nose, or possibly their eyes, but this is not thought to be the main way the virus spreads
     </p>
-  <h2 name="travel">
-    <a id="travel" href="https://www.cdc.gov/coronavirus/2019-ncov/travelers/index.html">
+  <h2 id="travel">
+    <a href="https://www.cdc.gov/coronavirus/2019-ncov/travelers/index.html">
       Travel guidance
     </a>
   </h2>
@@ -60,10 +87,11 @@
       <a href="https://wwwnc.cdc.gov/travel/notices/warning/coronavirus-europe">
         Most of Europe
       </a>
-      <button type="button" class="collapsible">
-        Click to expand the list
-      </button>
-      <div class="contents">
+      <a class="badge badge-dark" data-toggle="collapse" href="#collapseCountry" role="button" aria-expanded="false" aria-controls="collapseCountry">
+         Click to expand the list
+      </a>
+      <!-- <span class="badge badge-dark">Dark</span> -->
+      <div class="collapse" id="collapseCountry">
         <ul class= "listEurope">
           <li>Austria</li>
           <li>Belgium</li>
@@ -106,17 +134,15 @@
     </li>
   </ul>
   <div>
-    <h2 name="severity">
-      <a id="severity">
+    <h2 id="severity">
         Severity:
-      </a>
     </h2>
     <p>
       Reported illnesses have ranged from very mild (including some with no reported symptoms) to severe, including illness resulting in death. While information so far suggests that most COVID-19 illness is mild, a reportexternal icon out of China suggests serious illness occurs in 16% of cases. Older people and people of all ages with severe underlying health conditions — like heart disease, lung disease and diabetes, for example — seem to be at higher risk of developing serious COVID-19 illness
     </p>
   </div>
-  <h2 name="whattodo">
-    <a id="whattodo" href="https://www.cdc.gov/coronavirus/2019-ncov/specific-groups/high-risk-complications.html#Have-supplies-on-hand">
+  <h2 id="whattodo">
+    <a href="https://www.cdc.gov/coronavirus/2019-ncov/specific-groups/high-risk-complications.html#Have-supplies-on-hand">
       What to do:
     </a>
   </h2>
@@ -126,10 +152,11 @@
     </li>
     <li>
       Take everyday precautions to keep space between yourself and others
-      <button type="button" class="collapsible">
-        Click to expand the list
-      </button>
-      <div class="contents">
+      <a class="badge badge-dark" data-toggle="collapse" href="#collapseTodo" role="button" aria-expanded="false" aria-controls="collapseTodo">
+         Click to expand the list
+      </a>
+
+      <div class="collapse" id="collapseTodo">
         <ul>
           <li>Clean your hands often</li>
           <li>Wash your hands often with soap and water for at least 20 seconds, especially after blowing your nose, coughing, or sneezing, or having been in a public place</li>
@@ -158,8 +185,8 @@
   </ul>
 
   <div>
-    <h2 name="symptoms">
-      <a id="symptoms" href="https://www.cdc.gov/coronavirus/2019-ncov/about/symptoms.html">
+    <h2 id="symptoms">
+      <a  href="https://www.cdc.gov/coronavirus/2019-ncov/about/symptoms.html">
         Symptons
       </a>*
     </h2>
@@ -190,14 +217,21 @@
         What to do if you are sick
       </a>
     </h2>
-    <h2 name="handwashing">
-      <a id="handwashing">
+    <h2 id="handwashing">
+      <a >
         Handwashing tip
       </a>
     </h2>
   <iframe width="560" height="315" src="https://www.youtube.com/embed/d914EnpU4Fo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
   </iframe>
 </div>
+
+
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
 <script>
   var coll = document.getElementsByClassName("collapsible");
   var i;

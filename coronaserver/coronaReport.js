@@ -272,6 +272,8 @@ function coronaReport(ProvinceState, CountryRegion, country) {
           chart.draw(data, google.charts.Bar.convertOptions(options));
         }
 
+
+
         function drawDeathChart() {
 
           var data = google.visualization.arrayToDataTable(dataElmDeath);
