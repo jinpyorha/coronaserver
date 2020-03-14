@@ -103,9 +103,9 @@ function coronaReport(ProvinceState, CountryRegion, country) {
             reportDailyStr += '<td><span style="font-size: 20px">'+subtractThree(tempCountryRecentConfirmed, tempCountryRecentDeaths, tempCountryRecentRecovered)+'</span><br><span style="font-size:12px">(<span class="blue">+'+subtractThree(tempCountryRecentConfirmedIncrease, tempCountryRecentDeathsIncrease, tempCountryRecentRecoveredIncrease)+'</span> new active)</span></td>';
           }
           if(countryDataRecent.DeathsIncrease>0){
-            reportDailyStr += '<td><span style="font-size: 20px">'+countryDataRecent.Deaths+'</span><br><span style="font-size:12px">(<span class="red">+'+countryDataRecent.DeathsIncrease+'</span>)</span><span style="color:grey"> '+toPercent(tempCountryRecentDeaths/tempCountryRecentConfirmed,2)+' of total</span></td>';
+            reportDailyStr += '<td><span style="font-size: 20px">'+countryDataRecent.Deaths+'</span><br><span style="font-size:12px">(<span class="red">+'+countryDataRecent.DeathsIncrease+'</span>)</span><span style="font-size:12px; color:grey"> '+toPercent(tempCountryRecentDeaths/tempCountryRecentConfirmed,2)+' of total</span></td>';
           }else{
-            reportDailyStr += '<td><span style="font-size: 20px">'+countryDataRecent.Deaths+'</span><br><span style="font-size:12px">(<span class="blue">+'+countryDataRecent.DeathsIncrease+'</span>)</span><span style="color:grey"> '+toPercent(tempCountryRecentDeaths/tempCountryRecentConfirmed,2)+' of total</span></td>';
+            reportDailyStr += '<td><span style="font-size: 20px">'+countryDataRecent.Deaths+'</span><br><span style="font-size:12px">(<span class="blue">+'+countryDataRecent.DeathsIncrease+'</span>)</span><span style="font-size:12px; color:grey"> '+toPercent(tempCountryRecentDeaths/tempCountryRecentConfirmed,2)+' of total</span></td>';
           }
           reportDailyStr += '<td><span style="font-size: 20px">'+countryDataRecent.Recovered+'</span><br><span style="font-size:12px">(<span class="red">+'+countryDataRecent.RecoveredIncrease+'</span>)</span><span style="font-size:12px; color:green"> '+toPercent(tempCountryRecentRecovered/tempCountryRecentConfirmed,2)+' of total</span></td>';
           reportDailyStr += '</tr>';
@@ -226,7 +226,7 @@ function coronaReport(ProvinceState, CountryRegion, country) {
           google.charts.setOnLoadCallback(drawIncreaseChart);
         }
 
-        
+
 
         function drawConfirmedChart() {
 
