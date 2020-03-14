@@ -1,0 +1,73 @@
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      var urlApi = '../coronaserver/coronaDataApi.php?country=US';
+      $.ajax({
+        type: 'GET',
+        url: urlApi,
+        contentType: false,
+        data: false,
+        processData: false,
+        success: function(data) {
+          isUploading = false;
+          var obj = JSON.parse(data);
+          //console.log(data);
+
+          if (obj.result == "success") {
+            var dataElmGeo = [];//data Array for Geochart
+            var geochartData = ['provinces',   'confirmed'];
+            var countryList = obj.data.countryList;
+            var countryListLength = countryList != null ? countryList.length : 0;
+
+            //가져온 데이터 배열에 저장
+            //for (var i = 0; i < countryListLength; i++) {
+            for (var i = 0; i < 100; i++) {
+              var tempDataElmGeo = [countryList[i]['ProvinceState'],parseInt(countryList[i]['cnt']!=0?countryList[i]['cnt']:null)];
+              dataElmGeo.unshift(tempDataElmGeo);
+            }
+              dataElmGeo.unshift(geochartData);
+
+
+            console.log(dataElmGeo);
+            //가져온 데이터 배열에 저장 끝
+
+
+
+            //차트그리기 시작
+            google.charts.load('current', {
+              'packages':['geochart'],
+              // Note: you will need to get a mapsApiKey for your project.
+              // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
+              'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
+            });
+            google.charts.setOnLoadCallback(drawRegionsMap);
+
+            function drawRegionsMap() {
+              var data = google.visualization.arrayToDataTable(dataElmGeo);
+
+              var options = {
+                region: 'US', // Africa
+                resolution:'provinces',
+                colorAxis: {colors: ['#78EB7E', '#FFF6B7', '#AB89E8','#FF707A']},
+                backgroundColor: '#ffffff',
+                datalessRegionColor: '#f0f0f0',
+                defaultColor: '#A3EAFF',
+              };
+
+              var chart = new google.visualization.GeoChart(document.getElementById('geochart-colors'));
+              chart.draw(data, options);
+            };
+            //차트 그리기 끝
+          }
+        }
+      });
+
+    </script>
+  </head>
+  <body>
+    <div id="geochart-colors" style="width: 700px; height: 433px;"></div>
+
+  </body>
+</html>
