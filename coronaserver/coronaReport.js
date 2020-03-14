@@ -226,6 +226,8 @@ function coronaReport(ProvinceState, CountryRegion, country) {
           google.charts.setOnLoadCallback(drawIncreaseChart);
         }
 
+        
+
         function drawConfirmedChart() {
 
           var data = google.visualization.arrayToDataTable(dataElmConfirmed);
