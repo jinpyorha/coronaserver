@@ -132,15 +132,15 @@
   } */
 
 a{
-  color:black;
-  transition: 0.3s;
+  color:black !important;
+  transition: 0.3s !important
 }
 a:hover{
-  color:hsl(90, 100%, 32%);
-  text-decoration:none;
+  color:hsl(90, 100%, 32%) !important;
+  text-decoration:none !important
 
 }
 
 a:active{
-  color:hsl(90, 100%, 32%);
+  color:hsl(90, 100%, 32%) !important
 }
