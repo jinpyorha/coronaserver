@@ -3,15 +3,28 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="../style.css" />
+
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+<link rel="stylesheet" href="../style.css" />
   <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-</head>
-<body>
-<div class="container">
-<div id="coronainfo"><h1>COVID-19</h1></div>
 
+  <!-- facebook share -->
+  <div id="fb-root"></div>
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v6.0"></script>
+  <!-- facebook share ends -->
+</head>
+<body class="text-monospace">
+<div class="container">
+  <div id="coronainfo"><h1 class="display-4">#COVID-19</h1>
+<div class="col mb-4 d-flex align-items-stretch">
+  <div class="row container-fluid">
+    <div class="card w-100 border-light" style="border: none">
+      <div class="d-flex justify-content-end"><div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/share-button" data-layout="button" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2Fshare-button&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore"></a></div></div>
+      <div class="d-flex justify-content-end" style="margin-top:2px"><a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false"></a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></div>
+  </div>
+  </div>
+</div>
 <!-- <nav id="navbar-example2" class="navbar navbar-light bg-light">
     <ul class="nav nav-pills">
     <li class="nav-item">
@@ -25,6 +38,9 @@
     </li>
     <li class="nav-item">
       <a class="nav-link" href="#severity">Severity</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#stop">Stopping COVID-19</a>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="#whattodo">What to do</a>
@@ -50,27 +66,39 @@
     <div class="col mb-4 d-flex align-items-stretch">
       <div class="card w-100 border-light">
         <div class="card-body">
-          <h5 id="name" class="card-title">COVID-19 <a href="https://www.cdc.gov/coronavirus/2019-ncov/summary.html"><span class="badge badge-light">link to summary</span></a>
+          <h5 id="name" class="card-title">COVID-19 <a class="badge badge-pill badge-light" href="https://www.cdc.gov/coronavirus/2019-ncov/summary.html">link to summary</a>
           </h5>
           <p class="card-text">
-            The virus has been named “SARS-CoV-2” and the disease it causes has been named “coronavirus disease 2019” (abbreviated “COVID-19”). On March 11, COVID-19 outbreak was characerized as a pandemic by WHO
-
-              <a href="https://www.who.int/dg/speeches/detail/who-director-general-s-opening-remarks-at-the-media-briefing-on-covid-19---11-march-2020"><span class="badge badge-light">link to WHO</span></a>
-
-          </p>
+            The virus has been named <a style="border-bottom: 2px solid hsl(70, 100%, 40%)"  href="https://en.wikipedia.org/wiki/Severe_acute_respiratory_syndrome_coronavirus_2">“SARS-CoV-2”</a> and the disease it causes has been named <a style="text-decoration: none; border-bottom: 2px solid hsl(70, 100%, 40%)" href="https://en.wikipedia.org/wiki/2019%E2%80%9320_coronavirus_pandemic"> "coronavirus disease 2019”</a> (abbreviated “COVID-19”). On March 11, COVID-19 outbreak was characerized as a pandemic by WHO
+              <a class="badge badge-pill badge-light" href="https://www.who.int/dg/speeches/detail/who-director-general-s-opening-remarks-at-the-media-briefing-on-covid-19---11-march-2020">link to WHO</a>
+          </p>Why should we take precaution?
+          <ul>
+            <li>
+              COVID-19 transmits faster than other diseases (~twice+ as fast) <a class="badge badge-pill badge-light" href="https://academic.oup.com/jtm/advance-article/doi/10.1093/jtm/taaa021/5735319">link to source</a>
+            </li>
+            <li>
+              COVID-19 can severely impair your respiratory system and more <a class="badge badge-pill badge-light" href="https://www.usatoday.com/in-depth/news/2020/03/13/what-coronavirus-does-body-covid-19-infection-process-symptoms/5009057002/">link to source</a>
+            </li>
+            <li>
+              There is <a style="border-bottom: 2px solid hsl(70, 100%, 40%)" href="https://www.vox.com/science-and-health/2020/3/13/21176735/covid-19-coronavirus-worse-than-flu-comparison">NO vaccine to combat it</a>, nor any approved therapeutics
+            </li>
+            <li>
+              Although people of younger ages suffer milder symptoms, COVID-19 has demonstrated global case fatality rate of ~3.5% (as of March 9th) <a class="badge badge-pillbadge-light" href="https://ourworldindata.org/coronavirus">link to source</a>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
-    <div class="col mb-4">
+    <div class="col mb-4 d-flex align-items-stretch">
       <div class="card w-100 border-light">
         <div class="card-body">
           <h5 id="spread" class="card-title">How it spreads
-            <a href="https://www.cdc.gov/coronavirus/2019-ncov/summary.html#source-spread"><span class="badge badge-light">link to source</span></a>
+            <a class="badge badge-pill badge-light" href="https://www.cdc.gov/coronavirus/2019-ncov/summary.html#source-spread">link to source</a>
           </h5>
           <p class="card-text">
             <ul>
-              <li>Between people who are in close contact with one another (within about 6 feet)</li>
-              <li>Through respiratory droplets produced when an infected person coughs or sneezes.</li>
+              <li>Between people in close contact with one another (within about 6 feet)</li>
+              <li>Through respiratory droplets produced when an infected person coughs or sneezes</li>
               <li>It may be possible that a person can get COVID-19 by touching a surface or object that has the virus on it and then touching their own mouth, nose, or possibly their eyes, but this is not thought to be the main way the virus spreads</li>
             </ul>
           </p>
@@ -83,7 +111,7 @@
       <div class="card w-100 border-light">
         <div class="card-body">
           <h5 id="travel" class="card-title">Travel guidance
-            <a href="https://www.cdc.gov/coronavirus/2019-ncov/travelers/index.html"><span class="badge badge-light">link to source</span></a>
+            <a class="badge badge-pill badge-light" href="https://www.cdc.gov/coronavirus/2019-ncov/travelers/index.html">link to source</a>
           </h5>
           <p class="card-text">
             Widespread & <b>restricted</b> on entry to the US
@@ -111,7 +139,7 @@
                       <path d="M5.88.03c-.18.01-.36.03-.53.09-.27.1-.53.25-.75.47a.5.5 0 1 0 .69.69c.11-.11.24-.17.38-.22.35-.12.78-.07 1.06.22.39.39.39 1.04 0 1.44l-1.5 1.5c-.44.44-.8.48-1.06.47-.26-.01-.41-.13-.41-.13a.5.5 0 1 0-.5.88s.34.22.84.25c.5.03 1.2-.16 1.81-.78l1.5-1.5c.78-.78.78-2.04 0-2.81-.28-.28-.61-.45-.97-.53-.18-.04-.38-.04-.56-.03zm-2 2.31c-.5-.02-1.19.15-1.78.75l-1.5 1.5c-.78.78-.78 2.04 0 2.81.56.56 1.36.72 2.06.47.27-.1.53-.25.75-.47a.5.5 0 1 0-.69-.69c-.11.11-.24.17-.38.22-.35.12-.78.07-1.06-.22-.39-.39-.39-1.04 0-1.44l1.5-1.5c.4-.4.75-.45 1.03-.44.28.01.47.09.47.09a.5.5 0 1 0 .44-.88s-.34-.2-.84-.22z"/>
                     </svg>
                   </a>
-                <a class="badge badge-dark" data-toggle="collapse" href="#collapseCountry" role="button" aria-expanded="false" aria-controls="collapseCountry">
+                <a class="badge badge-pill badge-dark" data-toggle="collapse" href="#collapseCountry" role="button" aria-expanded="false" aria-controls="collapseCountry">
                    Click to expand the list
                 </a>
                 <!-- <span class="badge badge-dark">Dark</span> -->
@@ -150,7 +178,7 @@
                 </div>
               </li>
             </ul>
-            Widespread & <b>unrestricted</b>on entry to the US
+            Widespread & <b>unrestricted</b> on entry to the US
             <ul>
               <li>
                 South Korea
@@ -165,13 +193,13 @@
         </div>
       </div>
     </div>
-    <div class="col sm-6">
+    <div class="col mb-4 d-flex align-items-stretch">
       <div class="card w-100 border-light">
         <div class="card-body">
-          <h5 id="severity" class="card-title">Severity <a href="https://www.cdc.gov/coronavirus/2019-ncov/summary.html#severity"><span class="badge badge-light">link to source</span></a></h5>
+          <h5 id="severity" class="card-title">Severity <a class="badge badge-pill badge-light" href="https://www.cdc.gov/coronavirus/2019-ncov/summary.html#severity">link to source</a></h5>
 
           <p class="card-text">
-            Reported illnesses have ranged from very mild (including some with no reported symptoms) to severe, including illness resulting in death. While information so far suggests that most COVID-19 illness is mild, a reportexternal icon out of China suggests serious illness occurs in 16% of cases. Older people and people of all ages with severe underlying health conditions — like heart disease, lung disease and diabetes, for example — seem to be at higher risk of developing serious COVID-19 illness
+            Reported illnesses have ranged from <a style="border-bottom: 2px solid hsl(70, 100%, 40%)"  href="https://www.cdc.gov/coronavirus/2019-ncov/summary.html#severity">very mild to severe</a>, including illness resulting in death. While information so far suggests that most COVID-19 illness is mild, a reportexternal icon out of China suggests serious illness occurs in 16% of cases. Older people and people of all ages with severe underlying health conditions — like heart disease, lung disease and diabetes, for example — seem to be at higher risk of developing serious COVID-19 illness
           </p>
         </div>
       </div>
@@ -182,9 +210,43 @@
     <div class="col mb-4 d-flex align-items-stretch">
       <div class="card w-100 border-light">
         <div class="card-body">
+          <h5 id="stop" class="card-title">Stopping COVID-19
+            <a class="badge badge-pill badge-light" href="https://www.theatlantic.com/family/archive/2020/03/coronavirus-what-does-social-distancing-mean/607927/">
+            link to source</a></h5>
+            <h7>#<a style="border-bottom: 2px solid hsl(70, 100%, 40%)"  href="https://www.theatlantic.com/family/archive/2020/03/coronavirus-what-does-social-distancing-mean/607927/">socialdistancing</a></h7>
+
+          <p class="card-text">
+            <ul>
+              <li>
+                Be aware of what's going on (it's more serious that you think!)
+              </li>
+              <li>
+                Wash your hands and practice good cough & sneeze etiquettes
+              </li>
+              <li>
+                Try to avoid gathering in public places--stay home as much as possible
+              </li>
+              <li>
+                Try not to use public transportation, going to grocery stores and gym when crowded
+              </li>
+              <li>
+                It's OK to postpone parties / public events
+              </li>
+              <li>
+                If you can work from home, work from home. Don't think of WFH as a vacation and travel
+              </li>
+
+            </ul>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col mb-4 d-flex align-items-stretch">
+      <div class="card w-100 border-light">
+        <div class="card-body">
           <h5 id="whattodo" class="card-title">What to do
-            <a href="https://www.cdc.gov/coronavirus/2019-ncov/specific-groups/high-risk-complications.html#Have-supplies-on-hand">
-            <span class="badge badge-light">link to source</span></a></h5>
+            <a  class="badge badge-pill badge-light" href="https://www.cdc.gov/coronavirus/2019-ncov/specific-groups/high-risk-complications.html#Have-supplies-on-hand">
+            link to source</a></h5>
 
           <p class="card-text">
             <ul>
@@ -193,21 +255,19 @@
               </li>
               <li>
                 Take everyday precautions to keep space between yourself and others
-                <a class="badge badge-dark" data-toggle="collapse" href="#collapseTodo" role="button" aria-expanded="false" aria-controls="collapseTodo">
+                <a class="badge badge-pill badge-dark" data-toggle="collapse" href="#collapseTodo"  aria-expanded="false" aria-controls="collapseTodo">
                    Click to expand the list
                 </a>
 
                 <div class="collapse" id="collapseTodo">
                   <ul>
-                    <li>Clean your hands often</li>
-                    <li>Wash your hands often with soap and water for at least 20 seconds, especially after blowing your nose, coughing, or sneezing, or having been in a public place</li>
-                    <li>If soap and water are not available, use a hand sanitizer that contains at least 60% alcohol.</li>
-                    <li>To the extent possible, avoid touching high-touch surfaces in public places – elevator buttons, door handles, handrails, handshaking with people, etc. Use a tissue or your sleeve to cover your hand or finger if you must touch something.</li>
-                    <li>Wash your hands after touching surfaces in public places.</li>
+                    <li>Wash your hands often with soap and water for at least 20 seconds</li>
+                    <li>Use hand sanitizer that contains at least 60% alcohol</li>
+                    <li>Avoid touching high-touch surfaces in public places – elevator buttons, door handles, handrails, handshaking with people, etc. Use a tissue or your sleeve if you must touch something</li>
                     <li>Avoid touching your face, nose, eyes, etc.</li>
-                    <li>Clean and disinfect your home to remove germs: practice routine cleaning of frequently touched surfaces (for example: tables, doorknobs, light switches, handles, desks, toilets, faucets, sinks & cell phones)</li>
-                    <li>Avoid crowds, especially in poorly ventilated spaces. Your risk of exposure to respiratory viruses like COVID-19 may increase in crowded, closed-in settings with little air circulation if there are people in the crowd who are sick</li>
-                    <li>Avoid all non-essential travel including plane trips, and especially avoid embarking on cruise ships.</li>
+                    <li>Clean and disinfect your home to remove germs</li>
+                    <li>Avoid crowds! The risk of exposure to respiratory viruses may increase in crowded, closed-in settings with little air circulation</li>
+                    <li>Avoid all non-essential travel</li>
                   </ul>
                 </div>
               </li>
@@ -218,7 +278,7 @@
                 Avoid crowds as much as possible
               </li>
               <li>
-                Avoid cruise travel and non-essential air travel
+                Avoid cruise and non-essential air travel
               </li>
               <li>
                 During a COVID-19 outbreak in your community, stay home as much as possible to further reduce your risk of being exposed
@@ -228,10 +288,12 @@
         </div>
       </div>
     </div>
+  </div>
+  <div class="row container-fluid row-cols-1 row-cols-md-2">
     <div class="col mb-4 d-flex align-items-stretch">
       <div class="card w-100 border-light">
         <div class="card-body">
-          <h5 id="symptoms" class="card-title">Symptons*<a  href="https://www.cdc.gov/coronavirus/2019-ncov/about/symptoms.html"><span class="badge badge-light">link to source</span></a></h5>
+          <h5 id="symptoms" class="card-title">Symptons<sup>*</sup><a class="badge badge-pill badge-light" href="https://www.cdc.gov/coronavirus/2019-ncov/about/symptoms.html">link to source</a></h5>
           <p class="card-text">
             <ul>
               <li>
@@ -251,23 +313,18 @@
               </li>
             </ul>
             <p>
-              *This list is not all inclusive. Please consult your medical provider for any other symptoms that are severe or concerning
+              <small>*This list is not all inclusive. Please consult your medical provider for any other symptoms that are severe or concerning</small>
             </p>
           </p>
         </div>
       </div>
     </div>
-  </div>
-
-  <div class="row container-fluid row-cols-1 row-cols-md-2">
     <div class="col mb-4 d-flex align-items-stretch">
       <div class="card w-100 border-light">
         <div class="card-body">
           <h5 id="sick" class="card-title">If you are sick
-            <a href="https://www.cdc.gov/coronavirus/2019-ncov/about/steps-when-sick.html">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 8 8">
-              <path d="M5.88.03c-.18.01-.36.03-.53.09-.27.1-.53.25-.75.47a.5.5 0 1 0 .69.69c.11-.11.24-.17.38-.22.35-.12.78-.07 1.06.22.39.39.39 1.04 0 1.44l-1.5 1.5c-.44.44-.8.48-1.06.47-.26-.01-.41-.13-.41-.13a.5.5 0 1 0-.5.88s.34.22.84.25c.5.03 1.2-.16 1.81-.78l1.5-1.5c.78-.78.78-2.04 0-2.81-.28-.28-.61-.45-.97-.53-.18-.04-.38-.04-.56-.03zm-2 2.31c-.5-.02-1.19.15-1.78.75l-1.5 1.5c-.78.78-.78 2.04 0 2.81.56.56 1.36.72 2.06.47.27-.1.53-.25.75-.47a.5.5 0 1 0-.69-.69c-.11.11-.24.17-.38.22-.35.12-.78.07-1.06-.22-.39-.39-.39-1.04 0-1.44l1.5-1.5c.4-.4.75-.45 1.03-.44.28.01.47.09.47.09a.5.5 0 1 0 .44-.88s-.34-.2-.84-.22z"/>
-            </svg></a>
+            <a class="badge badge-pill badge-light" href="https://www.cdc.gov/coronavirus/2019-ncov/about/steps-when-sick.html"> learn more
+            </a>
           </h5>
           <p class="card-text">
             Please click on the link above to learn more
@@ -276,6 +333,7 @@
       </div>
     </div>
   </div>
+
 
   <div class="row container-fluid row-cols-1 row-cols-md-2">
     <div class="col mb-4 d-flex align-items-stretch">
@@ -293,15 +351,17 @@
     </div>
   </div>
 
-  <p><em>Source: CDC.gov, WHO, Coronavirus COVID-19 Global Cases by the Center for Systems Science and Engineering (CSSE) at Johns Hopkins University (JHU)</em></p>
+  <p class="font-italic"><small>Source: CDC.gov, WHO, Our World in Data, Coronavirus COVID-19 Global Cases by the Center for Systems Science and Engineering (CSSE) at Johns Hopkins University (JHU)</small></p>
 
 
 </div>
 </div>
 </div>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+
 
 <script>
   var coll = document.getElementsByClassName("collapsible");

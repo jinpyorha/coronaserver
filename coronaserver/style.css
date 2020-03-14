@@ -130,3 +130,17 @@
     padding-top: 0 !important;
     padding-bottom: 0 !important;
   } */
+
+a{
+  color:black;
+  transition: 0.3s;
+}
+a:hover{
+  color:hsl(90, 100%, 32%);
+  text-decoration:none;
+
+}
+
+a:active{
+  color:hsl(90, 100%, 32%);
+}
