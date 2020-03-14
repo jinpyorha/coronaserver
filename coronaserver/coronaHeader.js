@@ -32,7 +32,7 @@ function coronaHeader(lang) {
   headerStr += lang=='en'?'MORE':'더보기';
   headerStr += '</a>';
   headerStr += '<div class="dropdown-menu" aria-labelledby="navbarDropdown">';
-  headerStr += '<a class="dropdown-item" href="#">';
+  headerStr += '<a class="dropdown-item" href="coronaserver/Components/coronainfo.html">';
   headerStr += lang=='en'?'What is corona':'코로나란?';
   headerStr += '</a>';
   headerStr += '<a class="dropdown-item" href="#">';

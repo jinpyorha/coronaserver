@@ -11,18 +11,26 @@
     border: 1px solid #ccc;
     padding: 10px;
     word-break: break-all;
-    font-size: 10px;
+    /* font-size: 10px; */
     text-align: center;
   }
   td{font-size:15px;}
   tr td:first-child{font-size:11px;}
 
-  td.red {
+  /* td.red {
     color: red
   }
 
   td.blue {
     color: blue;
+  }
+ */
+  span.red{
+    color:red;
+  }
+
+  span.blue{
+    color:blue;
   }
 
   .table-borderless td,
@@ -114,3 +122,11 @@
   @media (min-width:500px) {
     .dropdown-menu{left:initial;margin-left:-30px;}
   }
+
+.listEurope{
+  column-count: 2;
+}
+  /* .collapsible {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  } */
