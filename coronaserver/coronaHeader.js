@@ -54,7 +54,7 @@ function coronaHeader(lang) {
   headerStr += '</div>';
   headerStr += '</li>';
   headerStr += '<li class="nav-item">';
-  headerStr += '<a class="nav-link" href="#">';
+  headerStr += '<a class="nav-link" href="Components/coronainfo.html">';
   headerStr += lang=='en'?'information':'대상별 맞춤 정보';
   headerStr+='<span class="sr-only">(current)</span></a>';
   headerStr += '</li>';
