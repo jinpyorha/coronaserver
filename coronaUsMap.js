@@ -1,5 +1,5 @@
 function coronaUsMap(){
-  var urlApi = '../coronaserver/coronaDataApi.php?country=US';
+  var urlApi = 'coronaDataApi.php?country=US';
   $.ajax({
     type: 'GET',
     url: urlApi,
@@ -20,8 +20,10 @@ function coronaUsMap(){
         //가져온 데이터 배열에 저장
         //for (var i = 0; i < countryListLength; i++) {
         for (var i = 0; i <countryListLength; i++) {
-          var tempDataElmGeo = [countryList[i]['ProvinceState'],parseInt(countryList[i]['cnt']!=0?countryList[i]['cnt']:0)];
-          dataElmGeo.unshift(tempDataElmGeo);
+          if(countryList[i]['cnt']!=null&&parseInt(countryList[i]['cnt'])>0){
+            var tempDataElmGeo = [countryList[i]['ProvinceState'],parseInt(countryList[i]['cnt']!=0?countryList[i]['cnt']:0)];
+            dataElmGeo.unshift(tempDataElmGeo);
+          }
         }
           dataElmGeo.unshift(geochartData);
         //가져온 데이터 배열에 저장 끝
@@ -37,10 +39,12 @@ function coronaUsMap(){
         mapStr += '</tr></thead>';
         mapStr += '<tbody>';
         for(var k=dataElmGeo.length-1;k>0;k--){
-        mapStr += '<tr>';
-        mapStr += '<td>'+dataElmGeo[k][0]+'</td>';
-        mapStr += '<td>'+dataElmGeo[k][1]+'</td>';
-        mapStr += '</tr>';
+          if(dataElmGeo[k][0]!='Unassigned Location'){
+            mapStr += '<tr>';
+            mapStr += '<td>'+dataElmGeo[k][0]+'</td>';
+            mapStr += '<td>'+dataElmGeo[k][1]+'</td>';
+            mapStr += '</tr>';
+          }
         }
         mapStr += '<tbody>';
         mapStr += '</table>';
