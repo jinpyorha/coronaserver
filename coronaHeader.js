@@ -14,7 +14,7 @@ function coronaHeader(lang) {
   } else if (country == 'global') {
     headerStr += '<li class="nav-item active">';
   }
-  headerStr += '<a class="nav-link" href="report?lang='+lang+'">';
+  headerStr += '<a class="nav-link" href="report?lang='+lang+'&country=global">';
   headerStr += lang=='en'?'World':'세계현황';
   headerStr+='<span class="sr-only">(current)</span></a>';
   headerStr += '</li>';
@@ -27,12 +27,12 @@ function coronaHeader(lang) {
   headerStr += lang=='en'?'US':'미국현황';
   headerStr += '</a>';
   headerStr += '</li>';
-  headerStr += '<li class="nav-item dropdown">';
+  /*headerStr += '<li class="nav-item dropdown">';
   headerStr += '<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">';
   headerStr += lang=='en'?'MORE':'더보기';
   headerStr += '</a>';
   headerStr += '<div class="dropdown-menu" aria-labelledby="navbarDropdown">';
-  headerStr += '<a class="dropdown-item" href="coronaserver/Components/coronainfo.html">';
+  headerStr += '<a class="dropdown-item" href="Components/coronainfo.html">';
   headerStr += lang=='en'?'What is corona':'코로나란?';
   headerStr += '</a>';
   headerStr += '<a class="dropdown-item" href="#">';
@@ -52,9 +52,9 @@ function coronaHeader(lang) {
   headerStr += lang=='en'?'FAQ':'문의';
   headerStr += '</a>';
   headerStr += '</div>';
-  headerStr += '</li>';
+  headerStr += '</li>';*/
   headerStr += '<li class="nav-item">';
-  headerStr += '<a class="nav-link" href="Components/coronainfo.html">';
+  headerStr += '<a class="nav-link" href="coronainfo.html?lang='+lang+'&country='+country+'">';
   headerStr += lang=='en'?'information':'대상별 맞춤 정보';
   headerStr+='<span class="sr-only">(current)</span></a>';
   headerStr += '</li>';
