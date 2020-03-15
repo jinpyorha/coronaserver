@@ -11,7 +11,8 @@ $username = 'root';
 $password = 'samsamsam';
 $dbname = 'corona';
 */
-
+$yesterday = date('Y-m-d',strtotime("-1 days"));
+$yesterday2 = date('Y-m-d',strtotime("-2 days"));
 // Create connection
 $conn = new mysqli($servername, $username, $password,$dbname);
 
@@ -94,6 +95,7 @@ if($provinceState!=''||$countryRegion!=''){
 				'CountryRegion'=>$row['CR'],
 				'LastUpdate'=>$row['LastUpdate'],
 				'Confirmed'=>$row['Confirmed'],
+				'Active'=>($row['Confirmed']-$row['Deaths']-$row['Recovered']),
 				'Deaths'=>$row['Deaths'],
 				'Recovered'=>$row['Recovered'],
 				'DataDate'=>$row['DD'],
@@ -107,6 +109,7 @@ if($provinceState!=''||$countryRegion!=''){
 		}
 		$countryDataRecent= array(
 			'Confirmed'=>$countryData[0]['Confirmed'],
+			'Active'=>$countryData[0]['Confirmed']-$countryData[0]['Deaths']-$countryData[0]['Recovered'],
 			'Deaths'=>$countryData[0]['Deaths'],
 			'Recovered'=>$countryData[0]['Recovered'],
 			'DataDate'=>$countryData[0]['DataDate'],
@@ -119,8 +122,41 @@ if($provinceState!=''||$countryRegion!=''){
 }
 else{
 	$countryData= null;
-}
+	//나라 데이터가 없는 경우
+	//세계면 나라별 / 미국이면 주별
+	//데이터를 모두 sum 해서 recent 값 구한다
+	$totalRecentDataSql="SELECT
+  CountryRegion,
+  SUM(Confirmed) AS Confirmed,
+  SUM(Deaths)   AS Deaths,
+  SUM(Recovered) AS Recovered,
+SUM(Confirmed)-(SELECT SUM(Confirmed)  FROM CoronaData WHERE CountryRegion='US' AND DataDate= '".$yesterday2."') AS ConfirmedIncrease,
+SUM(Deaths)-(SELECT SUM(Deaths)  FROM CoronaData WHERE CountryRegion='US' AND DataDate= '".$yesterday2."') AS DeathsIncrease,
+SUM(Recovered)-(SELECT SUM(Recovered)  FROM CoronaData WHERE CountryRegion='US' AND DataDate= '".$yesterday2."') AS RecoveredIncrease
+FROM CoronaData
+WHERE ";
+if($country=='US'){	$totalRecentDataSql.="CountryRegion = 'US' AND ";}
+  $totalRecentDataSql.="DataDate = '".$yesterday."'";
 
+
+	$resultTotal = $conn->query($totalRecentDataSql);
+
+	if ($resultTotal->num_rows > 0) {
+
+		// output data of each row
+		while($row = $resultTotal->fetch_assoc()) {
+			$countryDataRecent= array(
+				'Confirmed'=>$row['Confirmed'],
+				'Active'=>$row['Confirmed']-$row['Deaths']-$row['Recovered'],
+				'Deaths'=>$row['Deaths'],
+				'Recovered'=>$row['Recovered'],
+				'Increase'=>$row['ConfirmedIncrease'],
+				'DeathsIncrease'=>$row['DeathsIncrease'],
+				'RecoveredIncrease'=>$row['RecoveredIncrease'],
+			);
+		}
+	}
+}
 //#######api 제작###########
 $coronaArray = array();
 $coronaArray['countryData'] = $countryData;

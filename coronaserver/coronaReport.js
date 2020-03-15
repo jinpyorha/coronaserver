@@ -24,6 +24,9 @@ function coronaReport(ProvinceState, CountryRegion, country) {
         var dataElmDeath = []; //data Array for column chart
         var dataElmRecovered = []; //data Array for column chart
         var dataElmIncrease = []; //전체 데이터 위한 배열
+
+        var dataElmStack = [];
+
         var selectStr = '';
         var countryList = obj.data.countryList;
         var countryData = obj.data.countryData;
@@ -81,7 +84,7 @@ function coronaReport(ProvinceState, CountryRegion, country) {
           var tempCountryRecentConfirmedIncrease = +countryDataRecent.Increase;
           var tempCountryRecentDeathsIncrease = +countryDataRecent.DeathsIncrease;
           var tempCountryRecentRecoveredIncrease =+countryDataRecent.RecoveredIncrease;
-          reportDailyStr +='<h1>'+subtractThree(tempCountryRecentConfirmed, tempCountryRecentDeaths, tempCountryRecentRecovered)+'</h1>'
+          reportDailyStr +='<h1>Total Active : '+subtractThree(tempCountryRecentConfirmed, tempCountryRecentDeaths, tempCountryRecentRecovered)+'</h1>'
 
           reportDailyStr +='<table class="table table-hover">';
           reportDailyStr += '<col width="10px">';
@@ -109,33 +112,44 @@ function coronaReport(ProvinceState, CountryRegion, country) {
           }
           reportDailyStr += '<td><span style="font-size: 20px">'+countryDataRecent.Recovered+'</span><br><span style="font-size:12px">(<span class="red">+'+countryDataRecent.RecoveredIncrease+'</span>)</span><span style="font-size:12px; color:green"> '+toPercent(tempCountryRecentRecovered/tempCountryRecentConfirmed,2)+' of total</span></td>';
           reportDailyStr += '</tr>';
-          // reportDailyStr += '</tbody>';
-          // reportDailyStr += '<thead class="thead-dark"><tr>';
-          // reportDailyStr += '<th scope="col">New</th>';
-          // reportDailyStr += '<th scope="col">New</th>';
-          // reportDailyStr += '<th scope="col">New</th>';
-          // reportDailyStr += '</tr></thead>';
-          // reportDailyStr += '<tbody>';
           reportDailyStr += '<tr>';
-          // reportDailyStr += '<td>New: <span style="font-size:16px;color:red">+'+countryDataRecent.Increase+'</span></td>';
-          // reportDailyStr += '<td>New: +'+countryDataRecent.DeathsIncrease+'</td>';
-          // reportDailyStr += '<td>New: +'+countryDataRecent.RecoveredIncrease+'</td>';
           reportDailyStr += '</tr>';
           reportDailyStr += '</tbody>';
           reportDailyStr += '</table>';
         }
 
         if (countryData == null) {
-          reportStr += '<div class="alert alert-info" role="alert">';
-          reportStr += lang=='en'?'The regions are sorted by many confirmers':'지역은 확진자 많은 순으로 정렬되어있습니다!';
-          reportStr += '</div>';
+          selectStr += '<div class="alert alert-info" role="alert">';
+          selectStr += lang=='en'?'The regions are sorted by many confirmers':'지역은 확진자 많은 순으로 정렬되어있습니다!';
+          selectStr += '</div>';
+          $('#reportDaily').html('');
+          $('#columnchart_confirmed').html('');
+          $('#linechart_confirmed_increase').html('');
+          $('#columnchart_death').html('');
+          $('#columnchart_recovered').html('');
+          $('#stackchart').html('');
+
+          if(country=='US'){coronaUsMap();}
+          else{$('#coronaUsMap').html('');  $('#coronaUsMapReport').html('');}
+
+          $('#reportDaily').html(reportDailyStr);
+
+
         }
 
         if (countryData != null) {
+          $('#coronaUsMap').html('');
+          $('#coronaUsMapReport').html('');
+
+          $('#reportDaily').html('');
+          $('#columnchart_confirmed').html('');
+          $('#linechart_confirmed_increase').html('');
+          $('#columnchart_death').html('');
+          $('#columnchart_recovered').html('');
+          $('#stackchart').html('');
           var countryDataLength = countryData.length;
           //console.log( countryDataLength );
           reportStr += '<h3>' + ProvinceState + '[' + CountryRegion + ']</h3>';
-          //reportStr+='<p>order by confirmed count desc</p>';
           reportStr += '<table class="table table-hover">';
           reportStr += '<col width="60px">';
           // reportStr += '<col width="10px">';
@@ -145,10 +159,7 @@ function coronaReport(ProvinceState, CountryRegion, country) {
           reportStr += '<col width="10px">';
           reportStr += '<thead class="thead-dark"><tr>';
           reportStr += '<th scope="col">Date</th>';
-          //reportStr+='<th>ProvinceState</th>';
-          //reportStr+='<th>CountryRegion</th>';
           reportStr += '<th scope="col">Confirmed<div> (vs. yesterday)</div></th>';
-          // reportStr += '<th scope="col">vs. yesterday</th>';
           reportStr += '<th scope="col">Active</th>';
           reportStr += '<th scope="col">Death</th>';
           reportStr += '<th scope="col">Recovered</th>';
@@ -158,9 +169,6 @@ function coronaReport(ProvinceState, CountryRegion, country) {
             var tempActiveIncrease = countryData[i]['Increase'] - countryData[i]['DeathsIncrease']-countryData[i]['RecoveredIncrease'];
             reportStr += '<tr>';
             reportStr += '<td>' + countryData[i]['DataDate'] + '</td>';
-            //reportStr+='<td>'+countryData [i]['ProvinceState']+'</td>';
-            //reportStr+='<td>'+countryData [i]['CountryRegion']+'</td>';
-            // reportStr += '<td>' + countryData[i]['Confirmed'] + '</td>';
             if (countryData[i]['Increase'] > 0) {
               reportStr += '<td>+' + countryData[i]['Confirmed'] + '<span class="red"> (+'+ countryData[i]['Increase'] +')</span></td>';
             } else {
@@ -176,16 +184,24 @@ function coronaReport(ProvinceState, CountryRegion, country) {
             reportStr += '</tr>';
 
             //tempData = [countryData [i]['DataDate'], countryData [i]['Confirmed']];
+            var tempConfirmed = countryData[i]['Confirmed'] != 0 ? countryData[i]['Confirmed'] : 0;
+            var tempDeaths = countryData[i]['Deaths'] != 0 ? countryData[i]['Deaths'] : 0;
+            var tempRecovered = countryData[i]['Recovered'] != 0 ? countryData[i]['Recovered'] : 0;
+            var tempActive = countryData[i]['Active'] != 0 ? countryData[i]['Active'] : 0;
 
-            tempDataConfirmed = [countryData[i]['DataDate'], countryData[i]['Confirmed'] != 0 ? countryData[i]['Confirmed'] : '']; //array push for column chart
-            tempDataDeath = [countryData[i]['DataDate'], countryData[i]['Deaths'] != 0 ? countryData[i]['Deaths'] : '']; //array push for column chart
-            tempDataRecovered = [countryData[i]['DataDate'], countryData[i]['Recovered'] != 0 ? countryData[i]['Recovered'] : '']; //array push for column chart
+
+            tempDataConfirmed = [countryData[i]['DataDate'],tempConfirmed]; //array push for column chart
+            tempDataDeath = [countryData[i]['DataDate'], tempDeaths]; //array push for column chart
+            tempDataRecovered = [countryData[i]['DataDate'],tempRecovered]; //array push for column chart
             tempDataIncrease = [countryData[i]['DataDate'], countryData[i]['Increase']]; //array push for column chart
+
+            tempDataStack = [countryData[i]['DataDate'],tempActive,tempRecovered,tempDeaths] //array push for stack chart
+
             dataElmConfirmed.unshift(tempDataConfirmed); //array push for column chart
             dataElmDeath.unshift(tempDataDeath); //array push for column chart
             dataElmRecovered.unshift(tempDataRecovered); //array push for column chart
             dataElmIncrease.unshift(tempDataIncrease); //array push for column chart
-
+            dataElmStack.unshift(tempDataStack);//array push for stack chart
           }
           reportStr += '</tbody>';
           reportStr += '</table>';
@@ -204,28 +220,68 @@ function coronaReport(ProvinceState, CountryRegion, country) {
         //console.log(dataElm);
 
         //var tempData =['DateDate', 'Confirmed'];
-        var tempDataConfirmed = ['DateDate', 'Confirmed'];
-        var tempDataDeath = ['DateDate', 'Deaths'];
-        var tempDataRecovered = ['DateDate', 'Recovered'];
-        var tempDataIncrease = ['DateDate', 'Increase'];
+        var tempDataConfirmed = ['DataDate', 'Confirmed'];
+        var tempDataDeath = ['DataDate', 'Deaths'];
+        var tempDataRecovered = ['DataDate', 'Recovered'];
+        var tempDataIncrease = ['DataDate', 'Increase'];
+        var tempDataStack = ['DataDate','Active','Recovered','Deaths'];
         dataElmConfirmed.unshift(tempDataConfirmed); //array push for column chart
         dataElmDeath.unshift(tempDataDeath); //array push for column chart
         dataElmRecovered.unshift(tempDataRecovered); //array push for column chart
         dataElmIncrease.unshift(tempDataIncrease); //array push for column chart
+        dataElmStack.unshift(tempDataStack);
 
         if (countryData != null) {
           google.charts.load('current', {
             'packages': ['bar']
           });
-          google.charts.setOnLoadCallback(drawConfirmedChart);
-          google.charts.setOnLoadCallback(drawDeathChart);
-          google.charts.setOnLoadCallback(drawRecoveredChart);
+          if(tempCountryRecentConfirmed>0){google.charts.setOnLoadCallback(drawConfirmedChart);}
+          if(tempCountryRecentDeaths>0){google.charts.setOnLoadCallback(drawDeathChart);}
+          if(tempCountryRecentRecovered>0){google.charts.setOnLoadCallback(drawRecoveredChart);}
+
           google.charts.load('current', {
             packages: ['corechart', 'line']
           });
           google.charts.setOnLoadCallback(drawIncreaseChart);
+          google.charts.setOnLoadCallback(drawStackChart);
         }
+        function drawStackChart(){
+          var data = google.visualization.arrayToDataTable(dataElmStack);
 
+          var options = {
+            height: 600,
+            legend: { position: 'none', maxLines: 3 },
+            bar: { groupWidth: '75%' },
+            series: {
+              0:{color:'#EB7F75'},
+              1:{color:'#8FDAFF'},
+              2:{color:'#FFDC73'},
+            },
+            //colors: ['#EB7F75','#FFDC73','#8FDAFF'],
+            vAxis: {
+              viewWindowMode: 'explicit',
+              viewWindow: {
+                min: 0,
+              },
+              minValue: 0,
+              gridlines: {
+                color: '#f0f0f0',
+                count: -1
+              }
+            },
+            hAxis: {
+              viewWindow: {
+                min: 0,
+              },
+              minValue: 0
+            },
+            isStacked: true,
+          };
+
+          var chart = new google.charts.Bar(document.getElementById('stackchart'));
+
+          chart.draw(data, google.charts.Bar.convertOptions(options));
+        }
 
 
         function drawConfirmedChart() {
