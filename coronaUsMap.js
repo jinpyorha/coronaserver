@@ -29,18 +29,21 @@ function coronaUsMap(){
         //가져온 데이터 배열에 저장 끝
         var mapStr = '';
         mapStr +='<table class="table table-hover">';
-        mapStr += '<col width="10px">';
-        mapStr += '<col width="10px">';
-        mapStr += '<col width="10px">';
-        mapStr += '<col width="10px">';
-        mapStr += '<thead class="thead-dark"><tr>';
+        mapStr += '<col width="0.625rem">';
+        mapStr += '<col width="0.625rem">';
+        mapStr += '<col width="0.625rem">';
+        mapStr += '<col width="0.625rem">';
+        mapStr += '<thead class="table-success"><tr>';
         mapStr += '<th scope="col">ProvinceState</th>';
         mapStr += '<th scope="col">Confirmed</th>';
+        // mapStr += '<th scope="col">Deaths</th>';//추가하기
+        // mapStr += '<th scope="col">Case fatality rate</th>';//추가하기
+        // mapStr += '<th scope="col">Recovered</th>';//추가하기
         mapStr += '</tr></thead>';
         mapStr += '<tbody>';
         for(var k=dataElmGeo.length-1;k>0;k--){
           if(dataElmGeo[k][0]!='Unassigned Location'){
-            mapStr += '<tr>';
+            mapStr += '<tr">';
             mapStr += '<td>'+dataElmGeo[k][0]+'</td>';
             mapStr += '<td>'+dataElmGeo[k][1]+'</td>';
             mapStr += '</tr>';

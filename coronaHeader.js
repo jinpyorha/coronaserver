@@ -1,12 +1,13 @@
 function coronaHeader(lang) {
   var headerStr = '';
   //###############헤더 시작
-  headerStr += '<nav class="navbar navbar-expand-lg navbar-light bg-light">';
-  headerStr += '<a class="navbar-brand" href="#">CoronaNotBeer</a>';
+  // headerStr += '<link rel="icon" href="img/locosmall.png">'
+  headerStr += '<nav class="navbar navbar-expand-lg navbar-light">';
+  // headerStr += '<a class="navbar-brand" href="#">CoronaNotBeer</a>';
+  headerStr += '<a class="navbar-brand" href="#"><img src="img/logobig.png" alt="big logo"></a>';
   headerStr += '<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">';
   headerStr += '<span class="navbar-toggler-icon"></span>';
   headerStr += '</button>';
-
   headerStr += '<div class="collapse navbar-collapse" id="navbarSupportedContent">';
   headerStr += '<ul class="navbar-nav mr-auto">';
   if (country == 'US') {
@@ -14,15 +15,16 @@ function coronaHeader(lang) {
   } else if (country == 'global') {
     headerStr += '<li class="nav-item active">';
   }
-  headerStr += '<a class="nav-link" href="report?lang='+lang+'&country=global">';
-  headerStr += lang=='en'?'World':'세계현황';
-  headerStr+='<span class="sr-only">(current)</span></a>';
-  headerStr += '</li>';
-  if (country == 'US') {
-    headerStr += '<li class="nav-item active">';
-  } else if (country == 'global') {
-    headerStr += '<li class="nav-item">';
-  }
+  // headerStr += '<a class="nav-link" href="report?lang='+lang+'&country=global">';
+  // headerStr += lang=='en'?'World':'세계현황';
+  // headerStr+='<span class="sr-only">(current)</span></a>';
+  // headerStr += '</li>';
+  // if (country == 'US') {
+  //   headerStr += '<li class="nav-item active">';
+  // } else if (country == 'global') {
+  //   headerStr += '<li class="nav-item">';
+  // }
+  headerStr += '<li class="nav-item active">';
   headerStr += '<a class="nav-link" href="report?lang='+lang+'&country=US">';
   headerStr += lang=='en'?'US':'미국현황';
   headerStr += '</a>';
@@ -55,7 +57,7 @@ function coronaHeader(lang) {
   headerStr += '</li>';*/
   headerStr += '<li class="nav-item">';
   headerStr += '<a class="nav-link" href="coronainfo.html?lang='+lang+'&country='+country+'">';
-  headerStr += lang=='en'?'information':'대상별 맞춤 정보';
+  headerStr += lang=='en'?'COVID-19':'COVID-19 이란?';
   headerStr+='<span class="sr-only">(current)</span></a>';
   headerStr += '</li>';
   headerStr += '</ul>';
