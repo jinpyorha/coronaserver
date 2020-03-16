@@ -60,6 +60,11 @@ function coronaHeader(lang) {
   headerStr += lang=='en'?'COVID-19':'COVID-19 이란?';
   headerStr+='<span class="sr-only">(current)</span></a>';
   headerStr += '</li>';
+  headerStr += '<li class="nav-item">';
+  headerStr += '<a class="nav-link" href="aboutus.html?lang='+lang+'&country='+country+'">';
+  headerStr += lang=='en'?'About us':'About us';
+  headerStr+='<span class="sr-only">(current)</span></a>';
+  headerStr += '</li>';
   headerStr += '</ul>';
   //
   headerStr += '<div class="form-inline my-2 my-lg-0">';

@@ -18,7 +18,7 @@
 }
   .class-border{
     border-bottom: 1px solid whitesmoke;
-    border-left: 3px solid hsl(90, 100%, 32%);
+    border-left: 2px solid hsl(90, 100%, 32%);
 
     /*background-color: #39ad61;*/
     /*border-bottom:5px solid hsl(90, 100%, 32%);*/
@@ -27,7 +27,7 @@
   th,
   td {
     border: 1px solid white;
-    /*padding: 0.625rem;*/
+    padding: 1px !important;
     word-break: break-all;
     /* font-size: 10px; */
     text-align: center;
