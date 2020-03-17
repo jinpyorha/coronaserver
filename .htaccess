@@ -1,4 +1,0 @@
-
-RewriteEngine on 
-DirectoryIndex coronaserver/coronaDataReport.html
-RewriteRule ^corona/report$ corona/coronaDataReport.html [NC]

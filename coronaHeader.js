@@ -4,7 +4,7 @@ function coronaHeader(lang) {
   // headerStr += '<link rel="icon" href="img/locosmall.png">'
   headerStr += '<nav class="navbar navbar-expand-lg navbar-light">';
   // headerStr += '<a class="navbar-brand" href="#">CoronaNotBeer</a>';
-  headerStr += '<a class="navbar-brand" href="#"><img src="img/logobig.png" alt="big logo"></a>';
+  headerStr += '<a class="navbar-brand" href="#"><img src="/coronaserver/img/logobig.png" alt="big logo"></a>';
   headerStr += '<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">';
   headerStr += '<span class="navbar-toggler-icon"></span>';
   headerStr += '</button>';
@@ -24,7 +24,6 @@ function coronaHeader(lang) {
   } else if (country == 'global') {
     headerStr += '<li class="nav-item">';
   }
-  headerStr += '<li class="nav-item active">';
   headerStr += '<a class="nav-link" href="report?lang='+lang+'&country=US">';
   headerStr += lang=='en'?'US':'미국현황';
   headerStr += '</a>';
@@ -56,12 +55,12 @@ function coronaHeader(lang) {
   headerStr += '</div>';
   headerStr += '</li>';*/
   headerStr += '<li class="nav-item">';
-  headerStr += '<a class="nav-link" href="coronainfo.html?lang='+lang+'&country='+country+'">';
+  headerStr += '<a class="nav-link" href="coronainfo?lang='+lang+'&country='+country+'">';
   headerStr += lang=='en'?'COVID-19':'COVID-19 이란?';
   headerStr+='<span class="sr-only">(current)</span></a>';
   headerStr += '</li>';
   headerStr += '<li class="nav-item">';
-  headerStr += '<a class="nav-link" href="aboutus.html?lang='+lang+'&country='+country+'">';
+  headerStr += '<a class="nav-link" href="aboutus?lang='+lang+'&country='+country+'">';
   headerStr += lang=='en'?'About us':'About us';
   headerStr+='<span class="sr-only">(current)</span></a>';
   headerStr += '</li>';
