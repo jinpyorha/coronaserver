@@ -15,15 +15,15 @@ function coronaHeader(lang) {
   } else if (country == 'global') {
     headerStr += '<li class="nav-item active">';
   }
-  // headerStr += '<a class="nav-link" href="report?lang='+lang+'&country=global">';
-  // headerStr += lang=='en'?'World':'세계현황';
-  // headerStr+='<span class="sr-only">(current)</span></a>';
-  // headerStr += '</li>';
-  // if (country == 'US') {
-  //   headerStr += '<li class="nav-item active">';
-  // } else if (country == 'global') {
-  //   headerStr += '<li class="nav-item">';
-  // }
+  headerStr += '<a class="nav-link" href="report?lang='+lang+'&country=global">';
+  headerStr += lang=='en'?'World':'세계현황';
+  headerStr+='<span class="sr-only">(current)</span></a>';
+  headerStr += '</li>';
+  if (country == 'US') {
+    headerStr += '<li class="nav-item active">';
+  } else if (country == 'global') {
+    headerStr += '<li class="nav-item">';
+  }
   headerStr += '<li class="nav-item active">';
   headerStr += '<a class="nav-link" href="report?lang='+lang+'&country=US">';
   headerStr += lang=='en'?'US':'미국현황';
