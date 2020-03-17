@@ -23,6 +23,7 @@
 
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-116931667-6"></script>
+	<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v6.0"></script>
 	<script>
 	  window.dataLayer = window.dataLayer || [];
 	  function gtag(){dataLayer.push(arguments);}
@@ -40,6 +41,18 @@
 	<div class="container">
 		<!-- <div id="coronainfo"></div> -->
 		<h1 class="display-6"> #COVID-19 in US</h1>
+		<div class="col mb-4 d-flex align-items-stretch" style="margin-bottom:0px">
+        <div class="row container-fluid">
+          <div class="card w-100 border-light" style="border: none">
+            <div class="d-flex justify-content-end">
+              <div class="fb-share-button" data-href="http://coronanotbeer.com/" data-layout="button_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fcoronanotbeer.com%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
+            </div>
+            <div class="d-flex justify-content-end" style="margin-top:2px"><a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false"></a>
+              <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            </div>
+          </div>
+        </div>
+      </div>
 		<h5 class="display-6 class-border">&nbsp;Situation summary</h5>
 		<div id="reportDaily"></div>
 		<div id="select-box"></div>
