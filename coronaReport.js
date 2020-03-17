@@ -95,28 +95,28 @@ function coronaReport(ProvinceState, CountryRegion, country) {
           reportDailyStr += '</tr></thead>';
           reportDailyStr += '<tbody>';
           reportDailyStr += '<tr>';
-          
+
           reportDailyStr += '<td><span style="font-size: 1rem">'+countryDataRecent.Confirmed+'</span><br><span style="font-size:0.75rem">(<span style="color:red">+'+countryDataRecent.Increase+'</span>) in '+ProvinceState+'</span></td>';
-          
+
           if(subtractThree(tempCountryRecentConfirmedIncrease, tempCountryRecentDeathsIncrease, tempCountryRecentRecoveredIncrease)>0){
             reportDailyStr += '<td><span style="font-size: 1rem">'+subtractThree(tempCountryRecentConfirmed, tempCountryRecentDeaths, tempCountryRecentRecovered)+'</span><br><span style="font-size:0.75rem">(<span class="red">+'+subtractThree(tempCountryRecentConfirmedIncrease, tempCountryRecentDeathsIncrease, tempCountryRecentRecoveredIncrease)+'</span> new active)</span></td>';
           }else{
             reportDailyStr += '<td><span style="font-size: 1rem">'+subtractThree(tempCountryRecentConfirmed, tempCountryRecentDeaths, tempCountryRecentRecovered)+'</span><br><span style="font-size:0.75rem">(<span class="blue">+'+subtractThree(tempCountryRecentConfirmedIncrease, tempCountryRecentDeathsIncrease, tempCountryRecentRecoveredIncrease)+'</span> new active)</span></td>';
           }
-          
+
           if(countryDataRecent.DeathsIncrease>0){
             reportDailyStr += '<td><span style="font-size: 1rem">'+countryDataRecent.Deaths+'</span><br><span style="font-size:0.75rem">(<span class="red">+'+countryDataRecent.DeathsIncrease+'</span>)</span><span style="font-size:0.75rem; color:grey"> '+toPercent(tempCountryRecentDeaths/tempCountryRecentConfirmed,2)+' of total</span></td>';
           }else{
             reportDailyStr += '<td><span style="font-size: 1rem">'+countryDataRecent.Deaths+'</span><br><span style="font-size:0.75rem">(<span class="blue">+'+countryDataRecent.DeathsIncrease+'</span>)</span><span style="font-size:0.75rem; color:grey"> '+toPercent(tempCountryRecentDeaths/tempCountryRecentConfirmed,2)+' of total</span></td>';
           }
-          
+
           reportDailyStr += '<td><span style="font-size: 1rem">'+countryDataRecent.Recovered+'</span><br><span style="font-size:0.75rem">(<span class="red">+'+countryDataRecent.RecoveredIncrease+'</span>)</span><span style="font-size:0.75rem; color:green"> '+toPercent(tempCountryRecentRecovered/tempCountryRecentConfirmed,2)+' of total</span></td>';
           reportDailyStr += '</tr>';
           reportDailyStr += '<tr>';
           reportDailyStr += '</tr>';
           reportDailyStr += '</tbody>';
           reportDailyStr += '</table>';
-          reportDailyStr += '<p class="font-italic"><small>Updated as of X:XX</small></p>';          
+          reportDailyStr += '<p class="font-italic"><small>Updated as of X:XX</small></p>';
 
         }
 
@@ -195,7 +195,7 @@ function coronaReport(ProvinceState, CountryRegion, country) {
             tempDataRecovered = [countryData[i]['DataDate'],tempRecovered]; //array push for column chart
             tempDataIncrease = [countryData[i]['DataDate'], countryData[i]['Increase']]; //array push for column chart
 
-            tempDataStack = [countryData[i]['DataDate'],tempActive,tempRecovered,tempDeaths] //array push for stack chart
+            tempDataStack = [countryData[i]['DataDate'],tempActive,tempRecovered,tempDeaths,tempRecovered,tempDeaths] //array push for stack chart
 
             dataElmConfirmed.unshift(tempDataConfirmed); //array push for column chart
             dataElmDeath.unshift(tempDataDeath); //array push for column chart
@@ -224,7 +224,7 @@ function coronaReport(ProvinceState, CountryRegion, country) {
         var tempDataDeath = ['DataDate', 'Deaths'];
         var tempDataRecovered = ['DataDate', 'Recovered'];
         var tempDataIncrease = ['DataDate', 'Increase'];
-        var tempDataStack = ['DataDate','Active','Recovered','Deaths'];
+        var tempDataStack = ['DataDate','Active','Recovered','Deaths','Recovered','Deaths'];
         dataElmConfirmed.unshift(tempDataConfirmed); //array push for column chart
         dataElmDeath.unshift(tempDataDeath); //array push for column chart
         dataElmRecovered.unshift(tempDataRecovered); //array push for column chart
@@ -235,6 +235,7 @@ function coronaReport(ProvinceState, CountryRegion, country) {
           google.charts.load('current', {
             'packages': ['bar']
           });
+          google.charts.load('current', {'packages':['corechart']});
           if(tempCountryRecentConfirmed>0){google.charts.setOnLoadCallback(drawConfirmedChart);}
           if(tempCountryRecentDeaths>0){google.charts.setOnLoadCallback(drawDeathChart);}
           if(tempCountryRecentRecovered>0){google.charts.setOnLoadCallback(drawRecoveredChart);}
@@ -248,39 +249,52 @@ function coronaReport(ProvinceState, CountryRegion, country) {
         function drawStackChart(){
           var data = google.visualization.arrayToDataTable(dataElmStack);
 
-          var options = {
-            height: 600,
-            legend: { position: 'none', maxLines: 3 },
-            bar: { groupWidth: '75%' },
-            series: {
-              0:{color:'#EB7F75'},
-              1:{color:'#8FDAFF'},
-              2:{color:'#FFDC73'},
-            },
-            //colors: ['#EB7F75','#FFDC73','#8FDAFF'],
-            vAxis: {
-              viewWindowMode: 'explicit',
-              viewWindow: {
-                min: 0,
-              },
-              minValue: 0,
-              gridlines: {
-                color: '#f0f0f0',
-                count: -1
-              }
-            },
-            hAxis: {
-              viewWindow: {
-                min: 0,
-              },
-              minValue: 0
-            },
-            isStacked: true,
-          };
+            var options = {
+             height: 600,
+             legend: { position: 'none', maxLines: 3 },
+             bar: { groupWidth: '75%' },
+             seriesType: 'bars',
+             series: {
+               0:{color:'#EB7F75',type:'bar'},
+               1:{color:'#8FDAFF',type:'bar'},
+               2:{color:'#FFDC73',type:'bar'},
+               3:{color:'#8FDAFF',type: 'line'},
+               4:{color:'#FFDC73',type: 'line'},
 
-          var chart = new google.charts.Bar(document.getElementById('stackchart'));
+             },
+                          isStacked: true,
+                          vAxis:{minValue:0},
+             vAxes: {
+                3: {
+                    title: 'rightyaxis'
+                },
+                4: {
+                    title: 'rightyaxis'
+                }
+            },
+             //colors: ['#EB7F75','#FFDC73','#8FDAFF'],
+             /*vAxis: {
+               viewWindowMode: 'explicit',
+               viewWindow: {
+                 min: 0,
+               },
+               minValue: 0,
+               gridlines: {
+                 color: '#f0f0f0',
+                 count: -1
+               }
+             },
+             hAxis: {
+               viewWindow: {
+                 min: 0,
+               },
+               minValue: 0
+             },*/
 
-          chart.draw(data, google.charts.Bar.convertOptions(options));
+           };
+
+             var chart = new google.visualization.ComboChart(document.getElementById('stackchart'));
+             chart.draw(data, options);
         }
 
 
