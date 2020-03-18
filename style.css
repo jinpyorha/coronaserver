@@ -54,6 +54,9 @@
   span.blue{
     color:blue;
   }
+  span.green{
+    color:green;
+  }
 
   .table-borderless td,
   .table-borderless th {
