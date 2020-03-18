@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
   <link rel="stylesheet" href="http://coronanotbeer.com/coronaserver/style.css" />
+  <link rel="stylesheet" href="style.css" />
   <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 
   <!-- facebook share -->
@@ -17,18 +18,35 @@
 </head>
 
 <body class="text-monospace">
+
   <div class="header" id="header">
   </div>
   <div class="container">
     <div id="coronainfo">
-      <h1 class="display-4">#COVID-19</h1>
-      <div class="col mb-4 d-flex align-items-stretch" style="margin-bottom:0px">
+      <h1 class="display-6 largefont">#COVID-19</h1>
+      <div class="col mb-4 d-flex align-items-stretch" style="margin-bottom:0px; padding-right:1px; padding-left:1px;">
         <div class="row container-fluid">
           <div class="card w-100 border-light" style="border: none">
             <div class="d-flex justify-content-end">
-              <div class="fb-share-button" data-href="http://www.coronanotbeer.com" data-layout="button_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.coronanotbeer.com%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
+              <!-- AddToAny BEGIN -->
+              <div class="a2a_kit a2a_kit_size_32 a2a_default_style" data-a2a-url="http://coronanotbeer.com/" data-a2a-title="CoronaNotBeer - COVID-19 tracker in US">
+              <a class="a2a_button_facebook"></a>
+              <a class="a2a_button_sms"></a>
+              <a class="a2a_button_facebook_messenger"></a>
+              <a class="a2a_button_email"></a>
+              <a class="a2a_button_twitter"></a>
+              <a class="a2a_button_linkedin"></a>
+              </div>
+              <script>
+              var a2a_config = a2a_config || {};
+              a2a_config.onclick = 1;
+              a2a_config.num_services = 6;
+              </script>
+              <script async src="https://static.addtoany.com/menu/page.js"></script>
+              <!-- AddToAny END -->
+              <!-- <div class="fb-share-button" data-href="http://www.coronanotbeer.com" data-layout="button_count" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwww.coronanotbeer.com%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
             </div>
-            <div class="d-flex justify-content-end" style="margin-top:2px"><a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false"></a>
+            <div class="d-flex justify-content-end" style="margin-top:2px"><a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button" data-show-count="false"></a> -->
               <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
             </div>
           </div>
@@ -72,17 +90,17 @@
 
       <div data-spy="scroll" data-target="#navbar-example2" data-offset="0">
         <div class="row container-fluid">
-          <div class="col mb-4 d-flex align-items-stretch">
+          <div class="col mb-4 d-flex align-items-stretch" style="padding-right:1px; padding-left:1px;">
             <div class="card w-100 border-light">
               <div class="card-body">
-                <h5 id="name" class="card-title class-border-light">&nbsp;COVID-19 <a class="badge badge-pill badge-light" style="margin-bottom:0.125rem" href="https://www.cdc.gov/coronavirus/2019-ncov/summary.html">summary</a>
-          </h5>
-                <p class="card-text">
+                <h5 id="name" class="card-title class-border-light mediumfont">&nbsp;COVID-19 <a class="badge badge-pill badge-light" style="margin-bottom:0.125rem" href="https://www.cdc.gov/coronavirus/2019-ncov/summary.html">summary</a>
+                </h5>
+                <p class="card-text smallfont">
                   The virus has been named <a style="border-bottom: 2px solid hsl(70, 100%, 40%)" href="https://en.wikipedia.org/wiki/Severe_acute_respiratory_syndrome_coronavirus_2">“SARS-CoV-2”</a> and the disease it causes has been named <a style="text-decoration: none; border-bottom: 2px solid hsl(70, 100%, 40%)"
                     href="https://en.wikipedia.org/wiki/2019%E2%80%9320_coronavirus_pandemic"> "coronavirus disease 2019”</a> (abbreviated “COVID-19”). On March 11, COVID-19 outbreak was characerized as a pandemic by WHO
                   <a class="badge badge-pill badge-light" style="margin-bottom:0.125rem"  href="https://www.who.int/dg/speeches/detail/who-director-general-s-opening-remarks-at-the-media-briefing-on-covid-19---11-march-2020">source</a>
-                </p>Why should we take precaution?
-                <ul>
+                </p><span class="smallfont">Why should we take precaution?</span>
+                <ul class="smallfont" style="padding-left:1.5em;">
                   <li>
                     COVID-19 transmits faster than other diseases (~twice+ as fast) <a class="badge badge-pill badge-light" style="margin-bottom:0.125rem"  href="https://academic.oup.com/jtm/advance-article/doi/10.1093/jtm/taaa021/5735319">source</a>
                   </li>
@@ -99,14 +117,14 @@
               </div>
             </div>
           </div>
-          <div class="col mb-4 d-flex align-items-stretch">
+          <div class="col mb-4 d-flex align-items-stretch"style="padding-right:1px; padding-left:1px;">
             <div class="card w-100 border-light">
               <div class="card-body">
-                <h5 id="spread" class="card-title class-border-light">&nbsp;How it spreads
+                <h5 id="spread" class="card-title class-border-light smallfont">&nbsp;How it spreads
             <a class="badge badge-pill badge-light" style="margin-bottom:0.125rem" href="https://www.cdc.gov/coronavirus/2019-ncov/summary.html#source-spread">source</a>
           </h5>
                 <p class="card-text">
-                  <ul>
+                  <ul class="smallfont" style="padding-left:2.4em;">
                     <li>Between people in close contact with one another (within about 6 feet)</li>
                     <li>Through respiratory droplets produced when an infected person coughs or sneezes</li>
                     <li>It may be possible that a person can get COVID-19 by touching a surface or object that has the virus on it and then touching their own mouth, nose, or possibly their eyes, but this is not thought to be the main way the virus spreads</li>
@@ -117,15 +135,15 @@
           </div>
         </div>
         <div class="row container-fluid row-cols-1 row-cols-md-2">
-          <div class="col mb-4 d-flex align-items-stretch">
+          <div class="col mb-4 d-flex align-items-stretch"style="padding-right:1px; padding-left:1px;">
             <div class="card w-100 border-light">
               <div class="card-body">
-                <h5 id="travel" class="card-title class-border-light">&nbsp;Travel guidance
+                <h5 id="travel" class="card-title class-border-light mediumfont">&nbsp;Travel guidance
             <a class="badge badge-pill badge-light" style="margin-bottom:0.125rem"  href="https://www.cdc.gov/coronavirus/2019-ncov/travelers/index.html">source</a>
           </h5>
-                <p class="card-text">
+                <p class="card-text smallfont">
                   Widespread & <b>restricted</b> on entry to the US
-                  <ul>
+                  <ul class="smallfont" style="padding-left:2.4em;">
                     <li>
                       China
                       <a href="https://wwwnc.cdc.gov/travel/notices/warning/novel-coronavirus-china">
@@ -188,8 +206,8 @@
                       </div>
                     </li>
                   </ul>
-                  Widespread & <b>unrestricted</b> on entry to the US
-                  <ul>
+                  <span class="smallfont">Widespread & <b>unrestricted</b> on entry to the US</span>
+                  <ul class="smallfont"style="padding-left:1.5em;">
                     <li>
                       South Korea
                       <a href="https://wwwnc.cdc.gov/travel/notices/warning/coronavirus-south-korea">
@@ -203,12 +221,12 @@
               </div>
             </div>
           </div>
-          <div class="col mb-4 d-flex align-items-stretch">
+          <div class="col mb-4 d-flex align-items-stretch"style="padding-right:1px; padding-left:1px;">
             <div class="card w-100 border-light">
               <div class="card-body">
-                <h5 id="severity" class="card-title class-border-light">&nbsp;Severity <a class="badge badge-pill badge-light" style="margin-bottom:0.125rem" href="https://www.cdc.gov/coronavirus/2019-ncov/summary.html#severity">source</a></h5>
+                <h5 id="severity" class="card-title class-border-light mediumfont">&nbsp;Severity <a class="badge badge-pill badge-light" style="margin-bottom:0.125rem" href="https://www.cdc.gov/coronavirus/2019-ncov/summary.html#severity">source</a></h5>
 
-                <p class="card-text">
+                <p class="card-text smallfont">
                   Reported illnesses have ranged from <a style="border-bottom: 2px solid hsl(70, 100%, 40%)" href="https://www.cdc.gov/coronavirus/2019-ncov/summary.html#severity">very mild to severe</a>, including illness resulting in death. While information
                   so far suggests that most COVID-19 illness is mild, a reportexternal icon out of China suggests serious illness occurs in 16% of cases. Older people and people of all ages with severe underlying health conditions — like heart disease,
                   lung disease and diabetes, for example — seem to be at higher risk of developing serious COVID-19 illness
@@ -219,16 +237,16 @@
         </div>
 
         <div class="row container-fluid row-cols-1 row-cols-md-2">
-          <div class="col mb-4 d-flex align-items-stretch">
+          <div class="col mb-4 d-flex align-items-stretch"style="padding-right:1px; padding-left:1px;">
             <div class="card w-100 border-light">
               <div class="card-body">
-                <h5 id="stop" class="card-title class-border-light">&nbsp;Stopping COVID-19
+                <h5 id="stop" class="card-title class-border-light mediumfont">&nbsp;Stopping COVID-19
             <a class="badge badge-pill badge-light" style="margin-bottom:0.125rem" href="https://www.theatlantic.com/family/archive/2020/03/coronavirus-what-does-social-distancing-mean/607927/">
             source</a></h5>
-                <h7>#<a style="border-bottom: 2px solid hsl(70, 100%, 40%)" href="https://www.theatlantic.com/family/archive/2020/03/coronavirus-what-does-social-distancing-mean/607927/">socialdistancing</a></h7>
+                <h7>#<a class="smallfont" style="border-bottom: 2px solid hsl(70, 100%, 40%)" href="https://www.theatlantic.com/family/archive/2020/03/coronavirus-what-does-social-distancing-mean/607927/">socialdistancing</a></h7>
 
                 <p class="card-text">
-                  <ul>
+                  <ul class="smallfont"style="padding-left:1.5em;">
                     <li>
                       Be aware of what's going on (it's more serious that you think!)
                     </li>
@@ -253,15 +271,15 @@
               </div>
             </div>
           </div>
-          <div class="col mb-4 d-flex align-items-stretch">
+          <div class="col mb-4 d-flex align-items-stretch"style="padding-right:1px; padding-left:1px;">
             <div class="card w-100 border-light">
               <div class="card-body">
-                <h5 id="whattodo" class="card-title class-border-light">&nbsp;What to do
+                <h5 id="whattodo" class="card-title class-border-light mediumfont">&nbsp;What to do
             <a  class="badge badge-pill badge-light" style="margin-bottom:0.125rem"  href="https://www.cdc.gov/coronavirus/2019-ncov/specific-groups/high-risk-complications.html#Have-supplies-on-hand">
             source</a></h5>
 
                 <p class="card-text">
-                  <ul>
+                  <ul class="smallfont" style="padding-left:1.5em;">
                     <li>
                       Stock up on supplies
                     </li>
@@ -272,7 +290,7 @@
                 </a>
 
                       <div class="collapse" id="collapseTodo">
-                        <ul>
+                        <ul style="padding-left:3px;">
                           <li>Wash your hands often with soap and water for at least 20 seconds</li>
                           <li>Use hand sanitizer that contains at least 60% alcohol</li>
                           <li>Avoid touching high-touch surfaces in public places – elevator buttons, door handles, handrails, handshaking with people, etc. Use a tissue or your sleeve if you must touch something</li>
@@ -302,12 +320,12 @@
           </div>
         </div>
         <div class="row container-fluid row-cols-1 row-cols-md-2">
-          <div class="col mb-4 d-flex align-items-stretch">
+          <div class="col mb-4 d-flex align-items-stretch"style="padding-right:1px; padding-left:1px;">
             <div class="card w-100 border-light">
               <div class="card-body">
-                <h5 id="symptoms" class="card-title class-border-light">&nbsp;Symptons<sup>*</sup><a class="badge badge-pill badge-light" style="margin-bottom:0.125rem" href="https://www.cdc.gov/coronavirus/2019-ncov/about/symptoms.html">source</a></h5>
+                <h5 id="symptoms" class="card-title class-border-light mediumfont">&nbsp;Symptons<sup>*</sup><a class="badge badge-pill badge-light" style="margin-bottom:0.125rem" href="https://www.cdc.gov/coronavirus/2019-ncov/about/symptoms.html">source</a></h5>
                 <p class="card-text">
-                  <ul>
+                  <ul class="smallfont" style="padding-left:1.5em;">
                     <li>
                       Difficulty breathing or shortness of breath
                     </li>
@@ -327,18 +345,18 @@
                   <p>
                     <small>*This list is not all inclusive. Please consult your medical provider for any other symptoms that are severe or concerning</small>
                   </p>
-                </p>
+                </div>
               </div>
             </div>
           </div>
-          <div class="col mb-4 d-flex align-items-stretch">
+          <div class="col mb-4 d-flex align-items-stretch" style="padding-right:1px; padding-left:1px;">
             <div class="card w-100 border-light">
               <div class="card-body">
-                <h5 id="sick" class="card-title class-border-light">&nbsp;If you are sick
+                <h5 id="sick" class="card-title class-border-light mediumfont">&nbsp;If you are sick
             <a class="badge badge-pill badge-light" style="margin-bottom:0.125rem" href="https://www.cdc.gov/coronavirus/2019-ncov/about/steps-when-sick.html"> learn more
             </a>
           </h5>
-                <p class="card-text">
+                <p class="card-text smallfont">
                   Please click on the link above to learn more
                 </p>
               </div>
@@ -348,10 +366,10 @@
 
 
         <div class="row container-fluid row-cols-1 row-cols-md-2">
-          <div class="col mb-4 d-flex align-items-stretch">
+          <div class="col mb-4 d-flex align-items-stretch" style="padding-right:1px; padding-left:1px;">
             <div class="card w-100 border-light">
               <div class="card-body">
-                <h5 id="handwashing" class="card-title class-border-light">&nbsp;Handwashing tip</h5>
+                <h5 id="handwashing" class="card-title class-border-light mediumfont">&nbsp;Handwashing tip</h5>
                 <p class="card-text">
                   <div class="embed-responsive embed-responsive-16by9">
                     <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/d914EnpU4Fo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>

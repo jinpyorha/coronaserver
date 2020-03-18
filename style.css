@@ -148,6 +148,8 @@
 
 .listEurope{
   column-count: 2;
+  padding-left:0;
+
 }
   /* .collapsible {
     padding-top: 0 !important;
@@ -170,3 +172,19 @@ a:active{
 .text-responsive {
   font-size: calc(100% + 1vw + 1vh);
 }*/
+
+.largefont{
+  font-size: 1.7em;
+}
+.mediumfont{
+  font-size:1.0em;
+}
+.smallfont{
+  font-size:0.8em;
+}
+.smallfont_data{
+  font-size:0.7em;
+}
+.mediumfont_data{
+  font-size:0.75em;
+}

@@ -34,7 +34,7 @@ function coronaReport(ProvinceState, CountryRegion, country) {
         var countryListLength = countryList != null ? countryList.length : 0;
 
 
-        selectStr += '<h5 class="class-border">&nbsp;';
+        selectStr += '<h5 class="class-border smallfont">&nbsp;';
         if (country == 'US') {
           selectStr += lang=='en'?'Search by States (Active cases)':'미국 주별 검색';
         } else {
@@ -42,7 +42,7 @@ function coronaReport(ProvinceState, CountryRegion, country) {
         }
         selectStr += '</h5>'
 
-        selectStr += '<select id="countryList">';
+        selectStr += '<select id="countryList" class="smallfont">';
         selectStr += '<option>';
         if (country == 'US') {
           selectStr += lang=='en'?'Select States':'주를 선택하세요(확진자 수)';
@@ -88,10 +88,10 @@ function coronaReport(ProvinceState, CountryRegion, country) {
 
           reportDailyStr +='<table class="table table-hover">';
           reportDailyStr += '<thead class="table-success"><tr>';
-          reportDailyStr += '<th scope="col" colspan="1">Total cases</th>';
-          reportDailyStr += '<th scope="col" colspan="1">Total active</th>';
-          reportDailyStr += '<th scope="col" colspan="1">Total death</th>';
-          reportDailyStr += '<th scope="col" colspan="1">Total recovered</th>';
+          reportDailyStr += '<th scope="col" colspan="1" class="smallfont">Total<br>cases</th>';
+          reportDailyStr += '<th scope="col" colspan="1" class="smallfont">Total<br>active</th>';
+          reportDailyStr += '<th scope="col" colspan="1" class="smallfont">Total<br>death</th>';
+          reportDailyStr += '<th scope="col" colspan="1" class="smallfont">Total<br>recovered</th>';
           reportDailyStr += '</tr></thead>';
           reportDailyStr += '<tbody>';
           reportDailyStr += '<tr>';
@@ -121,9 +121,9 @@ function coronaReport(ProvinceState, CountryRegion, country) {
         }
 
         if (countryData == null) {
-          selectStr += '<div class="alert alert-success" role="alert">';
+          selectStr += '<div class="alert alert-success smallfont" role="alert"><i>';
           selectStr += lang=='en'?'Sorted by number of active cases':'지역은 확진자 많은 순으로 정렬되어있습니다!';
-          selectStr += '</div>';
+          selectStr += '</i></div>';
           $('#reportDaily').html('');
           $('#columnchart_confirmed').html('');
           $('#linechart_confirmed_increase').html('');
@@ -155,32 +155,32 @@ function coronaReport(ProvinceState, CountryRegion, country) {
           reportStr += '<table class="table table-hover">';
 
           reportStr += '<thead class="table-success"><tr>';
-          reportStr += '<th scope="col" colspan="1">Date</th>';
-          reportStr += '<th scope="col" colspan="1">Confirmed</div></th>';
-          reportStr += '<th scope="col" colspan="1">Active</th>';
-          reportStr += '<th scope="col" colspan="1">Death</th>';
-          reportStr += '<th scope="col" colspan="1">Recovered</th>';
+          reportStr += '<th scope="col" colspan="1" class="smallfont_data">Date</th>';
+          reportStr += '<th scope="col" colspan="1" class="smallfont_data">Confirmed</div></th>';
+          reportStr += '<th scope="col" colspan="1" class="smallfont_data">Active</th>';
+          reportStr += '<th scope="col" colspan="1" class="smallfont_data">Death</th>';
+          reportStr += '<th scope="col" colspan="1" class="smallfont_data">Recovered</th>';
           reportStr += '</tr></thead>';
           reportStr += '<tbody>';
           for (var i = 0; i < countryDataLength; i++) {
             var tempActiveIncrease = countryData[i]['Increase'] - countryData[i]['DeathsIncrease']-countryData[i]['RecoveredIncrease'];
             reportStr += '<tr>';
-            reportStr += '<td>' + countryData[i]['DataDate'] + '</td>';
+            reportStr += '<td><span class="smallfont_data">' + countryData[i]['DataDate'] + '</span></td>';
             if (countryData[i]['Increase'] > 0) {
-              reportStr += '<td>+' + countryData[i]['Confirmed'] + '<span class="red"> (+'+ countryData[i]['Increase'] +')</span></td>';
+              reportStr += '<td><span class="mediumfont_data">+' + countryData[i]['Confirmed'] + '</span><span class="red smallfont_data"> <br> (+'+ countryData[i]['Increase'] +')</span></td>';
             } else {
-              reportStr += '<td>+' + countryData[i]['Confirmed'] + '</td>';
+              reportStr += '<td><span class="mediumfont_data">+' + countryData[i]['Confirmed'] + '</span></td>';
                // '<span class="blue"> ('+ countryData[i]['Increase'] + ')</span></td>';
             }
             if (tempActiveIncrease>0){
-            reportStr += '<td>' + subtractThree(countryData[i]['Confirmed'], countryData[i]['Deaths'],countryData[i]['Recovered'])+ ' (<span class="red">+' + tempActiveIncrease +  '</span>)</td>';
+            reportStr += '<td><span class="mediumfont_data">' + subtractThree(countryData[i]['Confirmed'], countryData[i]['Deaths'],countryData[i]['Recovered'])+ '</span><br><span class="red smallfont_data">(+' + tempActiveIncrease +  ')</span></td>';
             } else if (tempActiveIncrease<0){
-            reportStr += '<td>' + subtractThree(countryData[i]['Confirmed'], countryData[i]['Deaths'],countryData[i]['Recovered'])+ ' (<span class="blue">' + tempActiveIncrease +  '</span>)</td>';
+            reportStr += '<td><span class="mediumfont_data">' + subtractThree(countryData[i]['Confirmed'], countryData[i]['Deaths'],countryData[i]['Recovered'])+ '</span><br><span class="blue smallfont_data">(' + tempActiveIncrease +  ')</span></td>';
             }else{
-              reportStr += '<td>' + subtractThree(countryData[i]['Confirmed'], countryData[i]['Deaths'],countryData[i]['Recovered'])+ '</td>';
+              reportStr += '<td><span class="mediumfont_data">' + subtractThree(countryData[i]['Confirmed'], countryData[i]['Deaths'],countryData[i]['Recovered'])+ '</span></td>';
             }
-            reportStr += '<td>' + countryData[i]['Deaths'] + '</td>';
-            reportStr += '<td>' + countryData[i]['Recovered'] + '</td>';
+            reportStr += '<td><span class="mediumfont_data">' + countryData[i]['Deaths'] + '</span></td>';
+            reportStr += '<td><span class="mediumfont_data">' + countryData[i]['Recovered'] + '</span></td>';
             reportStr += '</tr>';
 
             //tempData = [countryData [i]['DataDate'], countryData [i]['Confirmed']];
