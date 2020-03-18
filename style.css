@@ -188,3 +188,16 @@ a:active{
 .mediumfont_data{
   font-size:0.75em;
 }
+.warning_red {
+  color: #fcece3;
+  background-color: #ce2029;
+  padding-left:0.2rem;
+  padding-right:0.2rem;
+}
+
+.warning_yellow{
+   color: #fcece3;
+  background-color: #fab516;
+  padding-left:0.2rem;
+  padding-right:0.2rem;
+}
