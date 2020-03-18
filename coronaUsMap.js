@@ -1,4 +1,4 @@
-function coronaUsMap(){
+function coronaUsMap(index){
   var urlApi = 'coronaDataApi.php?country=US';
   $.ajax({
     type: 'GET',
@@ -51,8 +51,12 @@ function coronaUsMap(){
         }
         mapStr += '<tbody>';
         mapStr += '</table>';
-
-        $('#coronaUsMapReport').html(mapStr);
+        console.log(index);
+        if(index=='main'){
+          $('#coronaUsMapReport').html(mapStr);
+        }else{
+          $('#coronaUsMapReport').html('');
+        }
 
 
         //차트그리기 시작

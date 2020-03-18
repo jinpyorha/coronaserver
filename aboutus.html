@@ -56,19 +56,19 @@
                   S.Y. Lee graduated from Ehwa University and is a full-time web developer at a startup in South Korea, and J. Rha graduated from Northwestern University and works in the financial industry in New York. </p>
                   <p class="card-text smallfont">
                   We built this website to raise awareness of the ongoing COVID-19 and its seriousness to the public. Let's stay healthy! If you have any questions, please email us at <a href="mailto:coronanotbeer@gmail.com" style="border-bottom: 2px solid hsl(70, 100%, 40%)" target="_top">coronanotbeer@gmail.com</a>!
-                  
+
                   </p>
               </div>
             </div>
           </div>
-          
+
 
 
       </div>
     </div>
   </div>
 </div>
-	<script type="text/javascript" src="http://coronanotbeer.com/coronaserver/coronaHeader.js"></script>
+	<script type="text/javascript" src="/coronaserver/coronaHeader.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 
@@ -98,7 +98,7 @@
 		const lang = (urlParams.get('lang') != null && urlParams.get('lang') != '') ? urlParams.get('lang') : 'en';
 		console.log(country);
 		console.log(lang);
-		coronaHeader(lang);
+		coronaHeader(lang,'about');
 	</script>
 </body>
 

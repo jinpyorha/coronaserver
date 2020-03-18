@@ -9,12 +9,12 @@
 
 	<meta property="og:image" content="http://coronanotbeer.com/coronaserver/img/thumbnail.png" />
 
-	<meta property="og:url" content="http://coronanotbeer.com/corona/report" />
+	<meta property="og:url" content="http://coronanotbeer.com" />
 	<meta property="og:description" content="Daily report of COVID-19 in the US" />
 	<meta property="og:title" content="Corona Not Beer" />
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-	<link rel="stylesheet" href="http://coronanotbeer.com/coronaserver/style.css" />
+	<link rel="stylesheet" href="/coronaserver/style.css" />
 	<link rel="stylesheet" href="style.css" />
 
 	<!--link rel="stylesheet" type="text/css" href="map/map.css" /-->
@@ -43,7 +43,7 @@
 	</div>
 	<div class="container">
 		<!-- <div id="coronainfo"></div> -->
-		<h1 class="display-6 largefont"> #COVID-19 in US</h1>
+		<h1 class="display-6 largefont" style="margin-top:20px" id="title"></h1>
 		<div class="col mb-4 d-flex align-items-stretch" style="margin-bottom:0px">
         <div class="row container-fluid">
           <div class="card w-100 border-light" style="border: none">
@@ -67,15 +67,14 @@
           </div>
         </div>
       </div>
-		<h5 class="display-6 class-border mediumfont">&nbsp;Situation summary</h5>
 		<div id="reportDaily"></div>
 		<div id="select-box"></div>
 		<div id="coronaUsMap"></div>
 		<div id="coronaUsMapReport"></div>
 		<div id="colors"></div>
 		<div id="stackchart"></div>
-		<div id="columnchart_confirmed"></div>
 		<div id="linechart_confirmed_increase"></div>
+		<div id="columnchart_confirmed"></div>
 		<div id="columnchart_death"></div>
 		<div id="columnchart_recovered"></div>
 		<div id="report">
@@ -83,9 +82,9 @@
 	</div>
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-	<script type="text/javascript" src="http://coronanotbeer.com/coronaserver/coronaHeader.js"></script>
-	<script type="text/javascript" src="http://coronanotbeer.com/coronaserver/coronaReport.js"></script>
-	<script type="text/javascript" src="http://coronanotbeer.com/coronaserver/coronaUsMap.js"></script>
+	<script type="text/javascript" src="/coronaserver/coronaHeader.js"></script>
+	<script type="text/javascript" src="/coronaserver/coronaReport.js"></script>
+	<script type="text/javascript" src="/coronaserver/coronaUsMap.js"></script>
 
 <!-- <script>
 	$( "#coronainfo" ).load( "Components/coronainfo.html" );
@@ -101,7 +100,7 @@
 		const lang = (urlParams.get('lang') != null && urlParams.get('lang') != '') ? urlParams.get('lang') : 'en';
 		console.log(country);
 		console.log(lang);
-		coronaHeader(lang);
+		coronaHeader(lang,'report');
 		coronaReport('', '', country);
 	</script>
 </body>

@@ -1,30 +1,30 @@
-function coronaHeader(lang) {
+function coronaHeader(lang,page) {
   var headerStr = '';
   //###############헤더 시작
   // headerStr += '<link rel="icon" href="img/locosmall.png">'
   headerStr += '<nav class="navbar navbar-expand-lg navbar-light">';
   // headerStr += '<a class="navbar-brand" href="#">CoronaNotBeer</a>';
-  headerStr += '<a class="navbar-brand" href="#"><img src="/coronaserver/img/logobig.png" alt="big logo"></a>';
+  headerStr += '<a class="navbar-brand" href="http://coronanotbeer.com"><img src="/coronaserver/img/logobig.png" alt="big logo"></a>';
   headerStr += '<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">';
   headerStr += '<span class="navbar-toggler-icon"></span>';
   headerStr += '</button>';
   headerStr += '<div class="collapse navbar-collapse" id="navbarSupportedContent">';
   headerStr += '<ul class="navbar-nav mr-auto">';
-  if (country == 'US') {
-    headerStr += '<li class="nav-item">';
-  } else if (country == 'global') {
+  if (country == 'global'&&page=='report') {
     headerStr += '<li class="nav-item active">';
+  } else{
+    headerStr += '<li class="nav-item">';
   }
-  headerStr += '<a class="nav-link" href="report?lang='+lang+'&country=global">';
+  headerStr += '<a class="nav-link" href="http://coronanotbeer.com?lang='+lang+'&country=global">';
   headerStr += lang=='en'?'World':'세계현황';
   headerStr+='<span class="sr-only">(current)</span></a>';
   headerStr += '</li>';
-  if (country == 'US') {
+  if (country == 'US'&&page=='report') {
     headerStr += '<li class="nav-item active">';
-  } else if (country == 'global') {
+  } else {
     headerStr += '<li class="nav-item">';
   }
-  headerStr += '<a class="nav-link" href="report?lang='+lang+'&country=US">';
+  headerStr += '<a class="nav-link" href="http://coronanotbeer.com?lang='+lang+'&country=US">';
   headerStr += lang=='en'?'US':'미국현황';
   headerStr += '</a>';
   headerStr += '</li>';
@@ -54,13 +54,21 @@ function coronaHeader(lang) {
   headerStr += '</a>';
   headerStr += '</div>';
   headerStr += '</li>';*/
-  headerStr += '<li class="nav-item">';
-  headerStr += '<a class="nav-link" href="coronainfo?lang='+lang+'&country='+country+'">';
+  if(page=='info'){
+    headerStr += '<li class="nav-item active">';
+  }else{
+    headerStr += '<li class="nav-item">';
+  }
+  headerStr += '<a class="nav-link" href="http://coronanotbeer.com/coronainfo?lang='+lang+'&country='+country+'">';
   headerStr += lang=='en'?'COVID-19':'COVID-19 이란?';
   headerStr+='<span class="sr-only">(current)</span></a>';
   headerStr += '</li>';
-  headerStr += '<li class="nav-item">';
-  headerStr += '<a class="nav-link" href="aboutus?lang='+lang+'&country='+country+'">';
+  if(page=='about'){
+    headerStr += '<li class="nav-item active">';
+  }else{
+    headerStr += '<li class="nav-item">';
+  }
+  headerStr += '<a class="nav-link" href="http://coronanotbeer.com/aboutus?lang='+lang+'&country='+country+'">';
   headerStr += lang=='en'?'About us':'About us';
   headerStr+='<span class="sr-only">(current)</span></a>';
   headerStr += '</li>';
@@ -73,10 +81,10 @@ function coronaHeader(lang) {
     headerStr += '<div class="dropdown-menu">';
       headerStr += '<a class="dropdown-item';
       headerStr += lang=='en'?' active':'';
-      headerStr += '" href="report?lang=en">English</a>';
+      headerStr += '" href="http://coronanotbeer.com?lang=en">English</a>';
       headerStr += '<a class="dropdown-item';
       headerStr += lang=='en'?'':' active';
-      headerStr +='" href="report?lang=ko">한국어</a>';
+      headerStr +='" href="http://coronanotbeer.com?lang=ko">한국어</a>';
     headerStr += '</div>';
   headerStr += '</div>';
   //

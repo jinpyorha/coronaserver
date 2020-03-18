@@ -49,6 +49,13 @@ function coronaReport(ProvinceState, CountryRegion, country) {
         } else {
           selectStr += lang=='en'?'select country(confirmed count)':'나라를 선택하세요(확진자 수)';
         }
+
+        if (country == 'US') {
+          $('#title').html('#COVID-19 in US');
+        } else {
+          $('#title').html('#COVID-19 in the world');
+        }
+
         selectStr += '</option>';
         for (var i = 0; i < countryListLength; i++) {
           if (countryList[i]['ProvinceState'] == ProvinceState && countryList[i]['CountryRegion'] == CountryRegion) {
@@ -90,8 +97,11 @@ function coronaReport(ProvinceState, CountryRegion, country) {
           var tempCountryRecentConfirmedIncrease = +countryDataRecent.Increase;
           var tempCountryRecentDeathsIncrease = +countryDataRecent.DeathsIncrease;
           var tempCountryRecentRecoveredIncrease =+countryDataRecent.RecoveredIncrease;
+          var tempCountryRecentDate =countryDataRecent.RecentDate;
           // reportDailyStr +='<h1>Total Active : '+subtractThree(tempCountryRecentConfirmed, tempCountryRecentDeaths, tempCountryRecentRecovered)+'</h1>'
 
+          reportDailyStr +='<h5 class="display-6 class-border mediumfont">&nbsp;last updated :'+tempCountryRecentDate+'</h5>';
+    		  reportDailyStr +='<h5 class="display-6 class-border mediumfont">&nbsp;Situation summary</h5>';
           reportDailyStr +='<table class="table table-hover">';
           reportDailyStr += '<thead class="table-success"><tr>';
           reportDailyStr += '<th scope="col" colspan="1" class="smallfont">Total<br>cases</th>';
@@ -136,8 +146,7 @@ function coronaReport(ProvinceState, CountryRegion, country) {
           $('#columnchart_recovered').html('');
           $('#stackchart').html('');
 
-          if(country=='US'){coronaUsMap();}
-          else{$('#coronaUsMap').html('');  $('#coronaUsMapReport').html('');}
+
 
           $('#reportDaily').html(reportDailyStr);
 
@@ -185,7 +194,7 @@ function coronaReport(ProvinceState, CountryRegion, country) {
             }else{
               reportStr += '<td><span class="mediumfont_data">' + subtractThree(countryData[i]['Confirmed'], countryData[i]['Deaths'],countryData[i]['Recovered'])+ '</span></td>';
             }
-            
+
             if(countryData[i]['Deaths']>0){
             reportStr += '<td><span class="mediumfont_data">' + countryData[i]['Deaths'] + '</span><br><span class="red smallfont_data">('+toPercent(countryData[i]['Deaths']/countryData[i]['Confirmed'],2)+')<br></span><span class="smallfont_data">of tot</span></td>' ;
           }else{
@@ -204,13 +213,19 @@ function coronaReport(ProvinceState, CountryRegion, country) {
             var tempRecovered = countryData[i]['Recovered'] != 0 ? countryData[i]['Recovered'] : 0;
             var tempActive = countryData[i]['Active'] != 0 ? countryData[i]['Active'] : 0;
 
+            dateConvert(countryData[i]['DataDate']);
+            tempDataConfirmed = [dateConvert(countryData[i]['DataDate']),tempConfirmed]; //array push for column chart
+            tempDataDeath = [dateConvert(countryData[i]['DataDate']), tempDeaths]; //array push for column chart
+            tempDataRecovered = [dateConvert(countryData[i]['DataDate']),tempRecovered]; //array push for column chart
+            tempDataIncrease = [dateConvert(countryData[i]['DataDate']), countryData[i]['Increase']]; //array push for column chart
+            function dateConvert(date){
+              month = [,'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+              monthDate = month[parseInt(date.substr(5,2))];
+              dayDate=date.substr(8,2);
+              return (monthDate+' '+dayDate);
+            }
 
-            tempDataConfirmed = [countryData[i]['DataDate'],tempConfirmed]; //array push for column chart
-            tempDataDeath = [countryData[i]['DataDate'], tempDeaths]; //array push for column chart
-            tempDataRecovered = [countryData[i]['DataDate'],tempRecovered]; //array push for column chart
-            tempDataIncrease = [countryData[i]['DataDate'], countryData[i]['Increase']]; //array push for column chart
-
-            tempDataStack = [countryData[i]['DataDate'],tempActive,tempRecovered,tempDeaths,tempRecovered,tempDeaths] //array push for stack chart
+            tempDataStack = [dateConvert(countryData[i]['DataDate']),parseInt(tempActive),parseInt(tempRecovered),parseInt(tempDeaths),parseInt(tempRecovered),parseInt(tempDeaths)]; //array push for stack chart
 
             dataElmConfirmed.unshift(tempDataConfirmed); //array push for column chart
             dataElmDeath.unshift(tempDataDeath); //array push for column chart
@@ -231,6 +246,7 @@ function coronaReport(ProvinceState, CountryRegion, country) {
         $('#report').html(reportStr);
         $('#colors').html(conditionStr);
         $('#reportDaily').html(reportDailyStr);
+
         //console.log(dataCorona);
         //console.log(dataElm);
 
@@ -245,6 +261,7 @@ function coronaReport(ProvinceState, CountryRegion, country) {
         dataElmRecovered.unshift(tempDataRecovered); //array push for column chart
         dataElmIncrease.unshift(tempDataIncrease); //array push for column chart
         dataElmStack.unshift(tempDataStack);
+
 
         if (countryData != null) {
           google.charts.load('current', {
@@ -261,6 +278,17 @@ function coronaReport(ProvinceState, CountryRegion, country) {
           google.charts.setOnLoadCallback(drawIncreaseChart);
           google.charts.setOnLoadCallback(drawStackChart);
         }
+
+        if(country=='US'){
+          if(countryData==null){
+            coronaUsMap('main');
+          }else{
+            coronaUsMap('');
+          }
+        }
+        else{$('#coronaUsMap').html('');  $('#coronaUsMapReport').html('');}
+
+
         function drawStackChart(){
           var data = google.visualization.arrayToDataTable(dataElmStack);
 
@@ -270,23 +298,26 @@ function coronaReport(ProvinceState, CountryRegion, country) {
              bar: { groupWidth: '75%' },
              seriesType: 'bars',
              series: {
-               0:{color:'#EB7F75',type:'bar'},
-               1:{color:'#8FDAFF',type:'bar'},
-               2:{color:'#FFDC73',type:'bar'},
-               3:{color:'#8FDAFF',type: 'line'},
-               4:{color:'#FFDC73',type: 'line'},
-
-             },
-                          isStacked: true,
-                          vAxis:{minValue:0},
-             vAxes: {
-                3: {
-                    title: 'rightyaxis'
+               0:{color:'#EB7F75',type:'bar',targetAxisIndex:0},
+               1:{color:'#8FDAFF',type:'bar',targetAxisIndex:0},
+               2:{color:'#FFDC73',type:'bar',targetAxisIndex:0},
+               3:{color:'#8FDAFF',type: 'line',targetAxisIndex:1},
+               4:{color:'#FFDC73',type: 'line',targetAxisIndex:1},
+              },
+              isStacked: true,
+              vAxis:{
+                0:{minValue:0},
+                1:{minValue:0}
+              },
+              vAxes: {
+                0: {
                 },
-                4: {
-                    title: 'rightyaxis'
+                1: {
+                    format:"#"
                 }
             },
+
+            width: '100%',
              //colors: ['#EB7F75','#FFDC73','#8FDAFF'],
              /*vAxis: {
                viewWindowMode: 'explicit',
@@ -449,9 +480,6 @@ function coronaReport(ProvinceState, CountryRegion, country) {
             },
             hAxis: {
               title: 'Time'
-            },
-            vAxis: {
-              title: 'daily increase (confirmed)'
             },
             height: 400,
           };
