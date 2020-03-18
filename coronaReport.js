@@ -70,6 +70,12 @@ function coronaReport(ProvinceState, CountryRegion, country) {
           return percent;
         } //percentage
 
+        // function divideTwoNum(number1, number2){
+        //   var result = number1 / number2;
+        //   return result;
+        // }
+
+
         function subtractThree(number1,number2,number3){
           var result = number1 - number2 - number3;
           return result;
@@ -109,7 +115,6 @@ function coronaReport(ProvinceState, CountryRegion, country) {
           }else{
             reportDailyStr += '<td><span style="font-size: 1rem">'+countryDataRecent.Deaths+'</span><br><span style="font-size:0.75rem">(<span class="blue">+'+countryDataRecent.DeathsIncrease+'</span>)</span><span style="font-size:0.75rem; color:grey"> '+toPercent(tempCountryRecentDeaths/tempCountryRecentConfirmed,2)+' of total</span></td>';
           }
-
           reportDailyStr += '<td><span style="font-size: 1rem">'+countryDataRecent.Recovered+'</span><br><span style="font-size:0.75rem">(<span class="red">+'+countryDataRecent.RecoveredIncrease+'</span>)</span><span style="font-size:0.75rem; color:green"> '+toPercent(tempCountryRecentRecovered/tempCountryRecentConfirmed,2)+' of total</span></td>';
           reportDailyStr += '</tr>';
           reportDailyStr += '<tr>';
@@ -156,7 +161,7 @@ function coronaReport(ProvinceState, CountryRegion, country) {
 
           reportStr += '<thead class="table-success"><tr>';
           reportStr += '<th scope="col" colspan="1" class="smallfont_data">Date</th>';
-          reportStr += '<th scope="col" colspan="1" class="smallfont_data">Confirmed</div></th>';
+          reportStr += '<th scope="col" colspan="1" class="smallfont_data">Total</div></th>';
           reportStr += '<th scope="col" colspan="1" class="smallfont_data">Active</th>';
           reportStr += '<th scope="col" colspan="1" class="smallfont_data">Death</th>';
           reportStr += '<th scope="col" colspan="1" class="smallfont_data">Recovered</th>';
@@ -164,6 +169,7 @@ function coronaReport(ProvinceState, CountryRegion, country) {
           reportStr += '<tbody>';
           for (var i = 0; i < countryDataLength; i++) {
             var tempActiveIncrease = countryData[i]['Increase'] - countryData[i]['DeathsIncrease']-countryData[i]['RecoveredIncrease'];
+
             reportStr += '<tr>';
             reportStr += '<td><span class="smallfont_data">' + countryData[i]['DataDate'] + '</span></td>';
             if (countryData[i]['Increase'] > 0) {
@@ -179,8 +185,17 @@ function coronaReport(ProvinceState, CountryRegion, country) {
             }else{
               reportStr += '<td><span class="mediumfont_data">' + subtractThree(countryData[i]['Confirmed'], countryData[i]['Deaths'],countryData[i]['Recovered'])+ '</span></td>';
             }
+            
+            if(countryData[i]['Deaths']>0){
+            reportStr += '<td><span class="mediumfont_data">' + countryData[i]['Deaths'] + '</span><br><span class="red smallfont_data">('+toPercent(countryData[i]['Deaths']/countryData[i]['Confirmed'],2)+')<br></span><span class="smallfont_data">of tot</span></td>' ;
+          }else{
             reportStr += '<td><span class="mediumfont_data">' + countryData[i]['Deaths'] + '</span></td>';
-            reportStr += '<td><span class="mediumfont_data">' + countryData[i]['Recovered'] + '</span></td>';
+          }
+          if(countryData[i]['Recovered']>0){
+            reportStr += '<td><span class="mediumfont_data">' + countryData[i]['Recovered'] + '</span><br><span class="green smallfont_data">('+toPercent(countryData[i]['Recovered']/countryData[i]['Confirmed'],2)+')<br></span><span class="smallfont_data">of tot</span></td>';
+            }else{
+              reportStr += '<td><span class="mediumfont_data">' + countryData[i]['Recovered'] + '</span></td>';
+            }
             reportStr += '</tr>';
 
             //tempData = [countryData [i]['DataDate'], countryData [i]['Confirmed']];
