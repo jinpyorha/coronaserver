@@ -119,7 +119,8 @@ if(($provinceState!=''||$countryRegion!='')&&($provinceState!='Select States')){
 			'Increase'=>$countryData[0]['Increase'],
 			'DeathsIncrease'=>$countryData[0]['DeathsIncrease'],
 			'RecoveredIncrease'=>$countryData[0]['RecoveredIncrease'],
-			'RecentDate'=>substr($recentDate,0,10)
+			//'RecentDate'=>substr($recentDate,0,10)
+			'RecentDate'=>$recentDate
 		);
 
 	}

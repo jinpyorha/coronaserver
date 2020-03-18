@@ -1,5 +1,5 @@
 function coronaUsMap(index){
-  var urlApi = 'coronaDataApi.php?country=US';
+  var urlApi = '/coronaserver/coronaDataApi.php?country=US';
   $.ajax({
     type: 'GET',
     url: urlApi,

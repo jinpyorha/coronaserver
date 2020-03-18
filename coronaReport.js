@@ -1,10 +1,10 @@
 function coronaReport(ProvinceState, CountryRegion, country) {
   //console.log('onesunny3.cafe24.com/crawler/coronaDataApi.php?ProvinceState='+ProvinceState+'&CountryRegion='+CountryRegion);
   if (country == 'US') {
-    var urlApi = 'coronaDataApi.php?ProvinceState=' + ProvinceState + '&CountryRegion=' + CountryRegion + '&country=' + country;
+    var urlApi = '/coronaserver/coronaDataApi.php?ProvinceState=' + ProvinceState + '&CountryRegion=' + CountryRegion + '&country=' + country;
     console.log(urlApi);
   } else if (country == 'global') {
-    var urlApi = 'coronaDataApi.php?ProvinceState=' + ProvinceState + '&CountryRegion=' + CountryRegion;
+    var urlApi = '/coronaserver/coronaDataApi.php?ProvinceState=' + ProvinceState + '&CountryRegion=' + CountryRegion;
     console.log(urlApi);
   }
 
@@ -59,11 +59,20 @@ function coronaReport(ProvinceState, CountryRegion, country) {
         selectStr += '</option>';
         for (var i = 0; i < countryListLength; i++) {
           if (countryList[i]['ProvinceState'] == ProvinceState && countryList[i]['CountryRegion'] == CountryRegion) {
-            selectStr += '<option  selected value="' + countryList[i]['ProvinceState'] + '@' + countryList[i]['CountryRegion'] + '">' + countryList[i]['ProvinceState'] + '[' + countryList[i]['CountryRegion'] + '](' + countryList[i]['cnt'] +
+            if(country=='US'){selectStr += '<option  selected value="' + countryList[i]['ProvinceState'] + '@' + countryList[i]['CountryRegion'] + '">' + countryList[i]['ProvinceState'] + '(' + countryList[i]['cnt'] +
               ')</option>';
+            }else{
+              selectStr += '<option  selected value="' + countryList[i]['ProvinceState'] + '@' + countryList[i]['CountryRegion'] + '">' + countryList[i]['ProvinceState'] + '[' + countryList[i]['CountryRegion'] + '](' + countryList[i]['cnt'] +
+                ')</option>';
+              }
           } else {
-            selectStr += '<option value="' + countryList[i]['ProvinceState'] + '@' + countryList[i]['CountryRegion'] + '">' + countryList[i]['ProvinceState'] + '[' + countryList[i]['CountryRegion'] + '](' + countryList[i]['cnt'] +
+            if(country=='US'){
+              selectStr += '<option value="' + countryList[i]['ProvinceState'] + '@' + countryList[i]['CountryRegion'] + '">' + countryList[i]['ProvinceState'] + '(' + countryList[i]['cnt'] +
               ')</option>';
+            }else{
+              selectStr += '<option value="' + countryList[i]['ProvinceState'] + '@' + countryList[i]['CountryRegion'] + '">' + countryList[i]['ProvinceState'] + '[' + countryList[i]['CountryRegion'] + '](' + countryList[i]['cnt'] +
+              ')</option>';
+            }
           }
 
         }
@@ -100,7 +109,7 @@ function coronaReport(ProvinceState, CountryRegion, country) {
           var tempCountryRecentDate =countryDataRecent.RecentDate;
           // reportDailyStr +='<h1>Total Active : '+subtractThree(tempCountryRecentConfirmed, tempCountryRecentDeaths, tempCountryRecentRecovered)+'</h1>'
 
-          reportDailyStr +='<h5 class="display-6 class-border mediumfont">&nbsp;last updated :'+tempCountryRecentDate+'</h5>';
+          //reportDailyStr +='<h5 class="display-6 class-border mediumfont">&nbsp;last updated :'+tempCountryRecentDate+'</h5>';
     		  reportDailyStr +='<h5 class="display-6 class-border mediumfont">&nbsp;Situation summary</h5>';
           reportDailyStr +='<table class="table table-hover">';
           reportDailyStr += '<thead class="table-success"><tr>';
@@ -131,7 +140,7 @@ function coronaReport(ProvinceState, CountryRegion, country) {
           reportDailyStr += '</tr>';
           reportDailyStr += '</tbody>';
           reportDailyStr += '</table>';
-          reportDailyStr += '<p class="font-italic"><small>Updated as of X:XX</small></p>';
+          reportDailyStr += '<p class="font-italic"><small>Updated as of '+tempCountryRecentDate+'</small></p>';
 
         }
 
@@ -225,7 +234,7 @@ function coronaReport(ProvinceState, CountryRegion, country) {
               return (monthDate+' '+dayDate);
             }
 
-            tempDataStack = [dateConvert(countryData[i]['DataDate']),parseInt(tempActive),parseInt(tempRecovered),parseInt(tempDeaths),parseInt(tempRecovered),parseInt(tempDeaths)]; //array push for stack chart
+            tempDataStack = [dateConvert(countryData[i]['DataDate']),parseInt(tempActive),parseInt(tempConfirmed),parseInt(tempRecovered),parseInt(tempDeaths)]; //array push for stack chart
 
             dataElmConfirmed.unshift(tempDataConfirmed); //array push for column chart
             dataElmDeath.unshift(tempDataDeath); //array push for column chart
@@ -255,7 +264,7 @@ function coronaReport(ProvinceState, CountryRegion, country) {
         var tempDataDeath = ['DataDate', 'Deaths'];
         var tempDataRecovered = ['DataDate', 'Recovered'];
         var tempDataIncrease = ['DataDate', 'Increase'];
-        var tempDataStack = ['DataDate','Active','Recovered','Deaths','Recovered','Deaths'];
+        var tempDataStack = ['DataDate','Active','Confirmed','Recovered','Deaths'];
         dataElmConfirmed.unshift(tempDataConfirmed); //array push for column chart
         dataElmDeath.unshift(tempDataDeath); //array push for column chart
         dataElmRecovered.unshift(tempDataRecovered); //array push for column chart
@@ -298,13 +307,13 @@ function coronaReport(ProvinceState, CountryRegion, country) {
              bar: { groupWidth: '75%' },
              seriesType: 'bars',
              series: {
-               0:{color:'#EB7F75',type:'bar',targetAxisIndex:0},
-               1:{color:'#8FDAFF',type:'bar',targetAxisIndex:0},
-               2:{color:'#FFDC73',type:'bar',targetAxisIndex:0},
-               3:{color:'#8FDAFF',type: 'line',targetAxisIndex:1},
-               4:{color:'#FFDC73',type: 'line',targetAxisIndex:1},
+               0:{color:'#DE5D6C',type:'bar',targetAxisIndex:0},
+               1:{color:'#EB7F75',type:'bar',targetAxisIndex:0},
+               //2:{color:'#FFDC73',type:'bar',targetAxisIndex:0},
+               2:{color:'#8FDAFF',type: 'line',targetAxisIndex:1},
+               3:{color:'#FFDC73',type: 'line',targetAxisIndex:1},
               },
-              isStacked: true,
+              //isStacked: true,
               vAxis:{
                 0:{minValue:0},
                 1:{minValue:0}
