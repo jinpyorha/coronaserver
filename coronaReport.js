@@ -161,7 +161,7 @@ function coronaReport(ProvinceState, CountryRegion, country) {
 
           reportStr += '<thead class="table-success"><tr>';
           reportStr += '<th scope="col" colspan="1" class="smallfont_data">Date</th>';
-          reportStr += '<th scope="col" colspan="1" class="smallfont_data">Confirmed</div></th>';
+          reportStr += '<th scope="col" colspan="1" class="smallfont_data">Total</div></th>';
           reportStr += '<th scope="col" colspan="1" class="smallfont_data">Active</th>';
           reportStr += '<th scope="col" colspan="1" class="smallfont_data">Death</th>';
           reportStr += '<th scope="col" colspan="1" class="smallfont_data">Recovered</th>';
