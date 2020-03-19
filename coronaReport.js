@@ -117,13 +117,13 @@ function coronaReport(ProvinceState, CountryRegion, country) {
           reportDailyStr += '<th scope="col" colspan="1" class="smallfont">Total<br>cases<br>';
           if(country=='US'){
             if(ProvinceState=='Select States'||ProvinceState==''){
-              reportDailyStr+='US';
+              reportDailyStr+='in US';
             }else{
-              reportDailyStr+=ProvinceState;
+              reportDailyStr+='<span>in </span>'+ ProvinceState;
             }
           }else{
             if(ProvinceState=='Select States'||CountryRegion==''){
-              reportDailyStr+='Global';
+              reportDailyStr+='Globally';
             }else{
               reportDailyStr+=ProvinceState+'['+CountryRegion+']';
             }
@@ -336,19 +336,19 @@ function coronaReport(ProvinceState, CountryRegion, country) {
           var data = google.visualization.arrayToDataTable(dataElmStack);
           if(country=='US'){
             var options = {
-             title: 'Confirmed,Active,Recovery,Deaths',
+             title: 'Confirmed, Active, Deaths',
              pointSize:5,
              height: 600,
              legend: { position: 'top', maxLines: 3 },
              bar: { groupWidth: '75%' },
              seriesType: 'bars',
              series: {
-               0:{color:'#EB7F75',type:'bar',targetAxisIndex:0},//Active
-               1:{color:'#609BFF',type:'bar',targetAxisIndex:0},//confirmed
+               0:{color:'#FF932B',type:'bar',targetAxisIndex:0},//Active
+               1:{color:'#8B5EFF',type:'bar',targetAxisIndex:0},//confirmed
               // 2:{color:'#FFDC73',type:'bar',targetAxisIndex:0},
               // 2:{color:'#8FDAFF',type: 'line',targetAxisIndex:1},//recovery
                //2:{color:'#FFDC73',type: 'line',targetAxisIndex:1},//death
-               2:{color:'#E8E268',type: 'line',targetAxisIndex:1},//death
+               2:{color:'#44FF57',type: 'line',targetAxisIndex:1},//death
               },
               //isStacked: true,
               hAxis: {
@@ -379,12 +379,12 @@ function coronaReport(ProvinceState, CountryRegion, country) {
              bar: { groupWidth: '75%' },
              seriesType: 'bars',
              series: {
-               0:{color:'#EB7F75',type:'bar',targetAxisIndex:0},// active
-               1:{color:'#609BFF',type:'bar',targetAxisIndex:0},//confirmed
+               0:{color:'#FF932B',type:'bar',targetAxisIndex:0},// active
+               1:{color:'#8B5EFF',type:'bar',targetAxisIndex:0},//confirmed
               // 2:{color:'#FFDC73',type:'bar',targetAxisIndex:0},
                2:{color:'#73FF8E',type: 'line',targetAxisIndex:1},//recovery
                //2:{color:'#8FDAFF',type: 'line',targetAxisIndex:1},//recovery
-               3:{color:'#E8E268',type: 'line',targetAxisIndex:1},//death
+               3:{color:'#F64FFF',type: 'line',targetAxisIndex:1},//death
               },
               //isStacked: true,
               hAxis: {
@@ -551,7 +551,9 @@ function coronaReport(ProvinceState, CountryRegion, country) {
               position: "top"
             },
             hAxis: {
-              title: 'Time'
+              title: 'Time',
+              slantedText: true,
+              slantedTextAngle:50
             },
           };
 
