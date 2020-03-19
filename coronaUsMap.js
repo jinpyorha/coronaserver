@@ -74,7 +74,7 @@ function coronaUsMap(index){
           var options = {
             region: 'US', // Africa
             resolution:'provinces',
-            colorAxis: {colors: ['#FFEB8A', '#FFC996', '#EB8D6C','#FF625C']},
+            colorAxis: {colors: ['#ffbaba', '#ff7b7b', '#ff0000','#a70000']},
             backgroundColor: '#ffffff',
             datalessRegionColor: '#f0f0f0',
             defaultColor: '#f0f0f0',

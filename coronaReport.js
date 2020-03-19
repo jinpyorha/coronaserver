@@ -36,7 +36,7 @@ function coronaReport(ProvinceState, CountryRegion, country) {
 
         selectStr += '<h5 class="class-border smallfont">&nbsp;';
         if (country == 'US') {
-          selectStr += lang=='en'?'Search by States (Active cases)':'미국 주별 검색';
+          selectStr += lang=='en'?'Search by States (cumulative cases)':'미국 주별 검색';
         } else {
           selectStr += lang=='en'?'Search by country':'국가별 검색';
         }
@@ -53,7 +53,7 @@ function coronaReport(ProvinceState, CountryRegion, country) {
         if (country == 'US') {
           $('#title').html('#COVID-19 in US');
         } else {
-          $('#title').html('#COVID-19 in the world');
+          $('#title').html('#COVID-19 Global');
         }
 
         selectStr += '</option>';
@@ -111,42 +111,43 @@ function coronaReport(ProvinceState, CountryRegion, country) {
 
           //reportDailyStr +='<h5 class="display-6 class-border mediumfont">&nbsp;last updated :'+tempCountryRecentDate+'</h5>';
     		  reportDailyStr +='<h5 class="display-6 class-border mediumfont">&nbsp;Situation summary</h5>';
+          
           reportDailyStr +='<table class="table table-hover">';
           reportDailyStr += '<thead class="table-success"><tr>';
-          reportDailyStr += '<th scope="col" colspan="1" class="smallfont">Total<br>cases</th>';
+          reportDailyStr += '<th scope="col" colspan="1" class="smallfont">Total<br>cases<br>'+ProvinceState+'</th>';
           reportDailyStr += '<th scope="col" colspan="1" class="smallfont">Total<br>active</th>';
           reportDailyStr += '<th scope="col" colspan="1" class="smallfont">Total<br>death</th>';
-          reportDailyStr += '<th scope="col" colspan="1" class="smallfont">Total<br>recovered</th>';
+          // reportDailyStr += '<th scope="col" colspan="1" class="smallfont">Total<br>recovered</th>';
           reportDailyStr += '</tr></thead>';
           reportDailyStr += '<tbody>';
           reportDailyStr += '<tr>';
 
-          reportDailyStr += '<td><span style="font-size: 1rem">'+countryDataRecent.Confirmed+'</span><br><span style="font-size:0.75rem">(<span style="color:red">+'+countryDataRecent.Increase+'</span>) in '+ProvinceState+'</span></td>';
-
+          reportDailyStr += '<td><span class="largefont_data">'+countryDataRecent.Confirmed+'</span><br><span style="font-size:0.75rem">(<span style="color:red">+'+countryDataRecent.Increase+'</span>)</span></td>';
           if(subtractThree(tempCountryRecentConfirmedIncrease, tempCountryRecentDeathsIncrease, tempCountryRecentRecoveredIncrease)>0){
-            reportDailyStr += '<td><span style="font-size: 1rem">'+subtractThree(tempCountryRecentConfirmed, tempCountryRecentDeaths, tempCountryRecentRecovered)+'</span><br><span style="font-size:0.75rem">(<span class="red">+'+subtractThree(tempCountryRecentConfirmedIncrease, tempCountryRecentDeathsIncrease, tempCountryRecentRecoveredIncrease)+'</span> new active)</span></td>';
+            reportDailyStr += '<td><span class="largefont_data">'+subtractThree(tempCountryRecentConfirmed, tempCountryRecentDeaths, tempCountryRecentRecovered)+'</span><br><span style="font-size:0.75rem">(<span class="red">+'+subtractThree(tempCountryRecentConfirmedIncrease, tempCountryRecentDeathsIncrease, tempCountryRecentRecoveredIncrease)+'</span>)</span></td>';
           }else{
-            reportDailyStr += '<td><span style="font-size: 1rem">'+subtractThree(tempCountryRecentConfirmed, tempCountryRecentDeaths, tempCountryRecentRecovered)+'</span><br><span style="font-size:0.75rem">(<span class="blue">+'+subtractThree(tempCountryRecentConfirmedIncrease, tempCountryRecentDeathsIncrease, tempCountryRecentRecoveredIncrease)+'</span> new active)</span></td>';
+            reportDailyStr += '<td><span class="largefont_data">'+subtractThree(tempCountryRecentConfirmed, tempCountryRecentDeaths, tempCountryRecentRecovered)+'</span><br><span style="font-size:0.75rem">(<span class="blue">+'+subtractThree(tempCountryRecentConfirmedIncrease, tempCountryRecentDeathsIncrease, tempCountryRecentRecoveredIncrease)+'</span>)</span></td>';
           }
 
           if(countryDataRecent.DeathsIncrease>0){
-            reportDailyStr += '<td><span style="font-size: 1rem">'+countryDataRecent.Deaths+'</span><br><span style="font-size:0.75rem">(<span class="red">+'+countryDataRecent.DeathsIncrease+'</span>)</span><span style="font-size:0.75rem; color:grey"> '+toPercent(tempCountryRecentDeaths/tempCountryRecentConfirmed,2)+' of total</span></td>';
+            reportDailyStr += '<td><span class="largefont_data">'+countryDataRecent.Deaths+'</span><br><span style="font-size:0.75rem">(<span class="red">+'+countryDataRecent.DeathsIncrease+'</span>)</span><span style="font-size:0.75rem; color:grey"><br>'+toPercent(tempCountryRecentDeaths/tempCountryRecentConfirmed,2)+'of total</span></td>';
           }else{
-            reportDailyStr += '<td><span style="font-size: 1rem">'+countryDataRecent.Deaths+'</span><br><span style="font-size:0.75rem">(<span class="blue">+'+countryDataRecent.DeathsIncrease+'</span>)</span><span style="font-size:0.75rem; color:grey"> '+toPercent(tempCountryRecentDeaths/tempCountryRecentConfirmed,2)+' of total</span></td>';
+            reportDailyStr += '<td><span class="largefont_data">'+countryDataRecent.Deaths+'</span><br><span style="font-size:0.75rem">(<span class="blue">+'+countryDataRecent.DeathsIncrease+'</span>)</span><span style="font-size:0.75rem; color:grey"><br>'+toPercent(tempCountryRecentDeaths/tempCountryRecentConfirmed,2)+'of total</span></td>';
           }
-          reportDailyStr += '<td><span style="font-size: 1rem">'+countryDataRecent.Recovered+'</span><br><span style="font-size:0.75rem">(<span class="red">+'+countryDataRecent.RecoveredIncrease+'</span>)</span><span style="font-size:0.75rem; color:green"> '+toPercent(tempCountryRecentRecovered/tempCountryRecentConfirmed,2)+' of total</span></td>';
+          // reportDailyStr += '<td><span class="largefont_data">'+countryDataRecent.Recovered+'</span><br><span style="font-size:0.75rem">(<span class="red">+'+countryDataRecent.RecoveredIncrease+'</span>)</span><span style="font-size:0.75rem; color:green"> '+toPercent(tempCountryRecentRecovered/tempCountryRecentConfirmed,2)+' of total</span></td>';
           reportDailyStr += '</tr>';
           reportDailyStr += '<tr>';
           reportDailyStr += '</tr>';
           reportDailyStr += '</tbody>';
           reportDailyStr += '</table>';
-          reportDailyStr += '<p class="font-italic"><small>Updated as of '+tempCountryRecentDate+'</small></p>';
+          reportDailyStr += '<p class="font-italic"><small>Last updated: '+tempCountryRecentDate+'; Our data is updated everyday and is sourced from official government websites</small></p>';
+          reportDailyStr += '<p class="font-italic"><small> </small></p>';
 
         }
 
         if (countryData == null) {
           selectStr += '<div class="alert alert-success smallfont" role="alert"><i>';
-          selectStr += lang=='en'?'Sorted by number of active cases':'지역은 확진자 많은 순으로 정렬되어있습니다!';
+          selectStr += lang=='en'?'Sorted by number of total cases':'지역은 확진자 많은 순으로 정렬되어있습니다!';
           selectStr += '</i></div>';
           $('#reportDaily').html('');
           $('#columnchart_confirmed').html('');
@@ -182,7 +183,7 @@ function coronaReport(ProvinceState, CountryRegion, country) {
           reportStr += '<th scope="col" colspan="1" class="smallfont_data">Total</div></th>';
           reportStr += '<th scope="col" colspan="1" class="smallfont_data">Active</th>';
           reportStr += '<th scope="col" colspan="1" class="smallfont_data">Death</th>';
-          reportStr += '<th scope="col" colspan="1" class="smallfont_data">Recovered</th>';
+          // reportStr += '<th scope="col" colspan="1" class="smallfont_data">Recovered</th>';
           reportStr += '</tr></thead>';
           reportStr += '<tbody>';
           for (var i = 0; i < countryDataLength; i++) {
@@ -209,12 +210,12 @@ function coronaReport(ProvinceState, CountryRegion, country) {
           }else{
             reportStr += '<td><span class="mediumfont_data">' + countryData[i]['Deaths'] + '</span></td>';
           }
-          if(countryData[i]['Recovered']>0){
-            reportStr += '<td><span class="mediumfont_data">' + countryData[i]['Recovered'] + '</span><br><span class="green smallfont_data">('+toPercent(countryData[i]['Recovered']/countryData[i]['Confirmed'],2)+')<br></span><span class="smallfont_data">of tot</span></td>';
-            }else{
-              reportStr += '<td><span class="mediumfont_data">' + countryData[i]['Recovered'] + '</span></td>';
-            }
-            reportStr += '</tr>';
+          // if(countryData[i]['Recovered']>0){
+          //   reportStr += '<td><span class="mediumfont_data">' + countryData[i]['Recovered'] + '</span><br><span class="green smallfont_data">('+toPercent(countryData[i]['Recovered']/countryData[i]['Confirmed'],2)+')<br></span><span class="smallfont_data">of tot</span></td>';
+          //   }else{
+          //     reportStr += '<td><span class="mediumfont_data">' + countryData[i]['Recovered'] + '</span></td>';
+          //   }
+          //   reportStr += '</tr>';
 
             //tempData = [countryData [i]['DataDate'], countryData [i]['Confirmed']];
             var tempConfirmed = countryData[i]['Confirmed'] != 0 ? countryData[i]['Confirmed'] : 0;
@@ -245,11 +246,11 @@ function coronaReport(ProvinceState, CountryRegion, country) {
           reportStr += '</tbody>';
           reportStr += '</table>';
 
-          conditionStr += '<div class="colors">';
-          conditionStr += '<div class="color red"></div><div class="label">Confirmed Count</div>';
-          conditionStr += '<div class="color yellow"></div><div class="label">Death Count</div>';
-          conditionStr += '<div class="color blue"></div><div class="label">Recovered Count</div>';
-          conditionStr += '</div>'
+          // conditionStr += '<div class="colors">';
+          // conditionStr += '<div class="color red"></div><div class="label">Confirmed Count</div>';
+          // conditionStr += '<div class="color yellow"></div><div class="label">Death Count</div>';
+          // conditionStr += '<div class="color blue"></div><div class="label">Recovered Count</div>';
+          // conditionStr += '</div>'
         }
         $('#select-box').html(selectStr);
         $('#report').html(reportStr);
@@ -302,22 +303,30 @@ function coronaReport(ProvinceState, CountryRegion, country) {
           var data = google.visualization.arrayToDataTable(dataElmStack);
 
             var options = {
+             pointSize:5,
              height: 600,
              legend: { position: 'none', maxLines: 3 },
              bar: { groupWidth: '75%' },
              seriesType: 'bars',
              series: {
                0:{color:'#DE5D6C',type:'bar',targetAxisIndex:0},
-               1:{color:'#EB7F75',type:'bar',targetAxisIndex:0},
+               1:{color:'#2A9D8F',type:'bar',targetAxisIndex:0},
                //2:{color:'#FFDC73',type:'bar',targetAxisIndex:0},
-               2:{color:'#8FDAFF',type: 'line',targetAxisIndex:1},
+               // 2:{color:'#F4A261',type: 'line',targetAxisIndex:1},
                3:{color:'#FFDC73',type: 'line',targetAxisIndex:1},
               },
               //isStacked: true,
+              hAxis: {
+              title: 'Date', 
+              slantedText: true,
+              slantedTextAngle:50,
+              }, 
               vAxis:{
+                title: "# of cases",
                 0:{minValue:0},
                 1:{minValue:0}
               },
+              
               vAxes: {
                 0: {
                 },
@@ -362,6 +371,7 @@ function coronaReport(ProvinceState, CountryRegion, country) {
           //=>https://developers.google.com/chart/interactive/docs/gallery/columnchart
 
           var options = {
+
             title: 'Total confirmed cases',
             legend: {
               position: "none"
@@ -482,6 +492,7 @@ function coronaReport(ProvinceState, CountryRegion, country) {
           var data = google.visualization.arrayToDataTable(dataElmIncrease);
 
           var options = {
+            pointSize:5,
             title: 'Daily confirmed case increase',
             colors: ['#EB7F75'],
             legend: {

@@ -180,6 +180,9 @@ a:active{
 .largefont{
   font-size: 1.7em;
 }
+.largefont_data{
+  font-size: 1.1em;
+}
 .mediumfont{
   font-size:1.0em;
 }
