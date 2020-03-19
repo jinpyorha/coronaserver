@@ -372,7 +372,7 @@ function coronaReport(ProvinceState, CountryRegion, country) {
            };
           }else{
             var options = {
-             title: 'Confirmed,Active,Recovery,Deaths',
+             title: 'Confirmed, Active, Recovered, Deaths',
              pointSize:5,
              height: 600,
              legend: { position: 'top', maxLines: 3 },
@@ -382,7 +382,7 @@ function coronaReport(ProvinceState, CountryRegion, country) {
                0:{color:'#FF932B',type:'bar',targetAxisIndex:0},// active
                1:{color:'#8B5EFF',type:'bar',targetAxisIndex:0},//confirmed
               // 2:{color:'#FFDC73',type:'bar',targetAxisIndex:0},
-               2:{color:'#73FF8E',type: 'line',targetAxisIndex:1},//recovery
+               2:{color:'#5EFFF2',type: 'line',targetAxisIndex:1},//recovery
                //2:{color:'#8FDAFF',type: 'line',targetAxisIndex:1},//recovery
                3:{color:'#F64FFF',type: 'line',targetAxisIndex:1},//death
               },
