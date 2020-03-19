@@ -1,0 +1,20 @@
+diff a/coronaReport.js b/coronaReport.js	(rejected hunks)
+@@ -210,12 +210,12 @@
+           }else{
+             reportStr += '<td><span class="mediumfont_data">' + countryData[i]['Deaths'] + '</span></td>';
+           }
+-          if(countryData[i]['Recovered']>0){
+-            reportStr += '<td><span class="mediumfont_data">' + countryData[i]['Recovered'] + '</span><br><span class="green smallfont_data">('+toPercent(countryData[i]['Recovered']/countryData[i]['Confirmed'],2)+')<br></span><span class="smallfont_data">of tot</span></td>';
+-            }else{
+-              reportStr += '<td><span class="mediumfont_data">' + countryData[i]['Recovered'] + '</span></td>';
+-            }
+-            reportStr += '</tr>';
++          // if(countryData[i]['Recovered']>0){
++          //   reportStr += '<td><span class="mediumfont_data">' + countryData[i]['Recovered'] + '</span><br><span class="green smallfont_data">('+toPercent(countryData[i]['Recovered']/countryData[i]['Confirmed'],2)+')<br></span><span class="smallfont_data">of tot</span></td>';
++          //   }else{
++          //     reportStr += '<td><span class="mediumfont_data">' + countryData[i]['Recovered'] + '</span></td>';
++          //   }
++          //   reportStr += '</tr>';
+ 
+             //tempData = [countryData [i]['DataDate'], countryData [i]['Confirmed']];
+             var tempConfirmed = countryData[i]['Confirmed'] != 0 ? countryData[i]['Confirmed'] : 0;

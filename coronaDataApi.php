@@ -31,7 +31,7 @@ isset($_GET['country'])&&$_GET['country']!=''?$_GET['country']:'';
 //$sqlCountryList ="SELECT ProvinceState,CountryRegion,COUNT(Id)AS cnt FROM CoronaData GROUP BY ProvinceState,CountryRegion";
 $sqlCountryList="SELECT ProvinceState,CountryRegion,(SELECT Confirmed FROM CoronaData WHERE ProvinceState=CD.ProvinceState AND CountryRegion=CD.CountryRegion ORDER BY DataDate DESC LIMIT 1 ) AS cnt FROM CoronaData AS CD";
 if($country=='US'){
-	$sqlCountryList.=" WHERE CD.CountryRegion = '".$country."'";
+	$sqlCountryList.=" WHERE CD.CountryRegion = '".$country."' AND CD.ProvinceState<>'US'";
 }
 $sqlCountryList.=" GROUP BY ProvinceState,CountryRegion
 ORDER BY cnt DESC ";

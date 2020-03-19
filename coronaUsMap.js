@@ -52,11 +52,11 @@ function coronaUsMap(index){
         mapStr += '<tbody>';
         mapStr += '</table>';
         console.log(index);
-        if(index=='main'){
+      //  if(index=='main'){
           $('#coronaUsMapReport').html(mapStr);
-        }else{
-          $('#coronaUsMapReport').html('');
-        }
+      //  }else{
+      //    $('#coronaUsMapReport').html('');
+      //  }
 
 
         //차트그리기 시작

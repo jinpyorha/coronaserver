@@ -36,8 +36,8 @@
     font-size: 1rem;
 
   }
-  td{font-size:0.8rem;}
-  tr td:first-child{font-size:0.8rem;}
+  td{font-size:1rem;}
+  tr td:first-child{font-size:1rem;}
 
   /* td.red {
     color: red
@@ -208,3 +208,4 @@ a:active{
   padding-left:0.2rem;
   padding-right:0.2rem;
 }
+#report{margin-bottom:100px}
