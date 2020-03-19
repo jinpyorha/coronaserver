@@ -45,7 +45,7 @@ function coronaUsMap(index){
           if(dataElmGeo[k][0]!='Unassigned Location'){
             mapStr += '<tr">';
             mapStr += '<td class="mediumfont_data">'+dataElmGeo[k][0]+'</td>';
-            mapStr += '<td class="mediumfont_data">'+dataElmGeo[k][1]+'</td>';
+            mapStr += '<td class="largefont_data">'+dataElmGeo[k][1]+'</td>';
             mapStr += '</tr>';
           }
         }
