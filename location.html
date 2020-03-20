@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>Click the button to get your coordinates.</p>
+
+<button onclick="getLocation()">Try It</button>
+
+<p id="demo"></p>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js
+"></script>
+<script>
+var x = document.getElementById("demo");
+
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else {
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+}
+
+function showPosition(position) {
+  x.innerHTML = "Latitude: " + position.coords.latitude +
+  "<br>Longitude: " + position.coords.longitude;
+  getCountry(position.coords.latitude,position.coords.longitude);
+}
+function getCountry(lat,lng){
+    var urlApi='https://maps.googleapis.com/maps/api/geocode/json?latlng='+lat+','+lng+'&key=AIzaSyAt4VcYBAuXnbxIiBuE4iVvd2wiSevsxvI';
+    $.ajax({
+      type: 'GET',
+      url: urlApi,
+      contentType: false,
+      data: false,
+      processData: false,
+      success: function(data) {
+        isUploading = false;
+        //var obj = JSON.parse(data);
+        //console.log(data);
+        console.log(data);
+        //if (obj.result == "success") {
+        //}
+      }
+    });
+
+}
+</script>
+
+</body>
+</html>

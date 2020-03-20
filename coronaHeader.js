@@ -106,7 +106,7 @@ function coronaHeader(lang,page) {
       if(country!='US'){
         tabStr+='<a class="nav-link active" href="http://coronanotbeer.com?country=global">Global</a>';
       }else{
-        tabStr+='<a class="nav-link" href="http://coronanotbeer.com?country=global">Gloabal</a>';
+        tabStr+='<a class="nav-link" href="http://coronanotbeer.com?country=global">Global</a>';
       }
     tabStr+='</li>';
   tabStr+='</ul>';
