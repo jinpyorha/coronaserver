@@ -125,7 +125,7 @@
   .header .nav{
     float:left;
   }
-    .header .nav img{width:185px;}
+  .header nav img{width:185px;}
 .navbar-light .navbar-nav .nav-link.active{
     color:#fff;
   }
