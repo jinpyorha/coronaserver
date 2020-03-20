@@ -93,6 +93,7 @@ function coronaHeader(lang,page) {
   //###############헤더 끝
 
   //#########tab
+  var tabStr='';
   tabStr+='<ul class="nav nav-tabs">';
     tabStr+='<li class="nav-item">';
       if(country=='US'){

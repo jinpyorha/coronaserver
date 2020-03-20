@@ -80,7 +80,7 @@ function coronaReport(ProvinceState, CountryRegion, country) {
         var conditionStr = '';
         var reportDailyStr ='';
         var reportStr = '';
-        var tabStr= '';
+
 
         function toPercent(number, float) {
           var percent = parseFloat(number * 100).toFixed(float) + "%";
@@ -164,7 +164,7 @@ function coronaReport(ProvinceState, CountryRegion, country) {
 
         }
 
-    
+
 
         if (countryData == null) {
           selectStr += '<div class="alert alert-success smallfont" role="alert"><i>';
