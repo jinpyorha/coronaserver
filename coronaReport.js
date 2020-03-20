@@ -176,12 +176,12 @@ function coronaReport(ProvinceState, CountryRegion, country) {
           $('#columnchart_death').html('');
           $('#columnchart_recovered').html('');
           $('#stackchart').html('');
-
-
-
-          $('#reportDaily').html(reportDailyStr);
-
-
+          if(country!='US'){
+              $('#reportDaily').html('');
+          }
+          else{
+            $('#reportDaily').html(reportDailyStr);
+          }
         }
 
         if (countryData != null) {
@@ -285,7 +285,13 @@ function coronaReport(ProvinceState, CountryRegion, country) {
         $('#select-box').html(selectStr);
         $('#report').html(reportStr);
         //$('#colors').html(conditionStr);
-        $('#reportDaily').html(reportDailyStr);
+        if(country!='US'&&countryData == null){
+            $('#reportDaily').html('');
+        }
+        else{
+          $('#reportDaily').html(reportDailyStr);
+        }
+
 
         //console.log(dataCorona);
         //console.log(dataElm);
