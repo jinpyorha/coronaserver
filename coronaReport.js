@@ -158,7 +158,7 @@ function coronaReport(ProvinceState, CountryRegion, country) {
           reportDailyStr += '</tr>';
           reportDailyStr += '</tbody>';
           reportDailyStr += '</table>';
-          reportDailyStr += '<p class="font-italic"><small>Last updated: '+tempCountryRecentDate+'; Our data is updated everyday and is sourced from official government websites</small></p>';
+          reportDailyStr += '<p class="font-italic"><small>Last updated: '+tempCountryRecentDate+'; Our data is updated everyday and is sourced from official government websites at 8:15pm Eastern Time</small></p>';
           reportDailyStr += '<p class="font-italic"><small> </small></p>';
 
         }
