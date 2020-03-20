@@ -80,6 +80,7 @@ function coronaReport(ProvinceState, CountryRegion, country) {
         var conditionStr = '';
         var reportDailyStr ='';
         var reportStr = '';
+        var tabStr= '';
 
         function toPercent(number, float) {
           var percent = parseFloat(number * 100).toFixed(float) + "%";
@@ -162,6 +163,24 @@ function coronaReport(ProvinceState, CountryRegion, country) {
           reportDailyStr += '<p class="font-italic"><small> </small></p>';
 
         }
+
+        tabStr+='<ul class="nav nav-tabs">';
+          tabStr+='<li class="nav-item">';
+            if(country=='US'){
+              tabStr+='<a class="nav-link active" href="http://coronanotbeer.com?country=us">US</a>';
+            }else{
+              tabStr+='<a class="nav-link" href="http://coronanotbeer.com?country=us"">US</a>';
+            }
+          tabStr+='</li>';
+        tabStr+='<li class="nav-item">';
+            if(country!='US'){
+              tabStr+='<a class="nav-link active" href="http://coronanotbeer.com?country=global">Global</a>';
+            }else{
+              tabStr+='<a class="nav-link" href="http://coronanotbeer.com?country=global">Gloabal</a>';
+            }
+          tabStr+='</li>';
+        tabStr+='</ul>';
+        $('#tab').html(tabStr);
 
         if (countryData == null) {
           selectStr += '<div class="alert alert-success smallfont" role="alert"><i>';
