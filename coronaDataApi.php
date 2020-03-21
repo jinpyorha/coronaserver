@@ -36,7 +36,7 @@ if($country=='US'){
 $sqlCountryList.=" GROUP BY ProvinceState,CountryRegion
 ORDER BY cnt DESC ";
 
-if($countryRegion=='US'||$countryRegion=='China'){
+if($countryRegion=='US'||$countryRegion=='China'||$countryRegion=='United Kingdom'){
 	$sqlCountryData = "SELECT ProvinceState AS PS ,CountryRegion AS CR ,LastUpdate,Confirmed,
 	Deaths,Recovered,DataDate AS DD,
 	Confirmed-(SELECT Confirmed FROM CoronaData WHERE DataDate < DD AND ProvinceState = PS AND CountryRegion = CR ORDER BY DataDate DESC LIMIT 1 )  AS Increase,
