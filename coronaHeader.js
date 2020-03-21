@@ -4,7 +4,7 @@ function coronaHeader(lang,page) {
   // headerStr += '<link rel="icon" href="img/locosmall.png">'
   headerStr += '<nav class="navbar navbar-expand-lg navbar-light">';
   // headerStr += '<a class="navbar-brand" href="#">CoronaNotBeer</a>';
-  headerStr += '<a class="navbar-brand" href="http://coronanotbeer.com"><img src="/coronaserver/img/logobig.png" alt="big logo"></a>';
+  headerStr += '<a class="navbar-brand" href="https://coronanotbeer.com"><img src="/coronaserver/img/logobig.png" alt="big logo"></a>';
   headerStr += '<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">';
   headerStr += '<span class="navbar-toggler-icon"></span>';
   headerStr += '</button>';
@@ -15,7 +15,7 @@ function coronaHeader(lang,page) {
   } else{
     headerStr += '<li class="nav-item">';
   }
-  headerStr += '<a class="nav-link" href="http://coronanotbeer.com?lang='+lang+'&country=global">';
+  headerStr += '<a class="nav-link" href="https://coronanotbeer.com?lang='+lang+'&country=global">';
   headerStr += lang=='en'?'World':'세계현황';
   headerStr+='<span class="sr-only">(current)</span></a>';
   headerStr += '</li>';
@@ -24,7 +24,7 @@ function coronaHeader(lang,page) {
   } else {
     headerStr += '<li class="nav-item">';
   }
-  headerStr += '<a class="nav-link" href="http://coronanotbeer.com?lang='+lang+'&country=US">';
+  headerStr += '<a class="nav-link" href="https://coronanotbeer.com?lang='+lang+'&country=US">';
   headerStr += lang=='en'?'US':'미국현황';
   headerStr += '</a>';
   headerStr += '</li>';
@@ -59,7 +59,7 @@ function coronaHeader(lang,page) {
   }else{
     headerStr += '<li class="nav-item">';
   }
-  headerStr += '<a class="nav-link" href="http://coronanotbeer.com/coronainfo?lang='+lang+'&country='+country+'">';
+  headerStr += '<a class="nav-link" href="https://coronanotbeer.com/coronainfo?lang='+lang+'&country='+country+'">';
   headerStr += lang=='en'?'COVID-19':'COVID-19 이란?';
   headerStr+='<span class="sr-only">(current)</span></a>';
   headerStr += '</li>';
@@ -68,7 +68,7 @@ function coronaHeader(lang,page) {
   }else{
     headerStr += '<li class="nav-item">';
   }
-  headerStr += '<a class="nav-link" href="http://coronanotbeer.com/aboutus?lang='+lang+'&country='+country+'">';
+  headerStr += '<a class="nav-link" href="https://coronanotbeer.com/aboutus?lang='+lang+'&country='+country+'">';
   headerStr += lang=='en'?'About us':'About us';
   headerStr+='<span class="sr-only">(current)</span></a>';
   headerStr += '</li>';
@@ -81,10 +81,10 @@ function coronaHeader(lang,page) {
     headerStr += '<div class="dropdown-menu">';
       headerStr += '<a class="dropdown-item';
       headerStr += lang=='en'?' active':'';
-      headerStr += '" href="http://coronanotbeer.com?lang=en">English</a>';
+      headerStr += '" href="https://coronanotbeer.com?lang=en">English</a>';
       headerStr += '<a class="dropdown-item';
       headerStr += lang=='en'?'':' active';
-      headerStr +='" href="http://coronanotbeer.com?lang=ko">한국어</a>';
+      headerStr +='" href="https://coronanotbeer.com?lang=ko">한국어</a>';
     headerStr += '</div>';
   headerStr += '</div>';
   //
@@ -97,16 +97,16 @@ function coronaHeader(lang,page) {
   tabStr+='<ul class="nav nav-tabs">';
     tabStr+='<li class="nav-item">';
       if(country=='US'){
-        tabStr+='<a class="nav-link active" href="http://coronanotbeer.com?country=US">US</a>';
+        tabStr+='<a class="nav-link active" href="https://coronanotbeer.com?country=US">US</a>';
       }else{
-        tabStr+='<a class="nav-link" href="http://coronanotbeer.com?country=US">US</a>';
+        tabStr+='<a class="nav-link" href="https://coronanotbeer.com?country=US">US</a>';
       }
     tabStr+='</li>';
   tabStr+='<li class="nav-item">';
       if(country!='US'){
-        tabStr+='<a class="nav-link active" href="http://coronanotbeer.com?country=global">Global</a>';
+        tabStr+='<a class="nav-link active" href="https://coronanotbeer.com?country=global">Global</a>';
       }else{
-        tabStr+='<a class="nav-link" href="http://coronanotbeer.com?country=global">Global</a>';
+        tabStr+='<a class="nav-link" href="https://coronanotbeer.com?country=global">Global</a>';
       }
     tabStr+='</li>';
   tabStr+='</ul>';
