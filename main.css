@@ -25,19 +25,13 @@ img {
 	/*filter:brightness(0.8);*/
 }
 
-/*
-.heading{
-	position: relative;
-	padding: 0.5rem 1rem 0.5rem 1rem;
-}*/
+
 
 .card_position{
 	position:absolute;
 }
 
-/*.overview_card_position{
-	position:absolute;
-}*/
+
 
 .upper_card{
 	-webkit-box-shadow: 4px 4px 5px 0px rgba(0,0,0,0.65);
