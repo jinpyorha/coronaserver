@@ -26,16 +26,19 @@
 
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-116931667-6"></script>
-	
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
 </head>
 
 <body class="futura">
-	<div class="continaer">
-		<div class="background-image-half">
-			<div class="d-flex justify-content-center">
-				<div class="col-sm-6 dropdown_position">
-					<div class="card text-center">			  
+	<div class="background"></div>
+	<div class="container">
+		<!-- <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> -->
+		<div class="card_position">
+			<div class="row justify-content-md-center">
+				<div class="col-sm-6">
+				<!-- Upper Card -->
+					<div class="card text-center  upper_card">			  
 			  			<div class="card-header">
 			    			<ul class="nav nav-tabs card-header-tabs">
 			      				<li class="nav-item">
@@ -53,24 +56,24 @@
 			    			</ul>
 			  			</div>
 			  			<div class="card-body">
-			    			<h5 class="card-title">Special title treatment</h5>
+			    			<h5 class="card-title">Search by state (cumulative)</h5>
 							<select id="countryList" class="smallfont">
 								<option>1</option>
 		    					<option>2</option>
-	    					</select>
-	    				</div>
+							</select>
+						</div>
 					</div>
-				</div>
+				</div>		
 			</div>
 
-			<br>
-			<div class="row justify-content-around overview_card_position">
-			  
-			  <div class="col-sm-3">
-			    <div class="card">
+		<br>
+			<div class="row justify-content-md-center">
+			 <!-- Lower Card 1 -->
+			 <div class="col-sm-3">
+			    <div class="card h-100 lower_card">
 			      <div class="row no-gutters">
-				    <div class="col-sm-4">
-				    <img src="/coronaserver/img/graph.png" alt="..." class="card-image-top img-fluid">
+				    <div class="col-sm-4 vertical">
+				    	<img src="/coronaserver/img/graph.png" alt="..." class="card-image-top center">
 				    </div>
 				    <div class="col-sm-8">
 				      <div class="card-body p-1">
@@ -81,12 +84,12 @@
 			  	  </div>
 				</div>
 			  </div>
-
+			<!-- Lower Card 2 -->
 			  <div class="col-sm-3">
-			    <div class="card">
+			    <div class="card h-100 lower_card">
 			      <div class="row no-gutters">
-				    <div class="col-sm-4">
-				      <img src="/coronaserver/img/location.png" alt="..." class="card-image-top img-fluid">
+				    <div class="col-sm-4 vertical">
+				      <img src="/coronaserver/img/location.png" alt="..." class="card-image-top center">
 				    </div>
 				    <div class="col-sm-8">
 				      <div class="card-body p-1">
@@ -97,12 +100,12 @@
 			  	  </div>
 				</div>
 			  </div>
-
-			   <div class="col-sm-3">
-			    <div class="card">
+		  	<!-- Lower Card 3 -->
+			  <div class="col-sm-3">
+			    <div class="card h-100 lower_card">
 			      <div class="row no-gutters">
-				    <div class="col-sm-4">
-				      <img src="/coronaserver/img/graph.png" alt="..." class="card-image-top img-fluid">
+				    <div class="col-sm-4 vertical">
+				      <img src="/coronaserver/img/graph.png" alt="..." class="card-image-top center">
 				    </div>
 				    <div class="col-sm-8">
 				      <div class="card-body p-1">
@@ -113,12 +116,30 @@
 			  	  </div>
 				</div>
 			  </div>
-
 			</div>
-			<br>
 		</div>
-	</div>
-	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+</div>
+<br>
+
+<script>
+	$(document).ready(function(){
+		$('.lower_card').hover(
+		function(){
+			$(this).animate({
+				marginTop:"-=1%",
+			},200);
+		},
+		function(){
+			$(this).animate({
+				marginTop: "0%"
+			}, 200);
+		}
+	  );
+	});
+
+</script>
+
+
 
 
 
