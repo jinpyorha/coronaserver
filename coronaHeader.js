@@ -24,7 +24,7 @@ function coronaHeader(lang,page) {
   } else {
     headerStr += '<li class="nav-item">';
   }
-  headerStr += '<a class="nav-link" href="https://coronanotbeer.com?lang='+lang+'&country=US">';
+  headerStr += '<a class="nav-link" href="https://coronanotbeer.com?lang='+lang+'&country=USA">';
   headerStr += lang=='en'?'USA':'미국현황';
   headerStr += '</a>';
   headerStr += '</li>';
@@ -97,9 +97,9 @@ function coronaHeader(lang,page) {
   tabStr+='<ul class="nav nav-tabs">';
     tabStr+='<li class="nav-item">';
       if(country=='USA'){
-        tabStr+='<a class="nav-link active" href="https://coronanotbeer.com?country=US">US</a>';
+        tabStr+='<a class="nav-link active" href="https://coronanotbeer.com?country=USA">US</a>';
       }else{
-        tabStr+='<a class="nav-link" href="https://coronanotbeer.com?country=US">US</a>';
+        tabStr+='<a class="nav-link" href="https://coronanotbeer.com?country=USA">US</a>';
       }
     tabStr+='</li>';
   tabStr+='<li class="nav-item">';
