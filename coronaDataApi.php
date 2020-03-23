@@ -28,22 +28,24 @@ $countryRegion = isset($_GET['CountryRegion'])&&$_GET['CountryRegion']!=''?$_GET
 $country=
 isset($_GET['country'])&&$_GET['country']!=''?$_GET['country']:'';
 
-//$sqlCountryList ="SELECT ProvinceState,CountryRegion,COUNT(Id)AS cnt FROM CoronaData GROUP BY ProvinceState,CountryRegion";
-$sqlCountryList="SELECT ProvinceState,CountryRegion,(SELECT Confirmed FROM CoronaData WHERE ProvinceState=CD.ProvinceState AND CountryRegion=CD.CountryRegion ORDER BY DataDate DESC LIMIT 1 ) AS cnt FROM CoronaData AS CD";
-if($country=='US'){
-	$sqlCountryList.=" WHERE CD.CountryRegion = '".$country."' AND CD.ProvinceState<>'US'";
+//$sqlCountryList ="SELECT ProvinceState,CountryRegion,COUNT(Id)AS cnt FROM CoronaData2 GROUP BY ProvinceState,CountryRegion";
+$sqlCountryList="SELECT ProvinceState,CountryRegion,(SELECT Confirmed FROM CoronaData2 WHERE ProvinceState=CD.ProvinceState AND CountryRegion=CD.CountryRegion ORDER BY DataDate DESC LIMIT 1 ) AS cnt FROM CoronaData2 AS CD";
+$sqlCountryList.=" WHERE CD.ProvinceState<>'Total:' AND CD.CountryRegion<>'Total:'";
+if($country=='USA'){
+	$sqlCountryList.=" AND CD.CountryRegion = '".$country."' AND CD.ProvinceState<>''";
 }
-$sqlCountryList.=" GROUP BY ProvinceState,CountryRegion
+$sqlCountryList.="  GROUP BY ProvinceState,CountryRegion
 ORDER BY cnt DESC ";
 
-if($countryRegion=='US'||$countryRegion=='China'||$countryRegion=='United Kingdom'){
+if($countryRegion=='USA'){
 	$sqlCountryData = "SELECT ProvinceState AS PS ,CountryRegion AS CR ,LastUpdate,Confirmed,
 	Deaths,Recovered,DataDate AS DD,
-	Confirmed-(SELECT Confirmed FROM CoronaData WHERE DataDate < DD AND ProvinceState = PS AND CountryRegion = CR ORDER BY DataDate DESC LIMIT 1 )  AS Increase,
-  Deaths-(SELECT Deaths FROM CoronaData WHERE DataDate < DD AND ProvinceState = PS AND CountryRegion = CR ORDER BY DataDate DESC LIMIT 1 ) AS DeathsIncrease,
-  Recovered-(SELECT Recovered FROM CoronaData WHERE DataDate < DD AND ProvinceState = PS AND CountryRegion = CR ORDER BY DataDate DESC LIMIT 1 ) AS RecoveredIncrease
+	Confirmed-(SELECT Confirmed FROM CoronaData2 WHERE DataDate < DD AND ProvinceState = PS AND CountryRegion = CR ORDER BY DataDate DESC LIMIT 1 )  AS Increase,
+  Deaths-(SELECT Deaths FROM CoronaData2 WHERE DataDate < DD AND ProvinceState = PS AND CountryRegion = CR ORDER BY DataDate DESC LIMIT 1 ) AS DeathsIncrease,
+  Recovered-(SELECT Recovered FROM CoronaData2 WHERE DataDate < DD AND ProvinceState = PS AND CountryRegion = CR ORDER BY DataDate DESC LIMIT 1 ) AS RecoveredIncrease
 
-	FROM CoronaData ";
+	FROM CoronaData2
+	";
 }else{
 	$sqlCountryData = "SELECT
   ProvinceState AS PS,
@@ -53,15 +55,15 @@ if($countryRegion=='US'||$countryRegion=='China'||$countryRegion=='United Kingdo
   SUM(Deaths) AS Deaths,
   SUM(Recovered) AS Recovered,
   DataDate      AS DD,
-  SUM(Confirmed-(SELECT Confirmed FROM CoronaData WHERE DataDate < DD AND ProvinceState = PS AND CountryRegion = CR ORDER BY DataDate DESC LIMIT 1 )) AS Increase,
-  SUM(Deaths-(SELECT Deaths FROM CoronaData WHERE DataDate < DD AND ProvinceState = PS AND CountryRegion = CR ORDER BY DataDate DESC LIMIT 1 )) AS DeathsIncrease,
-  SUM(Recovered-(SELECT Recovered FROM CoronaData WHERE DataDate < DD AND ProvinceState = PS AND CountryRegion = CR ORDER BY DataDate DESC LIMIT 1 )) AS RecoveredIncrease
-	FROM CoronaData ";
+  SUM(Confirmed-(SELECT Confirmed FROM CoronaData2 WHERE DataDate < DD AND ProvinceState = PS AND CountryRegion = CR ORDER BY DataDate DESC LIMIT 1 )) AS Increase,
+  SUM(Deaths-(SELECT Deaths FROM CoronaData2 WHERE DataDate < DD AND ProvinceState = PS AND CountryRegion = CR ORDER BY DataDate DESC LIMIT 1 )) AS DeathsIncrease,
+  SUM(Recovered-(SELECT Recovered FROM CoronaData2 WHERE DataDate < DD AND ProvinceState = PS AND CountryRegion = CR ORDER BY DataDate DESC LIMIT 1 )) AS RecoveredIncrease
+	FROM CoronaData2 ";
 }
-if($countryRegion=='US'||$countryRegion=='China'){
-$sqlCountryDataWhere = "WHERE ProvinceState = '".$provinceState."' AND CountryRegion = '".$countryRegion."' ";
+if($countryRegion=='USA'){
+$sqlCountryDataWhere = "WHERE ProvinceState = '".$provinceState."' AND CountryRegion = '".$countryRegion."' AND ProvinceState<>'Total:' AND CountryRegion<>'Total:' AND ProvinceState<>'' ";
 }else{
-$sqlCountryDataWhere = "WHERE CountryRegion = '".$countryRegion."' GROUP BY DD ";
+$sqlCountryDataWhere = "WHERE CountryRegion = '".$countryRegion."' AND ProvinceState<>'Total:' AND CountryRegion<> 'Total:' GROUP BY DD ";
 }
 $sqlCountryDataOrder = "ORDER BY DataDate DESC ";
 $sqlCountryData.=$sqlCountryDataWhere.$sqlCountryDataOrder;
@@ -130,8 +132,8 @@ else{
 	//나라 데이터가 없는 경우
 	//세계면 나라별 / 미국이면 주별
 	//데이터를 모두 sum 해서 recent 값 구한다
-	$yesterdaySql="SELECT DataDate FROM CoronaData ORDER BY DataDate DESC LIMIT 1";//최근일
-	$yesterdaySql2="SELECT DataDate FROM CoronaData
+	$yesterdaySql="SELECT DataDate FROM CoronaData2 ORDER BY DataDate DESC LIMIT 1";//최근일
+	$yesterdaySql2="SELECT DataDate FROM CoronaData2
 GROUP BY DataDate
 ORDER BY DataDate DESC
 LIMIT 1,1";//전일
@@ -140,13 +142,13 @@ LIMIT 1,1";//전일
   SUM(Confirmed) AS Confirmed,
   SUM(Deaths)   AS Deaths,
   SUM(Recovered) AS Recovered,
-SUM(Confirmed)-(SELECT SUM(Confirmed)  FROM CoronaData WHERE CountryRegion='US' AND DataDate= (".	$yesterdaySql2.")) AS ConfirmedIncrease,
-SUM(Deaths)-(SELECT SUM(Deaths)  FROM CoronaData WHERE CountryRegion='US' AND DataDate= (".$yesterdaySql2.")) AS DeathsIncrease,
-SUM(Recovered)-(SELECT SUM(Recovered)  FROM CoronaData WHERE CountryRegion='US' AND DataDate= (".	$yesterdaySql2.")) AS RecoveredIncrease,
+NewCases AS ConfirmedIncrease,
+NewDeaths AS DeathsIncrease,
+NewRecovered AS RecoveredIncrease,
 (".$yesterdaySql.") AS RecentDate
-FROM CoronaData
+FROM CoronaData2
 WHERE ";
-if($country=='US'){	$totalRecentDataSql.="CountryRegion = 'US' AND ";}
+if($country=='USA'){	$totalRecentDataSql.="CountryRegion = 'USA' AND ProvinceState<>'Total:' AND ProvinceState<>'' AND ";}
   $totalRecentDataSql.="DataDate =(".$yesterdaySql.")";
 
 	$resultTotal = $conn->query($totalRecentDataSql);

@@ -49,8 +49,11 @@
    $dom = new simple_html_dom();
 
    $dom->load($content);
+	 var_dump($dom);
+	 exit;
     //$A_sitebody = $dom->find('span.mw-headline',0)->plaintext;
-   $tempTr = $dom->find('table[id=usa_table_countries_today] tbody tr');
+   $tempTr = $dom->find('table[id=usa_table_countries_today]');
+
    $tempTh = $dom->find('thead tr th');
    $tempTd = $dom->find('tbody tr td');
 
@@ -60,13 +63,14 @@
 
    for($i=0;$i<$cntTr;$i++){
     $country = $tempTr[$i]->children(0)->plaintext;
+		echo $country.'<br>';
 
     $sql="Insert Into CoronaCountry (CountryRegion,ProvinceState) VALUES ('US','".$country."')";
-    if ($conn->query($sql) === TRUE) {
+    //if ($conn->query($sql) === TRUE) {
       //echo "New record created successfully";
-    } else {
-      echo "Error: " . $sql . "<br>" . $conn->error;
-    }
+  //  } else {
+  //    echo "Error: " . $sql . "<br>" . $conn->error;
+  //  }
    }
 
 exit;

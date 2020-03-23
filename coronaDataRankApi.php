@@ -21,10 +21,10 @@ $sqlWorldRank = "SELECT
   SUM(Deaths)   AS Deaths,
   SUM(Recovered) AS Recovered,
   DataDate      AS DD,
-  SUM(Confirmed-(SELECT Confirmed FROM CoronaData WHERE DataDate < DD AND ProvinceState = PS AND CountryRegion = CR ORDER BY DataDate DESC LIMIT 1 )) AS Increase,
-  SUM(Deaths-(SELECT Deaths FROM CoronaData WHERE DataDate < DD AND ProvinceState = PS AND CountryRegion = CR ORDER BY DataDate DESC LIMIT 1 )) AS DeathsIncrease,
-  SUM(Recovered-(SELECT Recovered FROM CoronaData WHERE DataDate < DD AND ProvinceState = PS AND CountryRegion = CR ORDER BY DataDate DESC LIMIT 1 )) AS RecoveredIncrease
-FROM CoronaData
+  SUM(Confirmed-(SELECT Confirmed FROM CoronaData2 WHERE DataDate < DD AND ProvinceState = PS AND CountryRegion = CR ORDER BY DataDate DESC LIMIT 1 )) AS Increase,
+  SUM(Deaths-(SELECT Deaths FROM CoronaData2 WHERE DataDate < DD AND ProvinceState = PS AND CountryRegion = CR ORDER BY DataDate DESC LIMIT 1 )) AS DeathsIncrease,
+  SUM(Recovered-(SELECT Recovered FROM CoronaData2 WHERE DataDate < DD AND ProvinceState = PS AND CountryRegion = CR ORDER BY DataDate DESC LIMIT 1 )) AS RecoveredIncrease
+FROM CoronaData2
 WHERE DataDate  = '".$dataDate."'
 GROUP BY DD,CountryRegion
 ORDER BY Increase DESC

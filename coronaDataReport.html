@@ -19,7 +19,7 @@
 
 	<link rel="apple-touch-icon" sizes="180x180" href="/coronaserver/img/favicon_lg.png" />
 	<link rel="icon" type="image/png" href="/coronaserver/img/favicon_lg.png" sizes="192x192"/>
-	
+
 	<!--link rel="stylesheet" type="text/css" href="map/map.css" /-->
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -104,7 +104,7 @@
 	<script>
 		const queryString = window.location.search;
 		const urlParams = new URLSearchParams(queryString);
-		const country = (urlParams.get('country') != null && urlParams.get('country') != '') ? urlParams.get('country') : 'US';
+		const country = (urlParams.get('country') != null && urlParams.get('country') != '') ? urlParams.get('country') : 'USA';
 		const lang = (urlParams.get('lang') != null && urlParams.get('lang') != '') ? urlParams.get('lang') : 'en';
 		console.log(country);
 		console.log(lang);
