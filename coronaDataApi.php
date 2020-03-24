@@ -34,6 +34,7 @@ $sqlCountryList.=" WHERE CD.ProvinceState<>'Total:' AND CD.CountryRegion<>'Total
 if($country=='USA'){
 	$sqlCountryList.=" AND CD.CountryRegion = '".$country."' AND CD.ProvinceState<>''";
 }
+
 $sqlCountryList.="  GROUP BY ProvinceState,CountryRegion
 ORDER BY cnt DESC ";
 

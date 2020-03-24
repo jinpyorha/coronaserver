@@ -80,15 +80,15 @@
     $newDeaths = str_replace('+','',$newDeaths);
     $newDeaths = str_replace(',','',$newDeaths);
     $newDeaths = $newDeaths==null||$newDeaths==''?0:$newDeaths;
-
+/*
     $totalRecovered = $tempTr[$i]->children(5)->plaintext;
     $totalRecovered = str_replace(',','',$totalRecovered);
-    $totalRecovered =$totalRecovered==null||$totalRecovered==''?0:$totalRecovered;
+    $totalRecovered =$totalRecovered==null||$totalRecovered==''?0:$totalRecovered;*/
 
-    $activeCases= $tempTr[$i]->children(6)->plaintext;
+    $activeCases= $tempTr[$i]->children(5)->plaintext;
     $activeCases = str_replace(',','',$activeCases);
     $activeCases=$activeCases==''||$activeCases==null?0:$activeCases;
-
+		/*
     $sqlRecover = "SELECT Recovered FROM CoronaData2 WHERE CountryRegion = 'USA' AND ProvinceState='".$country."' ORDER BY DataDate DESC LIMIT 1 ";
     $result = $conn->query($sqlRecover);
     $recoveredYesterday = 0;
@@ -97,10 +97,10 @@
     	$row = $result->fetch_assoc();
       $recoveredYesterday = $row['Recovered']!=null||$row['Recovered']!=''?$row['Recovered']:0;
     }
-    $newRecovered = ($totalRecovered-$recoveredYesterday);
+    $newRecovered = ($totalRecovered-$recoveredYesterday);*/
 
-    $sql="INSERT INTO CoronaData2 (CountryRegion,ProvinceState,Confirmed,Deaths,Recovered,WrittenAtUtc,DataDate,NewCases,ActiveCases,NewDeaths,NewRecovered)
-VALUES ('USA','".$country."',".$totalCases.",".$totalDeaths.",".$totalRecovered.",NOW(),'".$today."',".$newCases.",".$activeCases.",".$newDeaths.",".$newRecovered.")";
+    $sql="INSERT INTO CoronaData2 (CountryRegion,ProvinceState,Confirmed,Deaths,WrittenAtUtc,DataDate,NewCases,ActiveCases,NewDeaths)
+VALUES ('USA','".$country."',".$totalCases.",".$totalDeaths.",NOW(),'".$today."',".$newCases.",".$activeCases.",".$newDeaths.")";
 
 //echo $sql.'<br>';
     if ($conn->query($sql) === TRUE) {
