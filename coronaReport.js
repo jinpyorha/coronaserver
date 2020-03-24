@@ -51,9 +51,9 @@ function coronaReport(ProvinceState, CountryRegion, country) {
         }
 
         if (country == 'USA') {
-          $('#title').html('#COVID-19 in US');
+          $('#title').html('#COVID-19 hourly updates in US');
         } else {
-          $('#title').html('#COVID-19 Global');
+          $('#title').html('#COVID-19 hourly updates Global');
         }
 
         selectStr += '</option>';
@@ -140,26 +140,26 @@ function coronaReport(ProvinceState, CountryRegion, country) {
           reportDailyStr += '<tr>';
 
           reportDailyStr += '<td><span class="largefont_data">'+countryDataRecent.Confirmed+'</span><br><span style="font-size:0.75rem">(<span style="color:red">+'+countryDataRecent.Increase+'</span>)</span></td>';
-          if(subtractThree(tempCountryRecentConfirmedIncrease, tempCountryRecentDeathsIncrease, tempCountryRecentRecoveredIncrease)>0){
+          if(subtractThree(tempCountryRecentConfirmedIncrease, tempCountryRecentDeathsIncrease, tempCountryRecentRecoveredIncrease)>=0){
             reportDailyStr += '<td><span class="largefont_data">'+subtractThree(tempCountryRecentConfirmed, tempCountryRecentDeaths, tempCountryRecentRecovered)+'</span><br><span style="font-size:0.75rem">(<span class="red">+'+subtractThree(tempCountryRecentConfirmedIncrease, tempCountryRecentDeathsIncrease, tempCountryRecentRecoveredIncrease)+'</span>)</span></td>';
           }else{
-            reportDailyStr += '<td><span class="largefont_data">'+subtractThree(tempCountryRecentConfirmed, tempCountryRecentDeaths, tempCountryRecentRecovered)+'</span><br><span style="font-size:0.75rem">(<span class="blue">+'+subtractThree(tempCountryRecentConfirmedIncrease, tempCountryRecentDeathsIncrease, tempCountryRecentRecoveredIncrease)+'</span>)</span></td>';
+            reportDailyStr += '<td><span class="largefont_data">'+subtractThree(tempCountryRecentConfirmed, tempCountryRecentDeaths, tempCountryRecentRecovered)+'</span><br><span style="font-size:0.75rem">(<span class="blue">'+subtractThree(tempCountryRecentConfirmedIncrease, tempCountryRecentDeathsIncrease, tempCountryRecentRecoveredIncrease)+'</span>)</span></td>';
           }
 
-          if(countryDataRecent.DeathsIncrease>0){
-            reportDailyStr += '<td><span class="largefont_data">'+countryDataRecent.Deaths+'</span><br><span style="font-size:0.75rem">(<span class="red">+'+countryDataRecent.DeathsIncrease+'</span>)</span><span style="font-size:0.75rem; color:grey"><br>'+toPercent(tempCountryRecentDeaths/tempCountryRecentConfirmed,2)+' of total</span></td>';
+          if(countryDataRecent.DeathsIncrease>=0){
+            reportDailyStr += '<td><span class="largefont_data">'+countryDataRecent.Deaths+'</span><br><span style="font-size:0.75rem">(<span class="red">+'+countryDataRecent.DeathsIncrease+'</span>)</span><span style="font-size:0.75rem; color:grey"><br>'+toPercent(tempCountryRecentDeaths/tempCountryRecentConfirmed,2)+' of total cases</span></td>';
           }else{
-            reportDailyStr += '<td><span class="largefont_data">'+countryDataRecent.Deaths+'</span><br><span style="font-size:0.75rem">(<span class="blue">+'+countryDataRecent.DeathsIncrease+'</span>)</span><span style="font-size:0.75rem; color:grey"><br>'+toPercent(tempCountryRecentDeaths/tempCountryRecentConfirmed,2)+' of total</span></td>';
+            reportDailyStr += '<td><span class="largefont_data">'+countryDataRecent.Deaths+'</span><br><span style="font-size:0.75rem">(<span class="blue">'+countryDataRecent.DeathsIncrease+'</span>)</span><span style="font-size:0.75rem; color:grey"><br>'+toPercent(tempCountryRecentDeaths/tempCountryRecentConfirmed,2)+' of total cases</span></td>';
           }
           if(country!='USA'){
-           reportDailyStr += '<td><span class="largefont_data">'+countryDataRecent.Recovered+'</span><br><span style="font-size:0.75rem">(<span class="red">+'+countryDataRecent.RecoveredIncrease+'</span>)</span><span style="font-size:0.75rem; color:green"> '+toPercent(tempCountryRecentRecovered/tempCountryRecentConfirmed,2)+' of total</span></td>';
+           reportDailyStr += '<td><span class="largefont_data">'+countryDataRecent.Recovered+'</span><br><span style="font-size:0.75rem">(<span class="red">+'+countryDataRecent.RecoveredIncrease+'</span>)</span><span style="font-size:0.75rem; color:green"><br>'+toPercent(tempCountryRecentRecovered/tempCountryRecentConfirmed,2)+' of total cases</span></td>';
           }
           reportDailyStr += '</tr>';
           reportDailyStr += '<tr>';
           reportDailyStr += '</tr>';
           reportDailyStr += '</tbody>';
           reportDailyStr += '</table>';
-          reportDailyStr += '<p class="font-italic"><small>Last updated: '+tempCountryRecentDate+'; Our data is updated everyday and is sourced from official government websites at 8:15pm Eastern Time</small></p>';
+          reportDailyStr += '<p class="font-italic"><small>Last updated: '+tempCountryRecentDate+' in GMT; Data updates every hour and is sourced and cross-checked with official government websites</small></p>';
           reportDailyStr += '<p class="font-italic"><small> </small></p>';
 
         }

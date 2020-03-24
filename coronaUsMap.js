@@ -28,6 +28,9 @@ function coronaUsMap(index){
           dataElmGeo.unshift(geochartData);
         //가져온 데이터 배열에 저장 끝
         var mapStr = '';
+ 
+
+        mapStr +='Click on a State for a detailed analysis';
         mapStr +='<table class="table table-hover">';
         mapStr += '<col width="0.625rem">';
         mapStr += '<col width="0.625rem">';
