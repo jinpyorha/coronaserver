@@ -115,7 +115,7 @@ function coronaReport(ProvinceState, CountryRegion, country) {
 
           reportDailyStr +='<table class="table table-hover">';
           reportDailyStr += '<thead class="table-success"><tr>';
-          reportDailyStr += '<th scope="col" colspan="1" class="smallfont">Total<br>cases<br>';
+          reportDailyStr += '<th scope="col" colspan="1" class="smallfont">Confirmed<br>';
           if(country=='USA'){
             if(ProvinceState=='Select States'||ProvinceState==''){
               reportDailyStr+='in US';
@@ -130,7 +130,7 @@ function coronaReport(ProvinceState, CountryRegion, country) {
             }
           }
           reportDailyStr += '</th>';
-          reportDailyStr += '<th scope="col" colspan="1" class="smallfont">Total<br>active</th>';
+          reportDailyStr += '<th scope="col" colspan="1" class="smallfont">Total<br>active</th>';          
           reportDailyStr += '<th scope="col" colspan="1" class="smallfont">Total<br>death</th>';
           if(country!='USA'){
             reportDailyStr += '<th scope="col" colspan="1" class="smallfont">Total<br>recovered</th>';
@@ -139,20 +139,25 @@ function coronaReport(ProvinceState, CountryRegion, country) {
           reportDailyStr += '<tbody>';
           reportDailyStr += '<tr>';
 
+          // if(country=='USA'){
           reportDailyStr += '<td><span class="largefont_data">'+countryDataRecent.Confirmed+'</span><br><span style="font-size:0.75rem">(<span style="color:red">+'+countryDataRecent.Increase+'</span>)</span></td>';
+          // }else{
+          // reportDailyStr += '<td><span class="mediumfont_data">'+countryDataRecent.Confirmed+'</span><br><span style="font-size:0.75rem">(<span style="color:red">+'+countryDataRecent.Increase+'</span>)</span></td>';  
+          // }
+          
           if(subtractThree(tempCountryRecentConfirmedIncrease, tempCountryRecentDeathsIncrease, tempCountryRecentRecoveredIncrease)>=0){
-            reportDailyStr += '<td><span class="largefont_data">'+subtractThree(tempCountryRecentConfirmed, tempCountryRecentDeaths, tempCountryRecentRecovered)+'</span><br><span style="font-size:0.75rem">(<span class="red">+'+subtractThree(tempCountryRecentConfirmedIncrease, tempCountryRecentDeathsIncrease, tempCountryRecentRecoveredIncrease)+'</span>)</span></td>';
+            reportDailyStr += '<td><span class="largefont_data">'+subtractThree(tempCountryRecentConfirmed, tempCountryRecentDeaths, tempCountryRecentRecovered)+'</span><br><span style="font-size:0.75rem">(<span class="red">+'+subtractThree(tempCountryRecentConfirmedIncrease, tempCountryRecentDeathsIncrease, tempCountryRecentRecoveredIncrease)+'</span>)<br></span><span style="font-size:0.75rem; color:grey">'+toPercent(subtractThree(tempCountryRecentConfirmed, tempCountryRecentDeaths, tempCountryRecentRecovered)/tempCountryRecentConfirmed,1)+'/total</span></td>';
           }else{
-            reportDailyStr += '<td><span class="largefont_data">'+subtractThree(tempCountryRecentConfirmed, tempCountryRecentDeaths, tempCountryRecentRecovered)+'</span><br><span style="font-size:0.75rem">(<span class="blue">'+subtractThree(tempCountryRecentConfirmedIncrease, tempCountryRecentDeathsIncrease, tempCountryRecentRecoveredIncrease)+'</span>)</span></td>';
+            reportDailyStr += '<td><span class="largefont_data">'+subtractThree(tempCountryRecentConfirmed, tempCountryRecentDeaths, tempCountryRecentRecovered)+'</span><br><span style="font-size:0.75rem">(<span class="blue">'+subtractThree(tempCountryRecentConfirmedIncrease, tempCountryRecentDeathsIncrease, tempCountryRecentRecoveredIncrease)+'</span>)<br></span><span style="font-size:0.75rem; color:grey">'+toPercent(subtractThree(tempCountryRecentConfirmed, tempCountryRecentDeaths, tempCountryRecentRecovered)/tempCountryRecentConfirmed,1)+'/total</span></td>';
           }
 
           if(countryDataRecent.DeathsIncrease>=0){
-            reportDailyStr += '<td><span class="largefont_data">'+countryDataRecent.Deaths+'</span><br><span style="font-size:0.75rem">(<span class="red">+'+countryDataRecent.DeathsIncrease+'</span>)</span><span style="font-size:0.75rem; color:grey"><br>'+toPercent(tempCountryRecentDeaths/tempCountryRecentConfirmed,2)+' of total cases</span></td>';
+            reportDailyStr += '<td><span class="largefont_data">'+countryDataRecent.Deaths+'</span><br><span style="font-size:0.75rem">(<span class="red">+'+countryDataRecent.DeathsIncrease+'</span>)</span><span style="font-size:0.75rem; color:grey"><br>'+toPercent(tempCountryRecentDeaths/tempCountryRecentConfirmed,1)+'/total</span></td>';
           }else{
-            reportDailyStr += '<td><span class="largefont_data">'+countryDataRecent.Deaths+'</span><br><span style="font-size:0.75rem">(<span class="blue">'+countryDataRecent.DeathsIncrease+'</span>)</span><span style="font-size:0.75rem; color:grey"><br>'+toPercent(tempCountryRecentDeaths/tempCountryRecentConfirmed,2)+' of total cases</span></td>';
+            reportDailyStr += '<td><span class="largefont_data">'+countryDataRecent.Deaths+'</span><br><span style="font-size:0.75rem">(<span class="blue">'+countryDataRecent.DeathsIncrease+'</span>)</span><span style="font-size:0.75rem; color:grey"><br>'+toPercent(tempCountryRecentDeaths/tempCountryRecentConfirmed,1)+'/total</span></td>';
           }
           if(country!='USA'){
-           reportDailyStr += '<td><span class="largefont_data">'+countryDataRecent.Recovered+'</span><br><span style="font-size:0.75rem">(<span class="red">+'+countryDataRecent.RecoveredIncrease+'</span>)</span><span style="font-size:0.75rem; color:green"><br>'+toPercent(tempCountryRecentRecovered/tempCountryRecentConfirmed,2)+' of total cases</span></td>';
+           reportDailyStr += '<td><span class="largefont_data">'+countryDataRecent.Recovered+'</span><br><span style="font-size:0.75rem">(<span class="red">+'+countryDataRecent.RecoveredIncrease+'</span>)</span><span style="font-size:0.75rem; color:grey"><br>'+toPercent(tempCountryRecentRecovered/tempCountryRecentConfirmed,1)+'/total</span></td>';
           }
           reportDailyStr += '</tr>';
           reportDailyStr += '<tr>';
