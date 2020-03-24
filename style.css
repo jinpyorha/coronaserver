@@ -239,3 +239,4 @@ a:active {
 }
 
 .futura { color: #000000; font-family: Futura, "Trebuchet MS", Arial, sans-serif; }
+#coronaUsMapReport tr td:first-child:hover{cursor:pointer;color:red;}
