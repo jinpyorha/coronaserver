@@ -14,7 +14,8 @@
 	$ch = curl_init();
 	$url='https://www.worldometers.info/coronavirus/';
 	$today = date('Y-m-d');
-
+	$now = date('Y-m-d H:i:s');
+	echo 'now : '.$now.'<br>';
 	$yesterday = date('Y-m-d',strtotime("-1 days"));
 
 //	$yesterday2 = date('Y-m-d',strtotime("-".$day." days"));
@@ -47,6 +48,16 @@
 	//echo "Connected successfully";
 	//db 연결 끝
 
+	$countryCntToday = 0;
+	$sqlCountryCnt="SELECT COUNT(*) AS CountryCnt FROM CoronaData2
+WHERE DataDate ='".$today."'
+AND CountryRegion<>''AND ProvinceState =''";
+
+	$result = $conn->query($sqlCountryCnt);
+	$row = $result->fetch_assoc();
+	$countryCntToday = $row['CountryCnt'];
+
+	if($countryCntToday>0){$mode='update';}else{$mode='insert';}
 
    $dom = new simple_html_dom();
 
@@ -108,15 +119,20 @@
     }
     $newRecovered = ($totalRecovered-$recoveredYesterday);
 
-    $sql="INSERT INTO CoronaData2 (ProvinceState,CountryRegion,Confirmed,Deaths,Recovered,WrittenAtUtc,DataDate,NewCases,ActiveCases,SeriousCritical,Pop1M,NewDeaths,NewRecovered)
-VALUES ('','".$country."',".$totalCases.",".$totalDeaths.",".$totalRecovered.",NOW(),'".$today."',".$newCases.",".$activeCases.",".$seriousCritical.",".$totCases1MPop.",".$newDeaths.",".$newRecovered.")";
+if($mode=='insert'){
+    $sql="INSERT INTO CoronaData2 (ProvinceState,CountryRegion,Confirmed,Deaths,Recovered,WrittenAtUtc,DataDate,NewCases,ActiveCases,SeriousCritical,Pop1M,NewDeaths,NewRecovered,LastUpdate)
+VALUES ('','".$country."',".$totalCases.",".$totalDeaths.",".$totalRecovered.",'".$now."','".$today."',".$newCases.",".$activeCases.",".$seriousCritical.",".$totCases1MPop.",".$newDeaths.",".$newRecovered.",'".$now."')";
+}else if($mode == 'update'){
+		$sql ="UPDATE CoronaData2 SET Confirmed=".$totalCases.",Deaths=".$totalDeaths.",WrittenAtUtc='".$now."',NewCases=".$newCases.",ActiveCases=".$activeCases.",NewDeaths=".$newDeaths." ,LastUpdate='".$now."' WHERE CountryRegion = '".$country."' AND ProvinceState='' AND DataDate='".$today."'";
+}
 
 //echo $sql.'<br>';
     if ($conn->query($sql) === TRUE) {
   //    echo "New record created successfully";
+		echo '#';
     } else {
 //      echo "Error: " . $sql . "<br>" . $conn->error;
-  }
+  	}
    }
-
+	 echo '-finish-';
 ?>

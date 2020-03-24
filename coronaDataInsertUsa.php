@@ -14,10 +14,11 @@
 	$ch = curl_init();
 	$url='https://www.worldometers.info/coronavirus/country/us/';
 	$today = date('Y-m-d');
-
+	$now = date('Y-m-d H:i:s');
+	echo 'now : '.$now.'<br>';
 //	$yesterday = date('Y-m-d',strtotime("-1 days"));
-
 //	$yesterday2 = date('Y-m-d',strtotime("-".$day." days"));
+
 
 	//$url.=$yesterday.'.csv';
 
@@ -46,7 +47,16 @@
 	}
 	//echo "Connected successfully";
 	//db 연결 끝
+	$countryCntToday = 0;
+	$sqlCountryCnt="SELECT COUNT(*) AS CountryCnt FROM CoronaData2
+WHERE DataDate ='".$today."'
+AND CountryRegion='USA' AND ProvinceState <>''";
 
+	$result = $conn->query($sqlCountryCnt);
+	$row = $result->fetch_assoc();
+	$countryCntToday = $row['CountryCnt'];
+
+	if($countryCntToday>0){$mode='update';}else{$mode='insert';}
 
    $dom = new simple_html_dom();
 
@@ -98,16 +108,19 @@
       $recoveredYesterday = $row['Recovered']!=null||$row['Recovered']!=''?$row['Recovered']:0;
     }
     $newRecovered = ($totalRecovered-$recoveredYesterday);*/
-
-    $sql="INSERT INTO CoronaData2 (CountryRegion,ProvinceState,Confirmed,Deaths,WrittenAtUtc,DataDate,NewCases,ActiveCases,NewDeaths)
-VALUES ('USA','".$country."',".$totalCases.",".$totalDeaths.",NOW(),'".$today."',".$newCases.",".$activeCases.",".$newDeaths.")";
-
-//echo $sql.'<br>';
-    if ($conn->query($sql) === TRUE) {
+if($mode=='insert'){
+    $sql="INSERT INTO CoronaData2 (CountryRegion,ProvinceState,Confirmed,Deaths,WrittenAtUtc,DataDate,NewCases,ActiveCases,NewDeaths,LastUpdate)
+VALUES ('USA','".$country."',".$totalCases.",".$totalDeaths.",'".$now."','".$today."',".$newCases.",".$activeCases.",".$newDeaths.",'".$now."')";
+}else if($mode=='update'){
+		$sql ="UPDATE CoronaData2 SET Confirmed=".$totalCases.",Deaths=".$totalDeaths.",WrittenAtUtc='".$now."',NewCases=".$newCases.",ActiveCases=".$activeCases.",NewDeaths=".$newDeaths." ,LastUpdate= '".$now."' WHERE CountryRegion = 'USA' AND ProvinceState='".$country."' AND DataDate='".$today."'";
+}
+  if ($conn->query($sql) === TRUE) {
   //    echo "New record created successfully";
-    } else {
+		echo '#';
+  } else {
 //      echo "Error: " . $sql . "<br>" . $conn->error;
-   }
+ 	}
 
 }
+	echo '-finish-';
 ?>
