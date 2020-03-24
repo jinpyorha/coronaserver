@@ -219,7 +219,7 @@ function coronaReport(ProvinceState, CountryRegion, country) {
             if (countryData[i]['Increase'] > 0) {
               reportStr += '<td><span class="mediumfont_data">+' + countryData[i]['Confirmed'] + '</span><span class="red smallfont_data"> <br> (+'+ countryData[i]['Increase'] +')</span></td>';
             } else {
-              reportStr += '<td><span class="mediumfont_data">+' + countryData[i]['Confirmed'] + '</span></td>';
+              reportStr += '<td><span class="mediumfont_data">+' + countryData[i]['Confirmed'] + '<br>(0)</span></td>';
                // '<span class="blue"> ('+ countryData[i]['Increase'] + ')</span></td>';
             }
             if (tempActiveIncrease>0){
@@ -227,19 +227,19 @@ function coronaReport(ProvinceState, CountryRegion, country) {
             } else if (tempActiveIncrease<0){
             reportStr += '<td><span class="mediumfont_data">' + subtractThree(countryData[i]['Confirmed'], countryData[i]['Deaths'],countryData[i]['Recovered'])+ '</span><br><span class="blue smallfont_data">(' + tempActiveIncrease +  ')</span></td>';
             }else{
-              reportStr += '<td><span class="mediumfont_data">' + subtractThree(countryData[i]['Confirmed'], countryData[i]['Deaths'],countryData[i]['Recovered'])+ '</span></td>';
+              reportStr += '<td><span class="mediumfont_data">' + subtractThree(countryData[i]['Confirmed'], countryData[i]['Deaths'],countryData[i]['Recovered'])+ '<br>(0)</span></td>';
             }
 
             if(countryData[i]['Deaths']>0){
-            reportStr += '<td><span class="mediumfont_data">' + countryData[i]['Deaths'] + '</span><br><span class="red smallfont_data">('+toPercent(countryData[i]['Deaths']/countryData[i]['Confirmed'],2)+')<br></span><span class="smallfont_data">of tot</span></td>' ;
+            reportStr += '<td><span class="mediumfont_data">' + countryData[i]['Deaths'] + '</span><br><span class="red smallfont_data">('+toPercent(countryData[i]['Deaths']/countryData[i]['Confirmed'],2)+')<br></span><span class="smallfont_data">of total</span></td>' ;
           }else{
-            reportStr += '<td><span class="mediumfont_data">' + countryData[i]['Deaths'] + '</span></td>';
+            reportStr += '<td><span class="mediumfont_data">' + countryData[i]['Deaths'] + '<br>(0)</span></td>';
           }
           if(country!='USA'){
             if(countryData[i]['Recovered']>0){
-            reportStr += '<td><span class="mediumfont_data">' + countryData[i]['Recovered'] + '</span><br><span class="green smallfont_data">('+toPercent(countryData[i]['Recovered']/countryData[i]['Confirmed'],2)+')<br></span><span class="smallfont_data">of tot</span></td>';
+            reportStr += '<td><span class="mediumfont_data">' + countryData[i]['Recovered'] + '</span><br><span class="green smallfont_data">('+toPercent(countryData[i]['Recovered']/countryData[i]['Confirmed'],2)+')<br></span><span class="smallfont_data">of total</span></td>';
             }else{
-              reportStr += '<td><span class="mediumfont_data">' + countryData[i]['Recovered'] + '</span></td>';
+              reportStr += '<td><span class="mediumfont_data">' + countryData[i]['Recovered'] + '<br>(0)</span></td>';
             }
           }
             reportStr += '</tr>';
