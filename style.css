@@ -257,11 +257,14 @@ a:active {
   background:#ffffa7;color:red;
 }
 .nav-side-bar{
-  background:#fff;position: fixed;top: 30vh;right: 0;
+  background:#fff;position: fixed;top: 30vh;left: 0;
+  /*margin-left: 100px;*/
   font-size: 12px;border-radius:5px;border:1px solid #f0f0f0;color:#666;;box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+
 }
 .nav-side-bar .nav{
   margin:5px 0;border-bottom:1px solid #f0f0f0;cursor: pointer;display: inherit;text-align: right;padding: 10px;
+
 }
 .nav-side-bar .nav:last-child{border:none;background:#396257;color:#fff;text-align: center;margin:0}
 .nav-side-bar .nav:nth-child(6){

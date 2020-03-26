@@ -72,19 +72,18 @@ function coronaDailyReport(ProvinceState, CountryRegion, country,type) {
           reportDailyStr += '<tbody>';
           reportDailyStr += '<tr>';
 
-          reportDailyStr += '<td><span class="largefont_data">'+countryDataRecent.Confirmed+'</span><br><span style="font-size:0.75rem">(<span style="color:red">+'+countryDataRecent.Increase+'</span>)</span></td>';
+          reportDailyStr += '<td><span class="largefont_data">'+countryDataRecent.Confirmed+'</span><br><span style="font-size:0.75rem">(<span style="color:red">+'+countryDataRecent.Increase+'</span>)</span>   <span style="font-size:0.75rem; color:grey"><br>'+toPercent(countryDataRecent.Confirmed/(countryDataRecent.Confirmed-countryDataRecent.Increase)-1,1)+' growth</span>   </td>';
+
           reportDailyStr += '<td><span class="largefont_data">'+countryDataRecent.Active+'</span><br><span style="font-size:0.75rem">(<span class="';
           countryDataRecent.Active>=0? reportDailyStr += 'red':reportDailyStr += 'blue';
-          reportDailyStr += '">+'+RecentActiveIncrease+'</span>)<br></span><span style="font-size:0.75rem; color:grey">'+toPercent(countryDataRecent.ActiveIncrease/RecentActiveIncrease,1)+'/total</span></td>';
-
-
+          reportDailyStr += '">+'+RecentActiveIncrease+'</span>)<br></span><span style="font-size:0.75rem; color:grey">'+toPercent(countryDataRecent.Active/(countryDataRecent.Active-countryDataRecent.ActiveIncrease)-1,1)+' growth</span></td>';
           if(countryDataRecent.DeathsIncrease>=0){
-            reportDailyStr += '<td><span class="largefont_data">'+countryDataRecent.Deaths+'</span><br><span style="font-size:0.75rem">(<span class="red">+'+countryDataRecent.DeathsIncrease+'</span>)</span><span style="font-size:0.75rem; color:grey"><br>'+toPercent(RecentDeaths/RecentActiveIncrease,1)+'/total</span></td>';
+            reportDailyStr += '<td><span class="largefont_data">'+countryDataRecent.Deaths+'</span><br><span style="font-size:0.75rem">(<span class="red">+'+countryDataRecent.DeathsIncrease+'</span>)</span><span style="font-size:0.75rem; color:grey"><br>'+toPercent(RecentDeaths/(RecentDeaths-countryDataRecent.DeathsIncrease)-1,1)+' growth</span></td>';
           }else{
-            reportDailyStr += '<td><span class="largefont_data">'+countryDataRecent.Deaths+'</span><br><span style="font-size:0.75rem">(<span class="blue">'+countryDataRecent.DeathsIncrease+'</span>)</span><span style="font-size:0.75rem; color:grey"><br>'+toPercent(RecentDeaths/RecentActiveIncrease,1)+'/total</span></td>';
+            reportDailyStr += '<td><span class="largefont_data">'+countryDataRecent.Deaths+'</span><br><span style="font-size:0.75rem">(<span class="blue">'+countryDataRecent.DeathsIncrease+'</span>)</span><span style="font-size:0.75rem; color:grey"><br>'+toPercent(RecentDeaths/(RecentDeaths-countryDataRecent.DeathsIncrease)-1,1)+' growth</span></td>';
           }
           if(country!='USA'){
-           reportDailyStr += '<td><span class="largefont_data">'+countryDataRecent.Recovered+'</span><br><span style="font-size:0.75rem">(<span class="red">+'+countryDataRecent.RecoveredIncrease+'</span>)</span><span style="font-size:0.75rem; color:grey"><br>'+toPercent(RecentRecovered/RecentConfirmed,1)+'/total</span></td>';
+           reportDailyStr += '<td><span class="largefont_data">'+countryDataRecent.Recovered+'</span><br><span style="font-size:0.75rem">(<span class="red">+'+countryDataRecent.RecoveredIncrease+'</span>)</span><span style="font-size:0.75rem; color:grey"><br>'+toPercent(countryDataRecent.Recovered/(countryDataRecent.Recovered-countryDataRecent.RecoveredIncrease)-1,1)+' growth</span></td>';
           }
           reportDailyStr += '</tr>';
           reportDailyStr += '<tr>';
