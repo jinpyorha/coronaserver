@@ -257,7 +257,7 @@ a:active {
   background:#ffffa7;color:red;
 }
 .nav-side-bar{
-  background:#fff;position: fixed;top: 30vh;left: 0;
+  background:#fff;position: fixed;top: 30vh;right: 0;
   /*margin-left: 100px;*/
   font-size: 12px;border-radius:5px;border:1px solid #f0f0f0;color:#666;;box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 
