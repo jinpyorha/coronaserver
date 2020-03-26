@@ -1,4 +1,8 @@
-function coronaUsMap(index){
+function coronaUsMap(type,country){
+  if(type==''||country!='USA'){
+    $('#coronaUsMap').html('');  $('#coronaUsMapReport').html('');
+    return;
+  }
   var urlApi = '/coronaserver/coronaDataApi.php?country=USA';
   $.ajax({
     type: 'GET',
@@ -27,40 +31,6 @@ function coronaUsMap(index){
         }
           dataElmGeo.unshift(geochartData);
         //가져온 데이터 배열에 저장 끝
-        var mapStr = '';
- 
-
-        mapStr +='Click on a State for a detailed analysis';
-        mapStr +='<table class="table table-hover">';
-        mapStr += '<col width="0.625rem">';
-        mapStr += '<col width="0.625rem">';
-        mapStr += '<col width="0.625rem">';
-        mapStr += '<col width="0.625rem">';
-        mapStr += '<thead class="table-success"><tr>';
-        mapStr += '<th scope="col" class="smallfont">State</th>';
-        mapStr += '<th scope="col" class="smallfont">Confirmed cases</th>';
-        // mapStr += '<th scope="col">Deaths</th>';//추가하기
-        // mapStr += '<th scope="col">Case fatality rate</th>';//추가하기
-        // mapStr += '<th scope="col">Recovered</th>';//추가하기
-        mapStr += '</tr></thead>';
-        mapStr += '<tbody>';
-        for(var k=dataElmGeo.length-1;k>0;k--){
-          if(dataElmGeo[k][0]!='Unassigned Location'){
-            mapStr += '<tr">';
-            mapStr += '<td class="mediumfont_data" onclick="coronaReport(\''+dataElmGeo[k][0]+'\', \'USA\',\'USA\');">'+dataElmGeo[k][0]+'</td>';
-            mapStr += '<td class="largefont_data">'+dataElmGeo[k][1]+'</td>';
-            mapStr += '</tr>';
-          }
-        }
-        mapStr += '<tbody>';
-        mapStr += '</table>';
-        console.log(index);
-      //  if(index=='main'){
-          $('#coronaUsMapReport').html(mapStr);
-      //  }else{
-      //    $('#coronaUsMapReport').html('');
-      //  }
-
 
         //차트그리기 시작
         google.charts.load('current', {

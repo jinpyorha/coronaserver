@@ -1,5 +1,5 @@
-function coronaReport(ProvinceState, CountryRegion, country) {
-  //console.log('onesunny3.cafe24.com/crawler/coronaDataApi.php?ProvinceState='+ProvinceState+'&CountryRegion='+CountryRegion);
+function coronaReport(ProvinceState, CountryRegion, country,type) {
+  var type= type;
   if (country == 'USA') {
     var urlApi = '/coronaserver/coronaDataApi.php?ProvinceState=' + ProvinceState + '&CountryRegion=' + CountryRegion + '&country=' + country;
     console.log(urlApi);
@@ -30,7 +30,6 @@ function coronaReport(ProvinceState, CountryRegion, country) {
         var selectStr = '';
         var countryList = obj.data.countryList;
         var countryData = obj.data.countryData;
-        var countryDataRecent = obj.data.countryDataRecent;
         var countryListLength = countryList != null ? countryList.length : 0;
 
 
@@ -43,7 +42,7 @@ function coronaReport(ProvinceState, CountryRegion, country) {
         selectStr += '</h5>'
 
         selectStr += '<select id="countryList" class="smallfont">';
-        selectStr += '<option >';
+        selectStr += '<option value="total">';
         if (country == 'USA') {
           selectStr += lang=='en'?'Select States':'주를 선택하세요(확진자 수)';
         } else {
@@ -55,6 +54,7 @@ function coronaReport(ProvinceState, CountryRegion, country) {
         } else {
           $('#title').html('#COVID-19 hourly updates Global');
         }
+
 
         selectStr += '</option>';
         for (var i = 0; i < countryListLength; i++) {
@@ -77,123 +77,32 @@ function coronaReport(ProvinceState, CountryRegion, country) {
 
         }
         selectStr += '</select>';
-        var conditionStr = '';
-        var reportDailyStr ='';
-        var reportStr = '';
+        selectStr += '<div class="alert alert-success smallfont" role="alert"><i>';
+        selectStr += lang=='en'?'Sorted by number of total cases':'지역은 확진자 많은 순으로 정렬되어있습니다!';
+        selectStr += '</i></div>';
 
+        var conditionStr = '';
+        var reportStr = '';
 
         function toPercent(number, float) {
           var percent = parseFloat(number * 100).toFixed(float) + "%";
           return percent;
         } //percentage
 
-        // function divideTwoNum(number1, number2){
-        //   var result = number1 / number2;
-        //   return result;
-        // }
-
-
         function subtractThree(number1,number2,number3){
           var result = number1 - number2 - number3;
           return result;
         }//subtract
 
-        // console.log(countryData);
-        if(countryDataRecent !=null){
-          // selectStr +=+percentRecovered+;
-          var tempCountryRecentConfirmed = +countryDataRecent.Confirmed;
-          var tempCountryRecentActive = +countryDataRecent.Active;
-          var tempCountryRecentDeaths = +countryDataRecent.Deaths;
-          var tempCountryRecentRecovered =+countryDataRecent.Recovered;
-          var tempCountryRecentConfirmedIncrease = +countryDataRecent.Increase;
-          var tempCountryRecentActiveIncrease = +countryDataRecent.ActiveIncrease;
-          var tempCountryRecentDeathsIncrease = +countryDataRecent.DeathsIncrease;
-          var tempCountryRecentRecoveredIncrease =+countryDataRecent.RecoveredIncrease;
-          var tempCountryRecentDate =countryDataRecent.RecentDate;
-          // reportDailyStr +='<h1>Total Active : '+subtractThree(tempCountryRecentConfirmed, tempCountryRecentDeaths, tempCountryRecentRecovered)+'</h1>'
-
-          //reportDailyStr +='<h5 class="display-6 class-border mediumfont">&nbsp;last updated :'+tempCountryRecentDate+'</h5>';
-    		  reportDailyStr +='<h5 class="display-6 class-border mediumfont">&nbsp;Situation summary</h5>';
-
-          reportDailyStr +='<table class="table table-hover">';
-          reportDailyStr += '<thead class="table-success"><tr>';
-          reportDailyStr += '<th scope="col" colspan="1" class="smallfont">Confirmed<br>';
-          if(country=='USA'){
-            if(ProvinceState=='Select States'||ProvinceState==''){
-              reportDailyStr+='in US';
-            }else{
-              reportDailyStr+='<span>in </span>'+ ProvinceState;
-            }
-          }else{
-            if(ProvinceState=='Select States'||CountryRegion==''){
-              reportDailyStr+='Globally';
-            }else{
-              reportDailyStr+=ProvinceState+'['+CountryRegion+']';
-            }
-          }
-          reportDailyStr += '</th>';
-          reportDailyStr += '<th scope="col" colspan="1" class="smallfont">Total<br>active</th>';
-          reportDailyStr += '<th scope="col" colspan="1" class="smallfont">Total<br>death</th>';
-          if(country!='USA'){
-            reportDailyStr += '<th scope="col" colspan="1" class="smallfont">Total<br>recovered</th>';
-          }
-          reportDailyStr += '</tr></thead>';
-          reportDailyStr += '<tbody>';
-          reportDailyStr += '<tr>';
-
-          // if(country=='USA'){
-          reportDailyStr += '<td><span class="largefont_data">'+countryDataRecent.Confirmed+'</span><br><span style="font-size:0.75rem">(<span style="color:red">+'+countryDataRecent.Increase+'</span>)</span></td>';
-          // }else{
-          // reportDailyStr += '<td><span class="mediumfont_data">'+countryDataRecent.Confirmed+'</span><br><span style="font-size:0.75rem">(<span style="color:red">+'+countryDataRecent.Increase+'</span>)</span></td>';
-          // }
-          reportDailyStr += '<td><span class="largefont_data">'+countryDataRecent.Active+'</span><br><span style="font-size:0.75rem">(<span class="';
-          countryDataRecent.Active>=0? reportDailyStr += 'red':reportDailyStr += 'blue';
-          reportDailyStr += '">+'+tempCountryRecentActiveIncrease+'</span>)<br></span><span style="font-size:0.75rem; color:grey">'+toPercent(countryDataRecent.ActiveIncrease/tempCountryRecentConfirmed,1)+'/total</span></td>';
-
-
-          if(countryDataRecent.DeathsIncrease>=0){
-            reportDailyStr += '<td><span class="largefont_data">'+countryDataRecent.Deaths+'</span><br><span style="font-size:0.75rem">(<span class="red">+'+countryDataRecent.DeathsIncrease+'</span>)</span><span style="font-size:0.75rem; color:grey"><br>'+toPercent(tempCountryRecentDeaths/tempCountryRecentConfirmed,1)+'/total</span></td>';
-          }else{
-            reportDailyStr += '<td><span class="largefont_data">'+countryDataRecent.Deaths+'</span><br><span style="font-size:0.75rem">(<span class="blue">'+countryDataRecent.DeathsIncrease+'</span>)</span><span style="font-size:0.75rem; color:grey"><br>'+toPercent(tempCountryRecentDeaths/tempCountryRecentConfirmed,1)+'/total</span></td>';
-          }
-          if(country!='USA'){
-           reportDailyStr += '<td><span class="largefont_data">'+countryDataRecent.Recovered+'</span><br><span style="font-size:0.75rem">(<span class="red">+'+countryDataRecent.RecoveredIncrease+'</span>)</span><span style="font-size:0.75rem; color:grey"><br>'+toPercent(tempCountryRecentRecovered/tempCountryRecentConfirmed,1)+'/total</span></td>';
-          }
-          reportDailyStr += '</tr>';
-          reportDailyStr += '<tr>';
-          reportDailyStr += '</tr>';
-          reportDailyStr += '</tbody>';
-          reportDailyStr += '</table>';
-          reportDailyStr += '<p class="font-italic"><small>Last updated: '+tempCountryRecentDate+' in GMT; Data updates every hour and is sourced and cross-checked with official government websites</small></p>';
-          reportDailyStr += '<p class="font-italic"><small> </small></p>';
-
-        }
-
-
-
         if (countryData == null) {
-          selectStr += '<div class="alert alert-success smallfont" role="alert"><i>';
-          selectStr += lang=='en'?'Sorted by number of total cases':'지역은 확진자 많은 순으로 정렬되어있습니다!';
-          selectStr += '</i></div>';
-          $('#reportDaily').html('');
           $('#columnchart_confirmed').html('');
           $('#linechart_confirmed_increase').html('');
           $('#columnchart_death').html('');
           $('#columnchart_recovered').html('');
           $('#stackchart').html('');
-        //  if(country!='USA'){
-        //      $('#reportDaily').html('');
-        //  }
-        //  else{
-          $('#reportDaily').html(reportDailyStr);
-        // }
         }
 
         if (countryData != null) {
-          $('#coronaUsMap').html('');
-          $('#coronaUsMapReport').html('');
-
-          $('#reportDaily').html('');
           $('#columnchart_confirmed').html('');
           $('#linechart_confirmed_increase').html('');
           $('#columnchart_death').html('');
@@ -287,19 +196,10 @@ function coronaReport(ProvinceState, CountryRegion, country) {
            conditionStr += '<div class="color blue"></div><div class="label">Recovered Count</div>';
            conditionStr += '</div>'
         }
+
         $('#select-box').html(selectStr);
         $('#report').html(reportStr);
-        //$('#colors').html(conditionStr);
 
-
-        $('#reportDaily').html(reportDailyStr);
-
-
-
-        //console.log(dataCorona);
-        //console.log(dataElm);
-
-        //var tempData =['DateDate', 'Confirmed'];
         var tempDataConfirmed = ['DataDate', 'Confirmed'];
         var tempDataDeath = ['DataDate', 'Deaths'];
         var tempDataRecovered = ['DataDate', 'Recovered'];
@@ -323,9 +223,6 @@ function coronaReport(ProvinceState, CountryRegion, country) {
             'packages': ['bar']
           });
           google.charts.load('current', {'packages':['corechart']});
-          //if(tempCountryRecentConfirmed>0){google.charts.setOnLoadCallback(drawConfirmedChart);}
-          //if(tempCountryRecentDeaths>0){google.charts.setOnLoadCallback(drawDeathChart);}
-          //if(tempCountryRecentRecovered>0){google.charts.setOnLoadCallback(drawRecoveredChart);}
 
           google.charts.load('current', {
             packages: ['corechart', 'line']
@@ -333,16 +230,6 @@ function coronaReport(ProvinceState, CountryRegion, country) {
           google.charts.setOnLoadCallback(drawIncreaseChart);
           google.charts.setOnLoadCallback(drawStackChart);
         }
-
-        if(country=='USA'){
-          if(countryData==null){
-            coronaUsMap('main');
-          }else{
-            coronaUsMap('');
-          }
-        }
-        else{$('#coronaUsMap').html('');  $('#coronaUsMapReport').html('');}
-
 
         function drawStackChart(){
           var data = google.visualization.arrayToDataTable(dataElmStack);
@@ -574,14 +461,25 @@ function coronaReport(ProvinceState, CountryRegion, country) {
           chart.draw(data, options);
         }
 
+        //US Map Report 부르기
+        //Total Report 부르기 - US , Global (total)
+
+        coronaUsMap(type,country);
+        coronaTotalReport(type,country);
+        coronaDailyReport(ProvinceState,CountryRegion, country,type);
+
         //내부함수
         $(function() {
           $('#countryList').change(function() {
-            //console.log(this.value);
+            if($(this).val()=='total'){
+              type='total';
+            }else{
+              type='';
+            }
             var regionArray = this.value.split('@');
             regionArray[0]=regionArray[0]!=null?regionArray[0]:'';
             regionArray[1]=regionArray[1]!=null?regionArray[1]:'';
-            coronaReport(regionArray[0], regionArray[1], country);
+            coronaReport(regionArray[0], regionArray[1], country,type);
           });
         });
 
