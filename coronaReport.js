@@ -24,9 +24,9 @@ function coronaReport(ProvinceState, CountryRegion, country,type) {
   if(type!='total')
   {navStr+='<div class="nav" onclick="scrolls(\'stack-line-box\')">Charts</div>';}
   if(country=='USA'){
-    navStr+='<div class="nav" onclick="scrolls(\'report\')">USA States List</div>';
+    navStr+='<div class="nav" onclick="scrolls(\'coronaUsMapReport\')">USA States List</div>';
   }else{
-    navStr+='<div class="nav" onclick="scrolls(\'report\')">Country List</div>';
+    navStr+='<div class="nav" onclick="scrolls(\'coronaUsMapReport\')">Country List</div>';
   }
   navStr+='<div class="nav" style="border-top:1px solid #333" onclick="coronaReport(\'\', \'\',\'USA\',\'total\')">USA</div>';
   navStr+='<div class="nav" onclick="coronaReport(\'\', \'\',\'global\',\'total\')">Global</div>';
