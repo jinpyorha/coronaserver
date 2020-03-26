@@ -79,7 +79,6 @@
 			<div id="reportDaily"></div>
 			<div id="select-box"></div>
 			<div id="coronaUsMap"></div>
-			<div id="colors"></div>
 			<div id="stack-line-box">
 				<div class="col-sm" id="stackchart"></div>
 				<div class="col-sm" id="linechart_confirmed_increase"></div>
@@ -90,6 +89,12 @@
 			<div id="report"></div>
 			<div id="coronaUsMapReport"></div>
 		</div>
+
+		<!--navigation-->
+		<div class="nav-side-bar" id="nav-side-bar">
+		</div>
+		<!--navigation-->
+	</div>
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	<script type="text/javascript" src="/coronaserver/coronaHeader.js"></script>
@@ -98,13 +103,6 @@
 	<script type="text/javascript" src="/coronaserver/coronaUsMap.js"></script>
 	<script type="text/javascript" src="/coronaserver/coronaTotalReport.js"></script>
 
-<!-- <script>
-	$( "#coronainfo" ).load( "Components/coronainfo.html" );
-</script> -->
-<!-- <script>
-	$( "#mapmap" ).load( "map/map.html" );
-
-</script> -->
 	<script>
 		const queryString = window.location.search;
 		const urlParams = new URLSearchParams(queryString);
@@ -114,6 +112,31 @@
 		console.log(lang);
 		coronaHeader(lang,'report');
 		coronaReport('', '', country,'total');
+
+		function reportReadMore(elm){
+			if($('#report').hasClass('read-more')){
+				$('#report').removeClass('read-more');
+				$(elm).html('read more ▼');//안보이니까 펼치기
+				$('html, body').animate({
+	      	scrollTop: $("#report").offset().top-100
+				}, "fast");
+			}else{
+				$('#report').addClass('read-more');
+				$(elm).html('read less ▲');//보이게 했으니까 접기
+			}
+		}
+		function scrolls(type){
+			if(type=='top'){
+				$("html, body").animate({ scrollTop:0 }, "fast",function(){
+					});
+			}else{
+				var id="#"+type;
+				$('html, body').animate({
+	      	scrollTop: $(id).offset().top-100
+				}, "fast");
+			}
+		}
+
 	</script>
 </body>
 

@@ -16,16 +16,6 @@ $countryRegion = isset($_GET['CountryRegion'])&&$_GET['CountryRegion']!=''?$_GET
 $country=
 isset($_GET['country'])&&$_GET['country']!=''?$_GET['country']:'';
 
-//$sqlCountryList ="SELECT ProvinceState,CountryRegion,COUNT(Id)AS cnt FROM CoronaData2 GROUP BY ProvinceState,CountryRegion";
-$sqlCountryList="SELECT ProvinceState,CountryRegion,(SELECT Confirmed FROM CoronaData2 WHERE ProvinceState=CD.ProvinceState AND CountryRegion=CD.CountryRegion ORDER BY DataDate DESC LIMIT 1 ) AS cnt FROM CoronaData2 AS CD";
-$sqlCountryList.=" WHERE CD.ProvinceState<>'Total:' AND CD.CountryRegion<>'Total:'";
-if($country=='USA'){
-	$sqlCountryList.=" AND CD.CountryRegion = '".$country."' AND CD.ProvinceState<>''";
-}
-
-$sqlCountryList.="  GROUP BY ProvinceState,CountryRegion
-ORDER BY cnt DESC ";
-
 	$sqlCountryData = "SELECT ProvinceState AS PS ,CountryRegion AS CR ,LastUpdate,Confirmed,
 	Deaths,Recovered,DataDate AS DD,
 	NewCases ,
@@ -46,21 +36,6 @@ ORDER BY cnt DESC ";
 
 $sqlCountryDataOrder = " ORDER BY DataDate DESC ";
 $sqlCountryData.=$sqlCountryDataWhere.$sqlCountryDataOrder;
-
-//country List 가져오기
-$result = $conn->query($sqlCountryList);
-if ($result->num_rows > 0) {
-	// output data of each row
-	while($row = $result->fetch_assoc()) {
-		//DATA 읽어오기
-		//echo '<li>'.$row['ProvinceState'].','.$row['CountryRegion'].','.$row['cnt'].'</li>';
-		$countryList[] = array(
-			'ProvinceState'=>$row['ProvinceState'],
-			'CountryRegion'=>$row['CountryRegion'],
-			'cnt'=>$row['cnt']
-		);
-	}
-}
 
 //country Data 가져오기
 if(($provinceState!=''||$countryRegion!='')&&($provinceState!='Select States'&&$provinceState!='Select country')){
@@ -102,7 +77,6 @@ else{
 //#######api 제작###########
 $coronaArray = array();
 $coronaArray['countryData'] = $countryData;
-$coronaArray['countryList'] = $countryList;
 
   $result = "success";
   $reason ="success";

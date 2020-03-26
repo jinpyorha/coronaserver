@@ -1,4 +1,10 @@
 function coronaReport(ProvinceState, CountryRegion, country,type) {
+  //global select 에서 USA 선택시 - USA 탭으로 이동시켜 버리기
+  if(ProvinceState=='Total:'&&CountryRegion=='USA'){
+    type='total';
+    ProvinceState='';
+    country='USA';
+  }
   var type= type;
   if (country == 'USA') {
     var urlApi = '/coronaserver/coronaDataApi.php?ProvinceState=' + ProvinceState + '&CountryRegion=' + CountryRegion + '&country=' + country;
@@ -7,6 +13,25 @@ function coronaReport(ProvinceState, CountryRegion, country,type) {
     var urlApi = '/coronaserver/coronaDataApi.php?ProvinceState=' + ProvinceState + '&CountryRegion=' + CountryRegion;
     console.log(urlApi);
   }
+
+  var navStr ='';
+  navStr+='<div class="nav" onclick="scrolls(\'tab\')">'+country+'<br>Summary</div>';
+  if(country=='USA'){
+    navStr+='<div class="nav" onclick="scrolls(\'select-box\')">SelectState</div>';
+  }else{
+    navStr+='<div class="nav" onclick="scrolls(\'select-box\')">SelectCountry</div>';
+  }
+  if(type!='total')
+  {navStr+='<div class="nav" onclick="scrolls(\'stack-line-box\')">Charts</div>';}
+  if(country=='USA'){
+    navStr+='<div class="nav" onclick="scrolls(\'report\')">USA States List</div>';
+  }else{
+    navStr+='<div class="nav" onclick="scrolls(\'report\')">Country List</div>';
+  }
+  navStr+='<div class="nav" style="border-top:1px solid #333" onclick="coronaReport(\'\', \'\',\'USA\',\'total\')">USA</div>';
+  navStr+='<div class="nav" onclick="coronaReport(\'\', \'\',\'global\',\'total\')">Global</div>';
+  navStr+='<div class="nav" onclick="scrolls(\'top\')">Top ↑</div>';
+  $('#nav-side-bar').html(navStr);
 
   $.ajax({
     type: 'GET',
@@ -27,27 +52,11 @@ function coronaReport(ProvinceState, CountryRegion, country,type) {
 
         var dataElmStack = [];
 
-        var selectStr = '';
-        var countryList = obj.data.countryList;
+
         var countryData = obj.data.countryData;
-        var countryListLength = countryList != null ? countryList.length : 0;
 
 
-        selectStr += '<h5 class="class-border smallfont">&nbsp;';
-        if (country == 'USA') {
-          selectStr += lang=='en'?'Search by States (cumulative cases)':'미국 주별 검색';
-        } else {
-          selectStr += lang=='en'?'Search by country':'국가별 검색';
-        }
-        selectStr += '</h5>'
 
-        selectStr += '<select id="countryList" class="smallfont">';
-        selectStr += '<option value="total">';
-        if (country == 'USA') {
-          selectStr += lang=='en'?'Select States':'주를 선택하세요(확진자 수)';
-        } else {
-          selectStr += lang=='en'?'Select country':'나라를 선택하세요(확진자 수)';
-        }
 
         if (country == 'USA') {
           $('#title').html('#COVID-19 hourly updates in US');
@@ -55,33 +64,6 @@ function coronaReport(ProvinceState, CountryRegion, country,type) {
           $('#title').html('#COVID-19 hourly updates Global');
         }
 
-
-        selectStr += '</option>';
-        for (var i = 0; i < countryListLength; i++) {
-          if (countryList[i]['ProvinceState'] == ProvinceState && countryList[i]['CountryRegion'] == CountryRegion) {
-            if(country=='USA'){selectStr += '<option  selected value="' + countryList[i]['ProvinceState'] + '@' + countryList[i]['CountryRegion'] + '">' + countryList[i]['ProvinceState'] + '(' + countryList[i]['cnt'] +
-              ')</option>';
-            }else{
-              selectStr += '<option  selected value="' + countryList[i]['ProvinceState'] + '@' + countryList[i]['CountryRegion'] + '">' + countryList[i]['ProvinceState'] + '[' + countryList[i]['CountryRegion'] + '](' + countryList[i]['cnt'] +
-                ')</option>';
-              }
-          } else {
-            if(country=='USA'){
-              selectStr += '<option value="' + countryList[i]['ProvinceState'] + '@' + countryList[i]['CountryRegion'] + '">' + countryList[i]['ProvinceState'] + '(' + countryList[i]['cnt'] +
-              ')</option>';
-            }else{
-              selectStr += '<option value="' + countryList[i]['ProvinceState'] + '@' + countryList[i]['CountryRegion'] + '">' + countryList[i]['ProvinceState'] + '[' + countryList[i]['CountryRegion'] + '](' + countryList[i]['cnt'] +
-              ')</option>';
-            }
-          }
-
-        }
-        selectStr += '</select>';
-        selectStr += '<div class="alert alert-success smallfont" role="alert"><i>';
-        selectStr += lang=='en'?'Sorted by number of total cases':'지역은 확진자 많은 순으로 정렬되어있습니다!';
-        selectStr += '</i></div>';
-
-        var conditionStr = '';
         var reportStr = '';
 
         function toPercent(number, float) {
@@ -189,15 +171,9 @@ function coronaReport(ProvinceState, CountryRegion, country,type) {
           }
           reportStr += '</tbody>';
           reportStr += '</table>';
-
-           conditionStr += '<div class="colors">';
-           conditionStr += '<div class="color red"></div><div class="label">Confirmed Count</div>';
-           conditionStr += '<div class="color yellow"></div><div class="label">Death Count</div>';
-           conditionStr += '<div class="color blue"></div><div class="label">Recovered Count</div>';
-           conditionStr += '</div>'
+          reportStr += '<button type="button" onclick="reportReadMore(this)"class="btn btn-secondary btn-sm read-more-box">read more ▼</button>';
         }
 
-        $('#select-box').html(selectStr);
         $('#report').html(reportStr);
 
         var tempDataConfirmed = ['DataDate', 'Confirmed'];
@@ -311,7 +287,6 @@ function coronaReport(ProvinceState, CountryRegion, country,type) {
           chart.draw(data, options);
         }
 
-
         function drawConfirmedChart() {
 
           var data = google.visualization.arrayToDataTable(dataElmConfirmed);
@@ -356,8 +331,6 @@ function coronaReport(ProvinceState, CountryRegion, country,type) {
 
           chart.draw(data, google.charts.Bar.convertOptions(options));
         }
-
-
 
         function drawDeathChart() {
 
@@ -464,26 +437,12 @@ function coronaReport(ProvinceState, CountryRegion, country,type) {
         //US Map Report 부르기
         //Total Report 부르기 - US , Global (total)
 
+
         coronaUsMap(type,country);
-        coronaTotalReport(type,country);
-        coronaDailyReport(ProvinceState,CountryRegion, country,type);
-
-        //내부함수
-        $(function() {
-          $('#countryList').change(function() {
-            if($(this).val()=='total'){
-              type='total';
-            }else{
-              type='';
-            }
-            var regionArray = this.value.split('@');
-            regionArray[0]=regionArray[0]!=null?regionArray[0]:'';
-            regionArray[1]=regionArray[1]!=null?regionArray[1]:'';
-            coronaReport(regionArray[0], regionArray[1], country,type);
-          });
-        });
-
-        //내부함수 끝
+        coronaTotalReport(ProvinceState,CountryRegion,country,type);
+        coronaDailyReport(ProvinceState,CountryRegion,country,type);
+        $("html, body").animate({ scrollTop:0 }, "slow",function(){
+				});
       }
     }
 

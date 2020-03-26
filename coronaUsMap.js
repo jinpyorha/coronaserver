@@ -3,7 +3,7 @@ function coronaUsMap(type,country){
     $('#coronaUsMap').html('');  $('#coronaUsMapReport').html('');
     return;
   }
-  var urlApi = '/coronaserver/coronaDataApi.php?country=USA';
+  var urlApi = '/coronaserver/coronaTotalReportApi.php?country=USA';
   $.ajax({
     type: 'GET',
     url: urlApi,
