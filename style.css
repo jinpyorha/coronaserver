@@ -275,10 +275,10 @@ a:active {
 }
 @media (max-width:600px) {
   .nav-side-bar{
-    bottom:0;top:initial;width:100vw;display: flex;
+    bottom:0;top:initial;width:100vw;display: flex;border-top:1px solid #999;
   }
   .nav-side-bar .nav{
-    width:100%;display: inline;text-align: center;margin:0;
+    width:100%;display: inline;text-align: center;margin:0;padding-top:20px;
   }
   .nav-side-bar .nav:last-child{
     text-align:center;
