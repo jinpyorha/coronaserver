@@ -24,7 +24,7 @@ function coronaReport(ProvinceState, CountryRegion, country,type) {
   if(type!='total')
   {navStr+='<div class="nav" onclick="scrolls(\'stack-line-box\')">Charts</div>';}
   if(country=='USA'){
-    navStr+='<div class="nav" onclick="scrolls(\'coronaUsMapReport\')">USA States List</div>';
+    navStr+='<div class="nav" onclick="scrolls(\'coronaUsMapReport\')">USA <br>States List</div>';
   }else{
     navStr+='<div class="nav" onclick="scrolls(\'coronaUsMapReport\')">Country List</div>';
   }
