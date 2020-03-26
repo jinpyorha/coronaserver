@@ -28,8 +28,8 @@ function coronaReport(ProvinceState, CountryRegion, country,type) {
   }else{
     navStr+='<div class="nav" onclick="scrolls(\'coronaUsMapReport\')">Country List</div>';
   }
-  navStr+='<div class="nav" style="border-top:1px solid #333" onclick="coronaReport(\'\', \'\',\'USA\',\'total\')">USA</div>';
-  navStr+='<div class="nav" onclick="coronaReport(\'\', \'\',\'global\',\'total\')">Global</div>';
+  navStr+='<div class="nav" id="nav-usa" style="background:#f0f0f0" onclick="coronaReport(\'\', \'\',\'USA\',\'total\')">USA</div>';
+  navStr+='<div class="nav" id="nav-global" style="background:#f0f0f0" onclick="coronaReport(\'\', \'\',\'global\',\'total\')">Global</div>';
   navStr+='<div class="nav" onclick="scrolls(\'top\')">Top ↑</div>';
   $('#nav-side-bar').html(navStr);
 

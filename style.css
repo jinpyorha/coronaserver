@@ -257,7 +257,6 @@ a:active {
   background:#ffffa7;color:red;
 }
 .nav-side-bar{
-  display: none;
   background:#fff;position: fixed;top: 30vh;right: 0;
   font-size: 12px;border-radius:5px;border:1px solid #f0f0f0;color:#666;;box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 }
@@ -274,6 +273,18 @@ a:active {
 .nav-side-bar .nav:last-child:hover{
   color:#fff;background:#549080;
 }
+@media (max-width:600px) {
+  .nav-side-bar{
+    bottom:0;top:initial;width:100vw;display: flex;
+  }
+  .nav-side-bar .nav{
+    width:100%;display: inline;text-align: center;margin:0;
+  }
+  .nav-side-bar .nav:last-child{
+    text-align:center;
+  }
+  #nav-usa{display: none;}
+  #nav-global{display: none;}
+}
 @media (min-width:600px) {
-  .nav-side-bar{display: block;}
 }
