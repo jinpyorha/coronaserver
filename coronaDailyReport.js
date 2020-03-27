@@ -76,7 +76,13 @@ function coronaDailyReport(ProvinceState, CountryRegion, country,type) {
 
           reportDailyStr += '<td><span class="largefont_data">'+countryDataRecent.Active+'</span><br><span style="font-size:0.75rem">(<span class="';
           countryDataRecent.Active>=0? reportDailyStr += 'red':reportDailyStr += 'blue';
-          reportDailyStr += '">+'+RecentActiveIncrease+'</span>)<br></span><span style="font-size:0.75rem; color:grey">'+toPercent(countryDataRecent.Active/(countryDataRecent.Active-countryDataRecent.ActiveIncrease)-1,1)+' growth</span></td>';
+          if(RecentActiveIncrease>=0){
+            reportDailyStr += '">+'+RecentActiveIncrease+'</span>)<br></span><span style="font-size:0.75rem; color:grey">'+toPercent(countryDataRecent.Active/(countryDataRecent.Active-countryDataRecent.ActiveIncrease)-1,1)+' growth</span></td>';
+          }else {
+            reportDailyStr += '">'+RecentActiveIncrease+'</span>)<br></span><span style="font-size:0.75rem; color:grey">'+toPercent(countryDataRecent.Active/(countryDataRecent.Active-countryDataRecent.ActiveIncrease)-1,1)+' growth</span></td>';
+          }
+
+            
           if(countryDataRecent.DeathsIncrease>=0){
             reportDailyStr += '<td><span class="largefont_data">'+countryDataRecent.Deaths+'</span><br><span style="font-size:0.75rem">(<span class="red">+'+countryDataRecent.DeathsIncrease+'</span>)</span><span style="font-size:0.75rem; color:grey"><br>'+toPercent(RecentDeaths/(RecentDeaths-countryDataRecent.DeathsIncrease)-1,1)+' growth</span></td>';
           }else{
