@@ -4,7 +4,7 @@ function coronaHeader(lang,page) {
   // headerStr += '<link rel="icon" href="img/locosmall.png">'
   headerStr += '<nav class="navbar navbar-expand-lg navbar-light">';
   // headerStr += '<a class="navbar-brand" href="#">CoronaNotBeer</a>';
-  headerStr += '<a class="navbar-brand" href="https://coronanotbeer.com"><img src="/coronaserver/img/logobig.png" alt="big logo"></a>';
+  headerStr += '<a class="navbar-brand" href="https://coronanotbeer.com"><img src="/coronaserver/img/logobig.png" class="logo" alt="big logo"></a>';
   headerStr += '<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">';
   headerStr += '<span class="navbar-toggler-icon"></span>';
   headerStr += '</button>';
