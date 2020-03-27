@@ -293,6 +293,9 @@ a:active {
 }
 .logo{
   animation: bounceIn 1.5s both 1s;
+  -moz-animation: bounceIn 1.5s both 1s;
+  -ms-animation: bounceIn 1.5s both 1s;
+  -o-animation: bounceIn 1.5s both 1s;
 }
 @keyframes bounceIn {
   0% {
@@ -307,3 +310,47 @@ a:active {
     transform: scale(1);
   }
 }
+@-webkit-keyframes bounceIn { 0% {
+  transform: scale(0.1);
+  opacity: 0;
+}
+60% {
+  transform: scale(1.2);
+  opacity: 1;
+}
+100% {
+  transform: scale(1);
+}}
+@-moz-keyframes bounceIn { 0% {
+  transform: scale(0.1);
+  opacity: 0;
+}
+60% {
+  transform: scale(1.2);
+  opacity: 1;
+}
+100% {
+  transform: scale(1);
+}}
+@-ms-keyframes bounceIn { 0% {
+  transform: scale(0.1);
+  opacity: 0;
+}
+60% {
+  transform: scale(1.2);
+  opacity: 1;
+}
+100% {
+  transform: scale(1);
+}}
+@-o-keyframes bounceIn { 0% {
+  transform: scale(0.1);
+  opacity: 0;
+}
+60% {
+  transform: scale(1.2);
+  opacity: 1;
+}
+100% {
+  transform: scale(1);
+}}
