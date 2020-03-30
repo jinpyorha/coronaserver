@@ -112,7 +112,8 @@ function coronaReport(ProvinceState, CountryRegion, country,type) {
           }
           //countryDataLength=countryDataLength>30?30:countryDataLength;
           for (var i = 0; i < countryDataLength; i++) {
-            var tempActiveIncrease = countryData[i]['Increase'] - countryData[i]['DeathsIncrease']-countryData[i]['RecoveredIncrease'];
+            //var tempActiveIncrease = countryData[i]['Increase'] - countryData[i]['DeathsIncrease']-countryData[i]['RecoveredIncrease'];
+            var tempActiveIncrease = countryData[i]['ActiveIncrease'];
 
             reportStr += '<tr>';
             reportStr += '<td><span class="smallfont_data">' + countryData[i]['DataDate'] + '</span></td>';
@@ -122,12 +123,12 @@ function coronaReport(ProvinceState, CountryRegion, country,type) {
               reportStr += '<td><span class="mediumfont_data">+' + countryData[i]['Confirmed'] + '<br>(0)</span></td>';
                // '<span class="blue"> ('+ countryData[i]['Increase'] + ')</span></td>';
             }
-            if (tempActiveIncrease>0){
-            reportStr += '<td><span class="mediumfont_data">' + subtractThree(countryData[i]['Confirmed'], countryData[i]['Deaths'],countryData[i]['Recovered'])+ '</span><br><span class="red smallfont_data">(+' + tempActiveIncrease +  ')</span></td>';
-            } else if (tempActiveIncrease<0){
-            reportStr += '<td><span class="mediumfont_data">' + subtractThree(countryData[i]['Confirmed'], countryData[i]['Deaths'],countryData[i]['Recovered'])+ '</span><br><span class="blue smallfont_data">(' + tempActiveIncrease +  ')</span></td>';
+            if (countryData[i]['ActiveIncrease']>0){
+            reportStr += '<td><span class="mediumfont_data">' + countryData[i]['Active']+ '</span><br><span class="red smallfont_data">(+' + countryData[i]['ActiveIncrease'] +  ')</span></td>';
+            } else if (countryData[i]['ActiveIncrease']<0){
+            reportStr += '<td><span class="mediumfont_data">' + countryData[i]['Active']+ '</span><br><span class="blue smallfont_data">(' + countryData[i]['ActiveIncrease'] +  ')</span></td>';
             }else{
-              reportStr += '<td><span class="mediumfont_data">' + subtractThree(countryData[i]['Confirmed'], countryData[i]['Deaths'],countryData[i]['Recovered'])+ '<br>(0)</span></td>';
+              reportStr += '<td><span class="mediumfont_data">' + countryData[i]['Active']+ '<br>(0)</span></td>';
             }
 
             if(countryData[i]['Deaths']>0){
