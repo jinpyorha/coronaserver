@@ -26,12 +26,11 @@ FROM CoronaData2
 if($country=='USA'){
   $sqlCountryList.="WHERE ProvinceState <> '' AND ProvinceState <> 'Total:' AND CountryRegion = 'USA'";
 }else{
-  $sqlCountryList.="WHERE (ProvinceState =''||ProvinceState ='Total:') AND CountryRegion <> 'Total:'";
+  $sqlCountryList.="WHERE ProvinceState ='' AND CountryRegion <> 'Total:'";
 }
 $sqlCountryList.=" AND DataDate = (SELECT DataDate FROM CoronaData2 ORDER BY DataDate DESC LIMIT 1)
 GROUP BY ProvinceState,CountryRegion
 ORDER BY cnt DESC ";
-
 //country List 가져오기
 $result = $conn->query($sqlCountryList);
 if ($result->num_rows > 0) {

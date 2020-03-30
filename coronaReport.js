@@ -1,16 +1,16 @@
 function coronaReport(ProvinceState, CountryRegion, country,type) {
   //global select 에서 USA 선택시 - USA 탭으로 이동시켜 버리기
-  if(ProvinceState=='Total:'&&CountryRegion=='USA'){
+  if(ProvinceState==''&&CountryRegion=='USA'){
     type='total';
     ProvinceState='';
     country='USA';
   }
   var type= type;
   if (country == 'USA') {
-    var urlApi = '/coronaserver/coronaDataApi.php?ProvinceState=' + ProvinceState + '&CountryRegion=' + CountryRegion + '&country=' + country;
+    var urlApi = '/coronaserver/coronaDataApi.php?ProvinceState=' + ProvinceState + '&CountryRegion=' + CountryRegion + '&country=' + country+'&type='+type;
     console.log(urlApi);
   } else if (country == 'global') {
-    var urlApi = '/coronaserver/coronaDataApi.php?ProvinceState=' + ProvinceState + '&CountryRegion=' + CountryRegion;
+    var urlApi = '/coronaserver/coronaDataApi.php?ProvinceState=' + ProvinceState + '&CountryRegion=' + CountryRegion+'&type='+type;
     console.log(urlApi);
   }
 
@@ -21,7 +21,8 @@ function coronaReport(ProvinceState, CountryRegion, country,type) {
   }else{
     navStr+='<div class="nav" onclick="scrolls(\'select-box\')">SelectCountry</div>';
   }
-  if(type!='total')
+  //if(type!='total')
+  if(true)
   {navStr+='<div class="nav" onclick="scrolls(\'stack-line-box\')">Charts</div>';}
   if(country=='USA'){
     navStr+='<div class="nav" onclick="scrolls(\'coronaUsMapReport\')">USA <br>States List</div>';
@@ -75,16 +76,17 @@ function coronaReport(ProvinceState, CountryRegion, country,type) {
           var result = number1 - number2 - number3;
           return result;
         }//subtract
-
-        if (countryData == null) {
+        /*
+        if (type=='total') {
           $('#columnchart_confirmed').html('');
           $('#linechart_confirmed_increase').html('');
           $('#columnchart_death').html('');
           $('#columnchart_recovered').html('');
           $('#stackchart').html('');
-        }
+        }*/
 
-        if (countryData != null) {
+        //if (type != 'total') {
+        if(true){
           $('#columnchart_confirmed').html('');
           $('#linechart_confirmed_increase').html('');
           $('#columnchart_death').html('');
@@ -92,7 +94,9 @@ function coronaReport(ProvinceState, CountryRegion, country,type) {
           $('#stackchart').html('');
           var countryDataLength = countryData.length;
           //console.log( countryDataLength );
-          reportStr += '<p class="margin-top">' + ProvinceState + '[' + CountryRegion + ']</p>';
+          if(ProvinceState!=''||CountryRegion!=''){
+            reportStr += '<p class="margin-top">' + ProvinceState + '[' + CountryRegion + ']</p>';
+          }
           reportStr += '<table class="table table-hover">';
 
           reportStr += '<thead class="table-success"><tr>';
@@ -194,7 +198,7 @@ function coronaReport(ProvinceState, CountryRegion, country,type) {
         dataElmStack.unshift(tempDataStack);
 
 
-        if (countryData != null) {
+        //if (type != 'total') {
           google.charts.load('current', {
             'packages': ['bar']
           });
@@ -205,7 +209,7 @@ function coronaReport(ProvinceState, CountryRegion, country,type) {
           });
           google.charts.setOnLoadCallback(drawIncreaseChart);
           google.charts.setOnLoadCallback(drawStackChart);
-        }
+        //}
 
         function drawStackChart(){
           var data = google.visualization.arrayToDataTable(dataElmStack);

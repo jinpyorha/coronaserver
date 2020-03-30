@@ -1,5 +1,5 @@
 function coronaUsMap(type,country){
-  if(type==''||country!='USA'){
+  if(country!='USA'){
     $('#coronaUsMap').html('');  $('#coronaUsMapReport').html('');
     return;
   }

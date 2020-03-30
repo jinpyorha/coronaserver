@@ -15,6 +15,7 @@ $provinceState = isset($_GET['ProvinceState'])&&$_GET['ProvinceState']!=''?$_GET
 $countryRegion = isset($_GET['CountryRegion'])&&$_GET['CountryRegion']!=''?$_GET['CountryRegion']:'';
 $country=
 isset($_GET['country'])&&$_GET['country']!=''?$_GET['country']:'';
+$type = isset($_GET['type'])&&$_GET['type']!=''?$_GET['type']:'';
 
 	$sqlCountryData = "SELECT ProvinceState AS PS ,CountryRegion AS CR ,LastUpdate,Confirmed,
 	Deaths,Recovered,DataDate AS DD,
@@ -23,13 +24,17 @@ isset($_GET['country'])&&$_GET['country']!=''?$_GET['country']:'';
 	ActiveCases,
   NewRecovered AS RecoveredIncrease,";
 
-	if($countryRegion=='USA'){
+	if($country=='USA'&&$type!='total'){
 		$sqlCountryDataWhere = " WHERE ProvinceState = '".$provinceState."' AND CountryRegion = '".$countryRegion."' AND ProvinceState<>'Total:' AND CountryRegion<>'Total:' AND ProvinceState<>'' ";
-	}else{
-	$sqlCountryDataWhere = " WHERE CountryRegion = '".$countryRegion."' AND ProvinceState<>'Total:' AND CountryRegion<> 'Total:'";
+	}else if ($country!='USA'&&$type!='total'){
+		$sqlCountryDataWhere = " WHERE CountryRegion = '".$countryRegion."' AND ProvinceState<>'Total:' AND CountryRegion<> 'Total:'";
+	}else if($country=='USA'&&$type=='total'){
+		$sqlCountryDataWhere = " WHERE CountryRegion = 'USA' AND ProvinceState=''";
+	}else if($country!='USA'&&$type=='total'){
+		$sqlCountryDataWhere = " WHERE CountryRegion = 'Total:'";
 	}
 
-	$sqlCountryData.="ActiveCases-(SELECT ActiveCases FROM CoronaData2 ".$sqlCountryDataWhere." AND DataDate=(".$yesterdaySql2.")
+	$sqlCountryData.="ActiveCases-(SELECT ActiveCases FROM CoronaData2 ".$sqlCountryDataWhere." AND DataDate=(SELECT DataDate FROM CoronaData2 WHERE DataDate < DD GROUP BY DataDate ORDER BY DataDate DESC LIMIT 1)
 	  )AS ActiveCasesIncrease ";
 
 	$sqlCountryData .= "FROM CoronaData2 ";
@@ -38,7 +43,7 @@ $sqlCountryDataOrder = " ORDER BY DataDate DESC ";
 $sqlCountryData.=$sqlCountryDataWhere.$sqlCountryDataOrder;
 
 //country Data 가져오기
-if(($provinceState!=''||$countryRegion!='')&&($provinceState!='Select States'&&$provinceState!='Select country')){
+
 	$result = $conn->query($sqlCountryData);
 	$countryDataIndex= 0;
 	$recentDate = '';
@@ -67,13 +72,8 @@ if(($provinceState!=''||$countryRegion!='')&&($provinceState!='Select States'&&$
 			$countryDataIndex++;
 		}
 	}
-}
-else{
-	$countryData= null;
-	//나라 데이터가 없는 경우
-	//세계면 나라별 / 미국이면 주별
-	//데이터를 모두 sum 해서 recent 값 구한다
-}
+
+
 //#######api 제작###########
 $coronaArray = array();
 $coronaArray['countryData'] = $countryData;
