@@ -13,6 +13,8 @@
 	<meta property="og:title" content="Corona Not Beer" />
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+	<!-- Link Swiper's CSS -->
+	<link rel="stylesheet" href="package/css/swiper.min.css">
 	<link rel="stylesheet" href="/coronaserver/style.css?ver=2003316" />
 
 	<link rel="shortcut icon" href="/coronaserver/img/favicon_sm.png"/>
@@ -78,6 +80,25 @@
 			<div id="tab"></div>
 			<div id="reportDaily"></div>
 			<div id="select-box"></div>
+			<div id="news-carousel">
+				<!-- Swiper -->
+				<div class="swiper-container">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide">Slide 1</div>
+						<div class="swiper-slide">Slide 2</div>
+						<div class="swiper-slide">Slide 3</div>
+						<div class="swiper-slide">Slide 4</div>
+						<div class="swiper-slide">Slide 5</div>
+						<div class="swiper-slide">Slide 6</div>
+						<div class="swiper-slide">Slide 7</div>
+						<div class="swiper-slide">Slide 8</div>
+						<div class="swiper-slide">Slide 9</div>
+						<div class="swiper-slide">Slide 10</div>
+					</div>
+					<!-- Add Pagination -->
+					<div class="swiper-pagination"></div>
+				</div>
+			</div>
 			<div id="coronaUsMap"></div>
 			<div id="stack-line-box">
 				<div class="col-sm" id="stackchart"></div>
@@ -102,7 +123,20 @@
 	<script type="text/javascript" src="/coronaserver/coronaDailyReport.js?ver=200331"></script>
 	<script type="text/javascript" src="/coronaserver/coronaUsMap.js?ver=200331"></script>
 	<script type="text/javascript" src="/coronaserver/coronaTotalReport.js?ver=200331"></script>
+	<!-- Swiper JS -->
+  <script src="package/js/swiper.min.js"></script>
 
+  <!-- Initialize Swiper -->
+  <script>
+    var swiper = new Swiper('.swiper-container', {
+      slidesPerView: 'auto',
+      spaceBetween: 30,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+    });
+  </script>
 	<script>
 		const queryString = window.location.search;
 		const urlParams = new URLSearchParams(queryString);
