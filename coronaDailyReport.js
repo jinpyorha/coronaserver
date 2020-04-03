@@ -38,7 +38,7 @@ function coronaDailyReport(ProvinceState, CountryRegion, country,type) {
           var RecentActiveIncrease = countryDataRecent.ActiveIncrease;
           var RecentDeathsIncrease = countryDataRecent.DeathsIncrease;
           var RecentRecoveredIncrease =countryDataRecent.RecoveredIncrease;
-          var RecentDate =countryDataRecent.RecentDate;
+          var RecentDate =countryDataRecent.WrittenAtUtc;
           var RecentWrittenAtUtc = countryDataRecent.WrittenAtUtc;
 
     		  reportDailyStr +='<h5 class="display-6 class-border mediumfont">&nbsp;Situation summary</h5>';
@@ -82,7 +82,7 @@ function coronaDailyReport(ProvinceState, CountryRegion, country,type) {
             reportDailyStr += '">'+RecentActiveIncrease+'</span>)<br></span><span style="font-size:0.75rem; color:grey">'+toPercent(countryDataRecent.Active/(countryDataRecent.Active-countryDataRecent.ActiveIncrease)-1,1)+' growth</span></td>';
           }
 
-            
+
           if(countryDataRecent.DeathsIncrease>=0){
             reportDailyStr += '<td><span class="largefont_data">'+countryDataRecent.Deaths+'</span><br><span style="font-size:0.75rem">(<span class="red">+'+countryDataRecent.DeathsIncrease+'</span>)</span><span style="font-size:0.75rem; color:grey"><br>'+toPercent(RecentDeaths/(RecentDeaths-countryDataRecent.DeathsIncrease)-1,1)+' growth</span></td>';
           }else{
