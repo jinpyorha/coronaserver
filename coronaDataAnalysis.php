@@ -27,7 +27,7 @@ GROUP BY CR";
   $sqlDesc= $sql." ORDER BY ACIavg DESC LIMIT 5";
 
   $resultAsc = $conn->query($sqlAsc);
-  
+
   $resultDesc = $conn->query($sqlDesc);
 
   if ($resultAsc->num_rows > 0) {
@@ -36,7 +36,7 @@ GROUP BY CR";
       echo $row['CR'].','.$row['ACIavg'].'<br>';
     }
   }
-echo '#############';
+echo '#############<BR>';
   if ($resultDesc->num_rows > 0) {
     // output data of each row
     while($row = $resultDesc->fetch_assoc()) {
