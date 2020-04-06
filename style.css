@@ -385,6 +385,9 @@ a:active {
 #recommend-slide .swiper-slide h3 b{color:red;}
 #recommend-slide .swiper-slide ol{width:80%;font-size:17px;margin:0 auto;padding-left:20px;}
 #recommend-slide .swiper-slide ol li{padding:2px;border:1px solid #ccc;margin:7px;border-radius:5px;}
+#recommend-slide .swiper-slide ol li:hover{
+  cursor: pointer;opacity: 0.8;
+}
 #recommend-slide .swiper-slide ol li:first-child{background:#d4edda}
 #recommend-slide .swiper-slide ol li b{margin-left:15px}
 #recommend-slide .swiper-slide ol li b span{margin-left:5px;}
