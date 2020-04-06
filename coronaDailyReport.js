@@ -42,7 +42,22 @@ function coronaDailyReport(ProvinceState, CountryRegion, country,type) {
           var RecentWrittenAtUtc = countryDataRecent.WrittenAtUtc;
 
     		  reportDailyStr +='<h5 class="display-6 class-border mediumfont">&nbsp;Situation summary</h5>';
-
+          reportDailyStr +='<h3 class="display-6 class-border mediumfont">&nbsp;';
+          if(type=='total'){
+            if(country=='USA'){
+              reportDailyStr+='in US';
+            }else{//global
+              reportDailyStr+='Globally';
+              //reportDailyStr+='<span>in </span>'+ ProvinceState;
+            }
+          }else{//type!=total
+            if(country=='USA'){ //country=USA, ProvinceState= specific state
+              reportDailyStr+='<span>in </span>'+ ProvinceState+'[USA]';
+            }else{
+              reportDailyStr+='['+CountryRegion+']';
+            }
+          }
+          reportDailyStr +='</h3>';
           reportDailyStr +='<table class="table table-hover">';
           reportDailyStr += '<thead class="table-success"><tr>';
           reportDailyStr += '<th scope="col" colspan="1" class="smallfont">Confirmed<br>';

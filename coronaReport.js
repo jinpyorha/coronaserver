@@ -446,6 +446,7 @@ function coronaReport(ProvinceState, CountryRegion, country,type) {
         coronaUsMap(type,country);
         coronaTotalReport(ProvinceState,CountryRegion,country,type);
         coronaDailyReport(ProvinceState,CountryRegion,country,type);
+        coronaAnalysis();
         $("html, body").animate({ scrollTop:0 }, "slow",function(){
 				});
       }

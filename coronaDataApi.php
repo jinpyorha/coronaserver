@@ -25,9 +25,9 @@ $type = isset($_GET['type'])&&$_GET['type']!=''?$_GET['type']:'';
   NewRecovered AS RecoveredIncrease,";
 
 	if($country=='USA'&&$type!='total'){
-		$sqlCountryDataWhere = " WHERE ProvinceState = '".$provinceState."' AND CountryRegion = '".$countryRegion."' AND ProvinceState<>'Total:' AND CountryRegion<>'Total:' AND ProvinceState<>'' ";
+		$sqlCountryDataWhere = " WHERE ProvinceState = '".$provinceState."' AND CountryRegion = '".$countryRegion."' AND ProvinceState<>'Total:' AND ProvinceState<>'USA Total' AND CountryRegion<>'Total:' AND CountryRegion<>'USA Total' AND ProvinceState<>'' ";
 	}else if ($country!='USA'&&$type!='total'){
-		$sqlCountryDataWhere = " WHERE CountryRegion = '".$countryRegion."' AND ProvinceState<>'Total:' AND CountryRegion<> 'Total:'";
+		$sqlCountryDataWhere = " WHERE CountryRegion = '".$countryRegion."' AND ProvinceState<>'Total:' AND CountryRegion<> 'Total:' AND ProvinceState<>'USA Total' AND CountryRegion<> 'World'";
 	}else if($country=='USA'&&$type=='total'){
 		$sqlCountryDataWhere = " WHERE CountryRegion = 'USA' AND ProvinceState=''";
 	}else if($country!='USA'&&$type=='total'){

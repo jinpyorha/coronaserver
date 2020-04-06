@@ -24,9 +24,9 @@ $sqlCountryList ="SELECT
 FROM CoronaData2
 ";
 if($country=='USA'){
-  $sqlCountryList.="WHERE ProvinceState <> '' AND ProvinceState <> 'Total:' AND CountryRegion = 'USA'";
+  $sqlCountryList.="WHERE ProvinceState <> '' AND ProvinceState <> 'Total:' AND ProvinceState <> 'USA Total' AND CountryRegion = 'USA'";
 }else{
-  $sqlCountryList.="WHERE ProvinceState ='' AND CountryRegion <> 'Total:'";
+  $sqlCountryList.="WHERE ProvinceState ='' AND CountryRegion <> 'Total:' AND CountryRegion <> 'World'";
 }
 $sqlCountryList.=" AND DataDate = (SELECT DataDate FROM CoronaData2 ORDER BY DataDate DESC LIMIT 1)
 GROUP BY ProvinceState,CountryRegion
