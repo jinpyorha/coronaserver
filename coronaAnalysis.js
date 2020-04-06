@@ -31,7 +31,7 @@ function coronaAnalysis(){
                 sliderStr+='<div class="ol-box">';
                   sliderStr+='<ol>';
                   for(var i=0;i<ConfirmedDesc.length;i++){
-                    sliderStr+='<li onclick="coronaReport(\'\',\''+ConfirmedDesc[i]['CountryRegion']+'\',\'global\',\'\')">'+ConfirmedDesc[i]['CountryRegion']+'<b>'+ConfirmedDesc[i]['value']+'</b></li>';
+                    sliderStr+='<li onclick="coronaReport(\'\',\''+ConfirmedDesc[i]['CountryRegion']+'\',\'global\',\'\')">'+ConfirmedDesc[i]['CountryRegion']+'<b>'+ConfirmedDesc[i]['value']+'%</b></li>';
                   }
                   sliderStr+='</ol>';
                 sliderStr+='</div>';
@@ -42,7 +42,7 @@ function coronaAnalysis(){
                   sliderStr+='<ol>';
                   for(var i=0;i<ConfirmedAsc.length;i++){
                     //sliderStr+=('<li>'+ConfirmedAsc[i]['CountryRegion']+'<b>'+ConfirmedAsc[i]['value']+'<span class="'+ConfirmedAsc[i]['value']>0?'up':'dwn'+'">'+ConfirmedAsc[i]['value']>0?'▲':'▼'+'</span></b></li>');
-                    sliderStr+='<li onclick="coronaReport(\'\',\''+ConfirmedAsc[i]['CountryRegion']+'\',\'global\',\'\')">'+ConfirmedAsc[i]['CountryRegion']+'<b>'+ConfirmedAsc[i]['value']+'</b></li>';
+                    sliderStr+='<li onclick="coronaReport(\'\',\''+ConfirmedAsc[i]['CountryRegion']+'\',\'global\',\'\')">'+ConfirmedAsc[i]['CountryRegion']+'<b>'+ConfirmedAsc[i]['value']+'%</b></li>';
                   }
                   sliderStr+='</ol>';
                 sliderStr+='</div>';
@@ -52,7 +52,7 @@ function coronaAnalysis(){
                 sliderStr+='<div class="ol-box">';
                   sliderStr+='<ol>';
                   for(var i=0;i<DeathsDesc.length;i++){
-                    sliderStr+='<li onclick="coronaReport(\'\',\''+DeathsDesc[i]['CountryRegion']+'\',\'global\',\'\')">'+DeathsDesc[i]['CountryRegion']+'<b>'+DeathsDesc[i]['value']+'</b></li>';
+                    sliderStr+='<li onclick="coronaReport(\'\',\''+DeathsDesc[i]['CountryRegion']+'\',\'global\',\'\')">'+DeathsDesc[i]['CountryRegion']+'<b>'+DeathsDesc[i]['value']+'%</b></li>';
                   }
                   sliderStr+='</ol>';
                 sliderStr+='</div>';
@@ -62,7 +62,7 @@ function coronaAnalysis(){
                 sliderStr+='<div class="ol-box">';
                   sliderStr+='<ol>';
                   for(var i=0;i<DeathsAsc.length;i++){
-                    sliderStr+='<li onclick="coronaReport(\'\',\''+DeathsAsc[i]['CountryRegion']+'\',\'global\',\'\')">'+DeathsAsc[i]['CountryRegion']+'<b>'+DeathsAsc[i]['value']+'</b></li>';
+                    sliderStr+='<li onclick="coronaReport(\'\',\''+DeathsAsc[i]['CountryRegion']+'\',\'global\',\'\')">'+DeathsAsc[i]['CountryRegion']+'<b>'+DeathsAsc[i]['value']+'%</b></li>';
                   }
                   sliderStr+='</ol>';
                 sliderStr+='</div>';
