@@ -27,7 +27,7 @@ function coronaAnalysis(){
           sliderStr+='<div class="swiper-container">';
             sliderStr+='<div class="swiper-wrapper">';
               sliderStr+='<div class="swiper-slide">';
-                sliderStr+='<h3>Stepest increase<span class="up">▲</span> in <b>confirmed</b> case (top5)</h3>';
+                sliderStr+='<h3>Stepest increase<span class="up">▲</span> in <b>confirmed</b> case </h3>';
                 sliderStr+='<div class="ol-box">';
                   sliderStr+='<ol>';
                   for(var i=0;i<ConfirmedDesc.length;i++){
@@ -37,7 +37,7 @@ function coronaAnalysis(){
                 sliderStr+='</div>';
               sliderStr+='</div>';
               sliderStr+='<div class="swiper-slide">';
-                sliderStr+='<h3>Stepest decrease<span class="dwn">▼</span> in <b>confirmed</b> case (top5)</h3>';
+                sliderStr+='<h3>Stepest decrease<span class="dwn">▼</span> in <b>confirmed</b> case </h3>';
                 sliderStr+='<div class="ol-box">';
                   sliderStr+='<ol>';
                   for(var i=0;i<ConfirmedAsc.length;i++){
@@ -48,7 +48,7 @@ function coronaAnalysis(){
                 sliderStr+='</div>';
               sliderStr+='</div>';
               sliderStr+='<div class="swiper-slide">';
-                sliderStr+='<h3>Highest<span class="up">▲</span> case <b>fatality</b> rates (top5):confirmed>1000</h3>';
+                sliderStr+='<h3>Highest<span class="up">▲</span> case <b>fatality</b> rates :confirmed>1000</h3>';
                 sliderStr+='<div class="ol-box">';
                   sliderStr+='<ol>';
                   for(var i=0;i<DeathsDesc.length;i++){
@@ -58,7 +58,7 @@ function coronaAnalysis(){
                 sliderStr+='</div>';
               sliderStr+='</div>';
               sliderStr+='<div class="swiper-slide">';
-                sliderStr+='<h3>Lowest<span class="dwn">▼</span> case <b>fatality</b> rates (top5):confirmed>1000</h3>';
+                sliderStr+='<h3>Lowest<span class="dwn">▼</span> case <b>fatality</b> rates :confirmed>1000</h3>';
                 sliderStr+='<div class="ol-box">';
                   sliderStr+='<ol>';
                   for(var i=0;i<DeathsAsc.length;i++){
