@@ -1,3 +1,4 @@
+body{opacity: 0.5;}
 table {
   border: 1px solid white;
   border-collapse: collapse;
@@ -388,12 +389,12 @@ a:active {
 #recommend-slide .swiper-slide ol li:hover{
   cursor: pointer;opacity: 0.8;
 }
-#recommend-slide .swiper-slide ol li:first-child{background:#d4edda}
+#recommend-slide .swiper-slide ol li:first-child{border:1px solid #A16F73}
 #recommend-slide .swiper-slide ol li b{margin-left:15px}
 #recommend-slide .swiper-slide ol li b span{margin-left:5px;}
 #recommend-slide .swiper-slide .dwn{color:blue;}
 #recommend-slide .swiper-slide .up{color:red;}
-#recommend-slide{margin:30px 0;padding:20px 0;background:#333;}
+#recommend-slide{margin:30px 0;padding:20px 0;background:#428779;}
 #recommend-slide .swiper-slide .ol-box{background:#fff;padding:20px 10px;border-radius:6px;}
 @media(max-width:600px){
   .swiper-container{height:350px;}

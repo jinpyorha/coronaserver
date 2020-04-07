@@ -42,7 +42,7 @@ function coronaDailyReport(ProvinceState, CountryRegion, country,type) {
           var RecentWrittenAtUtc = countryDataRecent.WrittenAtUtc;
 
     		  reportDailyStr +='<h5 class="display-6 class-border mediumfont">&nbsp;Situation summary</h5>';
-          reportDailyStr +='<h3 class="display-6 class-border mediumfont">&nbsp;';
+          reportDailyStr +='<h3>&nbsp;';
           if(type=='total'){
             if(country=='USA'){
               reportDailyStr+='in US';

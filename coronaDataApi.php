@@ -43,7 +43,6 @@ $sqlCountryDataOrder = " ORDER BY DataDate DESC ";
 $sqlCountryData.=$sqlCountryDataWhere.$sqlCountryDataOrder;
 
 //country Data 가져오기
-
 	$result = $conn->query($sqlCountryData);
 	$countryDataIndex= 0;
 	$recentDate = '';
