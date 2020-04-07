@@ -429,3 +429,4 @@ a:active {
 #recommend-slide .swiper-pagination-bullet-active{
   background:#c3e6cb;border:none;
 }
+.nav-tabs .nav-link{cursor:pointer}

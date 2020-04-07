@@ -1,4 +1,4 @@
-function coronaHeader(lang,page) {
+function coronaHeader(lang,page,country,countryRegion) {
   var headerStr = '';
   //###############헤더 시작
   // headerStr += '<link rel="icon" href="img/locosmall.png">'
@@ -10,7 +10,7 @@ function coronaHeader(lang,page) {
   headerStr += '</button>';
   headerStr += '<div class="collapse navbar-collapse" id="navbarSupportedContent">';
   headerStr += '<ul class="navbar-nav mr-auto">';
-  if (country == 'global'&&page=='report') {
+  if (country == 'global') {
     headerStr += '<li class="nav-item active">';
   } else{
     headerStr += '<li class="nav-item">';
@@ -19,7 +19,7 @@ function coronaHeader(lang,page) {
   headerStr += lang=='en'?'World':'세계현황';
   headerStr+='<span class="sr-only">(current)</span></a>';
   headerStr += '</li>';
-  if (country == 'USA'&&page=='report') {
+  if (country == 'USA') {
     headerStr += '<li class="nav-item active">';
   } else {
     headerStr += '<li class="nav-item">';
@@ -28,6 +28,15 @@ function coronaHeader(lang,page) {
   headerStr += lang=='en'?'USA':'미국현황';
   headerStr += '</a>';
   headerStr += '</li>';
+
+  if (countryRegion == 'S. Korea') {
+    headerStr += '<li class="nav-item active" onclick="coronaReport(\'\',\'S. Korea\',\'global\',\'\')"><a class="nav-link">';
+  } else {
+    headerStr += '<li class="nav-item" onclick="coronaReport(\'\',\'S. Korea\',\'global\',\'\')"><a class="nav-link">';
+  }
+  headerStr += lang=='en'?'S. Korea':'한국현황';
+  headerStr += '</a></li>';
+
   /*headerStr += '<li class="nav-item dropdown">';
   headerStr += '<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">';
   headerStr += lang=='en'?'MORE':'더보기';
@@ -103,12 +112,19 @@ function coronaHeader(lang,page) {
       }
     tabStr+='</li>';
   tabStr+='<li class="nav-item">';
-      if(country!='USA'){
-        tabStr+='<a class="nav-link active" href="https://coronanotbeer.com?country=global">Global</a>';
-      }else{
-        tabStr+='<a class="nav-link" href="https://coronanotbeer.com?country=global">Global</a>';
-      }
-    tabStr+='</li>';
+    if(country!='USA'&&countryRegion!='S. Korea'){
+      tabStr+='<a class="nav-link active" href="https://coronanotbeer.com?country=global">Global</a>';
+    }else{
+      tabStr+='<a class="nav-link" href="https://coronanotbeer.com?country=global">Global</a>';
+    }
+  tabStr+='</li>';
+  tabStr+='<li class="nav-item">';
+    if(country!='USA'&&countryRegion=='S. Korea'){
+      tabStr+='<a class="nav-link active" onclick="coronaReport(\'\',\'S. Korea\',\'global\',\'\')">S. Korea</a>';
+    }else{
+      tabStr+='<a class="nav-link" onclick="coronaReport(\'\',\'S. Korea\',\'global\',\'\')">S. Korea</a>';
+    }
+  tabStr+='</li>';
   tabStr+='</ul>';
   $('#tab').html(tabStr);
   //#########tab

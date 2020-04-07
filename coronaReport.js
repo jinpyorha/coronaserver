@@ -14,6 +14,8 @@ function coronaReport(ProvinceState, CountryRegion, country,type) {
     console.log(urlApi);
   }
 
+  coronaHeader(lang,'',country,CountryRegion);
+
   var navStr ='';
   navStr+='<div class="nav" onclick="scrolls(\'tab\')">'+country+'<br>Summary</div>';
   if(country=='USA'){
@@ -447,6 +449,7 @@ function coronaReport(ProvinceState, CountryRegion, country,type) {
         coronaTotalReport(ProvinceState,CountryRegion,country,type);
         coronaDailyReport(ProvinceState,CountryRegion,country,type);
         coronaAnalysis();
+
         $("html, body").animate({ scrollTop:0 }, "slow",function(){
 				});
       }

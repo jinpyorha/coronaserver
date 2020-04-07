@@ -7,6 +7,7 @@ function coronaDailyReport(ProvinceState, CountryRegion, country,type) {
   if(type=='total'){
     urlApi+='&type=total';
   }
+
   console.log(urlApi);
 
   $.ajax({
