@@ -39,7 +39,7 @@ $type = isset($_GET['type'])&&$_GET['type']!=''?$_GET['type']:'';
 
 	$sqlCountryData .= "FROM CoronaData2 ";
 
-$sqlCountryDataOrder = " ORDER BY DataDate DESC ";
+$sqlCountryDataOrder = " GROUP BY DataDate ORDER BY DataDate DESC, WrittenAtUtc DESC  ";
 $sqlCountryData.=$sqlCountryDataWhere.$sqlCountryDataOrder;
 
 //country Data 가져오기
