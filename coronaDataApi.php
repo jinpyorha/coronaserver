@@ -34,7 +34,7 @@ $type = isset($_GET['type'])&&$_GET['type']!=''?$_GET['type']:'';
 		$sqlCountryDataWhere = " WHERE CountryRegion = 'Total:'";
 	}
 
-	$sqlCountryData.="ActiveCases-(SELECT ActiveCases FROM CoronaData2 ".$sqlCountryDataWhere." AND DataDate=(SELECT DataDate FROM CoronaData2 WHERE DataDate < DD GROUP BY DataDate ORDER BY DataDate DESC LIMIT 1)
+	$sqlCountryData.="ActiveCases-(SELECT ActiveCases FROM CoronaData2 ".$sqlCountryDataWhere." AND DataDate=(SELECT DataDate FROM CoronaData2 WHERE DataDate < DD GROUP BY DataDate ORDER BY DataDate DESC LIMIT 1) LIMIT 1
 	  )AS ActiveCasesIncrease ";
 
 	$sqlCountryData .= "FROM CoronaData2 ";
