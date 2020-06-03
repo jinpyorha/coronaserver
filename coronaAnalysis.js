@@ -27,7 +27,7 @@ function coronaAnalysis(){
           sliderStr+='<div class="swiper-container">';
             sliderStr+='<div class="swiper-wrapper">';
               sliderStr+='<div class="swiper-slide">';
-                sliderStr+='<h3>Stepest increase<span class="up">▲</span> in <b>confirmed</b> case </h3>';
+                sliderStr+='<h3>Steepest increase<span class="up">▲</span> in <b>confirmed</b> case </h3>';
                 sliderStr+='<div class="ol-box">';
                   sliderStr+='<ol>';
                   for(var i=0;i<ConfirmedDesc.length;i++){
@@ -37,7 +37,7 @@ function coronaAnalysis(){
                 sliderStr+='</div>';
               sliderStr+='</div>';
               sliderStr+='<div class="swiper-slide">';
-                sliderStr+='<h3>Stepest decrease<span class="dwn">▼</span> in <b>confirmed</b> case </h3>';
+                sliderStr+='<h3>Steepest decrease<span class="dwn">▼</span> in <b>confirmed</b> case </h3>';
                 sliderStr+='<div class="ol-box">';
                   sliderStr+='<ol>';
                   for(var i=0;i<ConfirmedAsc.length;i++){
