@@ -29,9 +29,9 @@ $type = isset($_GET['type'])&&$_GET['type']!=''?$_GET['type']:'';
 	}else if ($country!='USA'&&$type!='total'){
 		$sqlCountryDataWhere = " WHERE CountryRegion = '".$countryRegion."' AND ProvinceState<>'Total:' AND CountryRegion<> 'Total:' AND ProvinceState<>'USA Total' AND CountryRegion<> 'World'";
 	}else if($country=='USA'&&$type=='total'){
-		$sqlCountryDataWhere = " WHERE CountryRegion = 'USA' AND ProvinceState=''";
+		$sqlCountryDataWhere = " WHERE CountryRegion = 'USA' AND ProvinceState LIKE '%Total%'";
 	}else if($country!='USA'&&$type=='total'){
-		$sqlCountryDataWhere = " WHERE CountryRegion = 'Total:'";
+		$sqlCountryDataWhere = " WHERE CountryRegion = 'World'";
 	}
 
 	$sqlCountryData.="ActiveCases-(SELECT ActiveCases FROM CoronaData2 ".$sqlCountryDataWhere." AND DataDate=(SELECT DataDate FROM CoronaData2 WHERE DataDate < DD GROUP BY DataDate ORDER BY DataDate DESC LIMIT 1) LIMIT 1
@@ -44,6 +44,7 @@ $sqlCountryData.=$sqlCountryDataWhere.$sqlCountryDataOrder;
 
 //country Data 가져오기
 	$result = $conn->query($sqlCountryData);
+
 	$countryDataIndex= 0;
 	$recentDate = '';
 	if ($result->num_rows > 0) {

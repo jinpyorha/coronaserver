@@ -8,10 +8,10 @@ function coronaReport(ProvinceState, CountryRegion, country,type) {
   var type= type;
   if (country == 'USA') {
     var urlApi = '/coronaserver/coronaDataApi.php?ProvinceState=' + ProvinceState + '&CountryRegion=' + CountryRegion + '&country=' + country+'&type='+type;
-    console.log(urlApi);
+    console.log('coronaReport:'+urlApi);
   } else if (country == 'global') {
     var urlApi = '/coronaserver/coronaDataApi.php?ProvinceState=' + ProvinceState + '&CountryRegion=' + CountryRegion+'&type='+type;
-    console.log(urlApi);
+    console.log('coronaReport:'+urlApi);
   }
 
   coronaHeader(lang,'',country,CountryRegion);
