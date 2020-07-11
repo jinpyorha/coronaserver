@@ -32,7 +32,7 @@
     if($country=='USA'){
       $totalRecentDataSqlWhere="WHERE CountryRegion='USA' AND ProvinceState LIKE '%Total%' ";
     }else{//country='' //global
-      $totalRecentDataSqlWhere="WHERE CountryRegion LIKE '%Total%' AND ProvinceState ='' ";
+      $totalRecentDataSqlWhere="WHERE CountryRegion LIKE '%World%' AND ProvinceState ='' ";
     }
   }else{//type!=Total
     if($country=='USA'){ // country=USA , ProvinceState=specific state
